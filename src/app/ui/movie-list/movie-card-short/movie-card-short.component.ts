@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Movie } from 'src/app/domain/movie';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'moviesapp-movie-card-short',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./movie-card-short.component.scss']
 })
 export class MovieCardShortComponent implements OnInit {
+  @Input() movie: Movie;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  public navigateToMovieDetails(): void {
+    this.router.navigate(['/movie'], { queryParams: {
+      movieId: this.movie.imdbId
+    }});
   }
 
 }

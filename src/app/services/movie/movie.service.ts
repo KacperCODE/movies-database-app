@@ -34,6 +34,15 @@ export class MovieService {
         catchError(this.handleError));
   }
 
+  public getMovieById(movieId: string): Observable<Movie> {
+    return this.authHttp.get(this.url + `/movies/${movieId}`)
+    .pipe(
+        map((res: Movie) => { 
+          return res
+        }),
+        catchError(this.handleError));
+  }
+
   private handleError(error: any) {
     let errMsg = (error.message) ? error.message :
         error.status ? `${error.status} - ${error.statusText}` : 'Server error';

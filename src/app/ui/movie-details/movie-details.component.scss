@@ -1,0 +1,12 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.component {
+    &__wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        background-image: $main-gradient;
+    }
+}

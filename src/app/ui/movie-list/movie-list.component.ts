@@ -1,3 +1,4 @@
+import { Movie } from './../../domain/movie';
 import { Page } from './../../domain/page';
 import { Log } from 'ng2-logger/client';
 import { AlertService } from 'ngx-alerts';
@@ -11,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieListComponent implements OnInit {
   private log = Log.create("MovieListComponent")
+  public movies: Movie[];
 
   constructor(private movieService: MovieService,
               private alertService: AlertService) { }
@@ -24,6 +26,7 @@ export class MovieListComponent implements OnInit {
       .subscribe(
         (data: Page) => {
           this.log.d('Movies', data);
+          this.movies = [...data.collection];
         },
         (error) => {
           this.alertService.danger('Something went wrong');
