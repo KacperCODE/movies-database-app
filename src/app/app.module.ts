@@ -1,3 +1,6 @@
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth/auth.interceptor';
 import { MovieService } from './services/movie/movie.service';
 import { LoginService } from './services/login/login.service';
 import { AuthService } from './services/auth/auth.service';
@@ -16,7 +19,6 @@ import { MovieListComponent } from './ui/movie-list/movie-list.component';
 import { MovieCardDetailedComponent } from './ui/movie-details/movie-card-detailed/movie-card-detailed.component';
 import { MovieCardShortComponent } from './ui/movie-list/movie-card-short/movie-card-short.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AlertModule } from 'ngx-alerts';
 import { ListSettingsComponent } from './ui/movie-list/list-settings/list-settings.component';
 import { NavbarComponent } from './ui/navbar/navbar.component';
@@ -59,7 +61,12 @@ export function tokenGetter() {
   providers: [
     AuthService,
     LoginService,
-    MovieService
+    MovieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

@@ -69,6 +69,10 @@ export class AuthService {
     return localStorage.getItem(this.tokenId);
   }
 
+  public removeToken(): void {
+    localStorage.removeItem(this.tokenId);
+  }
+
   private getUtcDate() : number {
     return new Date().getUTCDate();
   }
