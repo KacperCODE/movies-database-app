@@ -1,5 +1,18 @@
 
 <div class="card-details__container">
-  <p>
-    {{ movie?.title }}
+
+  <div class="card-details__side-left">
+      <img src="{{movie?.posterUrl}}"/>
+  </div>
+
+  <div class="card-details__side-right">
+    <h1 class="card-details__title">{{ movie?.title }}</h1>
+    <p>{{ movie?.year }}</p>
+    <p>{{ movie?.metascore }}</p>
+    <p>{{ movie?.director }}</p>
+    <div class="card-details__genres">
+      <p *ngFor="let genre of movie?.genres">{{ genre | titlecase }}</p>
+    </div>
+  </div>
+
 </div>
