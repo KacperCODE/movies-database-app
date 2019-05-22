@@ -15,8 +15,18 @@
     &__container {
         @extend %card;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
         width: 600px;
         height: 300px;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column
+    }
+
+    &__label {
+        margin: 4px;
     }
 }

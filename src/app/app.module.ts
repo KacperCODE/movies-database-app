@@ -10,6 +10,8 @@ import { MovieDetailsComponent } from './ui/movie-details/movie-details.componen
 import { MovieListComponent } from './ui/movie-list/movie-list.component';
 import { MovieCardDetailedComponent } from './ui/movie-details/movie-card-detailed/movie-card-detailed.component';
 import { MovieCardShortComponent } from './ui/movie-list/movie-card-short/movie-card-short.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { MovieCardShortComponent } from './ui/movie-list/movie-card-short/movie-
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     AuthService,

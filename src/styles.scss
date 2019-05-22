@@ -1,2 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Raleway');
+
+@import './app/styles/variables.scss';
+
+* {
+    font-family: $main-font; 
+}

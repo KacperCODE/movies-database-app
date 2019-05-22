@@ -1,5 +1,25 @@
 <div class="component__wrapper">
   <div class="login__container">
-    <p>Hello World!</p>
+    <p>Movies Database</p>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login__form">
+
+      <label class="login__label">
+        <input type="text" 
+               formControlName="login" 
+               placeholder="Email Address"
+               required>
+      </label>
+
+      <label class="login__label">
+        <input type="password" 
+               formControlName="password"
+               placeholder="Password"
+               required>
+      </label>
+
+      <button type="submit" [disabled]="!loginForm.valid">Sign in</button>
+    </form>
+
   </div>
 </div>
