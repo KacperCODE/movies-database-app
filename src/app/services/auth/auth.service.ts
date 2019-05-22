@@ -3,6 +3,7 @@ import { User } from './../../domain/user';
 import { JwtToken } from './../../domain/jwt-token';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,12 @@ export class AuthService {
 
   private tokenId: string = "JWT_TOKEN";
   private jwtHelper: JwtHelperService = new JwtHelperService();
+  // TODO Move to Store NgRx
   public user: User;
 
-  constructor() {
+  //TODO Implement Initialisation service for validating JWT.
+
+  constructor(private router: Router) {
     this.loginUserIfTokenValid();
   }
 
@@ -37,12 +41,13 @@ export class AuthService {
     this.log.d('Token Valid, User Logged In', decodedToken);
     this.user = new User();
     this.user.email = decodedToken.email;
+    // TODO After logging user from cache inform other components.
   }
 
   public logout(): void {
     localStorage.removeItem(this.tokenId);
     this.user = null;
-    // navigate
+    this.router.navigate(['']);
   }
 
   public isJwtValid(token): boolean {
