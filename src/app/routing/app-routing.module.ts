@@ -3,13 +3,19 @@ import { MovieDetailsComponent } from './../ui/movie-details/movie-details.compo
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { LoginComponent } from '../ui/login/login.component';
+import { MovieListComponent } from '../ui/movie-list/movie-list.component';
 
 
 const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-  }, 
+  },
+  {
+    path: 'list',
+    component: MovieListComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: 'movie',
     component: MovieDetailsComponent,
