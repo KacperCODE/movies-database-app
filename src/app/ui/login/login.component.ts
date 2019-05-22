@@ -3,6 +3,9 @@ import { AuthService } from './../../services/auth/auth.service';
 import { LoginService } from './../../services/login/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Log } from 'ng2-logger/client';
+import { Router } from '@angular/router';
+import { AlertService } from 'ngx-alerts';
 
 
 @Component({
@@ -11,6 +14,7 @@ import { FormControl, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  private log = Log.create('LoginComponent');
 
   loginForm = this.formBuilder.group({
     login: ['', [
@@ -25,7 +29,9 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private loginService: LoginService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private alertService: AlertService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -37,6 +43,12 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (token: JwtToken) => {
           this.authService.login(token);
+          this.router.navigate(['/list']);
+          this.alertService.info('Logged In');
+        },
+        (error) => {
+          this.alertService.warning('Incorrect email/password');
+          this.log.er("Incorrect email/password", error);
         }
       )
   }

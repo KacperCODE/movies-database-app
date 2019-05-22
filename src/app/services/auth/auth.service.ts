@@ -1,3 +1,4 @@
+import { Log } from 'ng2-logger/client';
 import { User } from './../../domain/user';
 import { JwtToken } from './../../domain/jwt-token';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -7,6 +8,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
+  private log = Log.create('AuthService');
+
   private tokenId: string = "JWT_TOKEN";
   private jwtHelper: JwtHelperService = new JwtHelperService();
   public user: User;
@@ -16,7 +19,7 @@ export class AuthService {
   }
 
   private loginUserIfTokenValid() {
-    if (this.isJwtValid(this.getToken())) {
+    if (this.isJwtValid(null)) {
       this.setLoggedInUser();
     }
   }
@@ -31,7 +34,7 @@ export class AuthService {
   private setLoggedInUser(): void {
     let token: string = localStorage.getItem(this.tokenId);
     let decodedToken = this.jwtHelper.decodeToken(token);
-    console.log('Token Valid, User Logged In', decodedToken);
+    this.log.d('Token Valid, User Logged In', decodedToken);
     this.user = new User();
     this.user.email = decodedToken.email;
   }
@@ -43,7 +46,11 @@ export class AuthService {
   }
 
   public isJwtValid(token): boolean {
-    return token != null && !this.jwtHelper.isTokenExpired(token, this.getUtcDate());
+    let resultToken: string = token;
+    if(!resultToken) {
+      resultToken = this.getToken();
+    }
+    return resultToken != null && !this.jwtHelper.isTokenExpired(resultToken, this.getUtcDate());
   }
 
   public getToken(): string {

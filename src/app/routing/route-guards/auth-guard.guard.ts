@@ -1,5 +1,7 @@
+import { AlertService } from 'ngx-alerts';
+import { AuthService } from './../../services/auth/auth.service';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,9 +9,15 @@ import { Observable } from 'rxjs';
 })
 export class AuthGuard implements CanActivate {
   
-  constructor() { }
+  constructor(private router: Router,
+              private authService: AuthService) { }
 
   canActivate() {
-    return true
+    if(!this.authService.isJwtValid(null)) {
+      this.router.navigate(['']);
+      return false;
+    }
+
+    return true;
   }
 }

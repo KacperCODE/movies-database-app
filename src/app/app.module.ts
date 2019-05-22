@@ -1,5 +1,6 @@
 import { LoginService } from './services/login/login.service';
 import { AuthService } from './services/auth/auth.service';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,6 +13,7 @@ import { MovieCardDetailedComponent } from './ui/movie-details/movie-card-detail
 import { MovieCardShortComponent } from './ui/movie-list/movie-card-short/movie-card-short.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AlertModule } from 'ngx-alerts';
 
 @NgModule({
   declarations: [
@@ -23,10 +25,16 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     MovieCardShortComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AlertModule.forRoot({
+      maxMessages: 3, 
+      timeout: 3000, 
+      position: 'right'
+    })
   ],
   providers: [
     AuthService,
