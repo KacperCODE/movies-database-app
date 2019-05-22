@@ -1,0 +1,23 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.component {
+    &__wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        background-image: $main-gradient;
+    }
+}
+
+.movie-list {
+    &__container {
+        @extend %card;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 600px;
+        height: 300px;
+    }
+}

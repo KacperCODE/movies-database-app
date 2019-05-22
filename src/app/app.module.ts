@@ -3,6 +3,9 @@ import { AuthService } from './services/auth/auth.service';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { AppRoutingModule } from './routing/app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +17,8 @@ import { MovieCardShortComponent } from './ui/movie-list/movie-card-short/movie-
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AlertModule } from 'ngx-alerts';
+import { ListSettingsComponent } from './ui/movie-list/list-settings/list-settings.component';
+import { NavbarComponent } from './ui/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,9 @@ import { AlertModule } from 'ngx-alerts';
     MovieDetailsComponent,
     MovieListComponent,
     MovieCardDetailedComponent,
-    MovieCardShortComponent
+    MovieCardShortComponent,
+    ListSettingsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -30,6 +37,7 @@ import { AlertModule } from 'ngx-alerts';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
     AlertModule.forRoot({
       maxMessages: 3, 
       timeout: 3000, 
@@ -42,4 +50,8 @@ import { AlertModule } from 'ngx-alerts';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    // Font Awesome 5.0 implementation
+    library.add(faSignOutAlt);
+  }}

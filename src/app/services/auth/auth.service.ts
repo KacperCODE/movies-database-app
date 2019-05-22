@@ -1,3 +1,4 @@
+import { AlertService } from 'ngx-alerts';
 import { Log } from 'ng2-logger/client';
 import { User } from './../../domain/user';
 import { JwtToken } from './../../domain/jwt-token';
@@ -18,7 +19,8 @@ export class AuthService {
 
   //TODO Implement Initialisation service for validating JWT.
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private alertService: AlertService) {
     this.loginUserIfTokenValid();
   }
 
@@ -48,6 +50,11 @@ export class AuthService {
     localStorage.removeItem(this.tokenId);
     this.user = null;
     this.router.navigate(['']);
+  }
+
+  public manualLogout(): void {
+    this.logout();
+    this.alertService.info('Logged Out');
   }
 
   public isJwtValid(token): boolean {
