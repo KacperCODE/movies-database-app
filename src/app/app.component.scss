@@ -1,3 +1,6 @@
+@import "./styles/variables.scss";
+@import "./styles/mixins.scss";
+
 .component {
     &__wrapper {
         position: absolute;
@@ -5,5 +8,7 @@
         right: 0;
         bottom: 0;
         left: 0;
+        background-image: $main-gradient;
+        overflow: auto;
     }
 }

@@ -1,5 +1,6 @@
 import { AuthService } from './../../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'moviesapp-navbar',
@@ -8,11 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
   }
 
+  public navigateHome(): void {
+    this.router.navigate(['/list']);
+  }
   public logout(): void {
     this.authService.manualLogout();
   }

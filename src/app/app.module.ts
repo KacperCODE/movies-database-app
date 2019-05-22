@@ -23,6 +23,7 @@ import { AlertModule } from 'ngx-alerts';
 import { ListSettingsComponent } from './ui/movie-list/list-settings/list-settings.component';
 import { NavbarComponent } from './ui/navbar/navbar.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { ActorCardComponent } from './ui/movie-details/movie-card-detailed/actor-card/actor-card.component';
 
 export function tokenGetter() {
   return localStorage.getItem("JWT_TOKEN");
@@ -37,7 +38,8 @@ export function tokenGetter() {
     MovieCardDetailedComponent,
     MovieCardShortComponent,
     ListSettingsComponent,
-    NavbarComponent
+    NavbarComponent,
+    ActorCardComponent
   ],
   imports: [
     BrowserAnimationsModule,

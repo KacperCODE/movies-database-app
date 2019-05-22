@@ -1,0 +1,12 @@
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/mixins.scss";
+
+.actor-card {
+    &__image {
+        width: auto;
+        height: 240px;
+    }   
+    &__name {
+        cursor: pointer;
+    }
+}

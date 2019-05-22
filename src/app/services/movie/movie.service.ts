@@ -1,3 +1,4 @@
+import { Actor } from './../../domain/actor';
 import { Page } from './../../domain/page';
 import { Movie } from './../../domain/movie';
 import { HttpClient } from '@angular/common/http';
@@ -38,6 +39,15 @@ export class MovieService {
     return this.authHttp.get(this.url + `/movies/${movieId}`)
     .pipe(
         map((res: Movie) => { 
+          return res
+        }),
+        catchError(this.handleError));
+  }
+
+  public getActorById(actorId: string): Observable<Actor> {
+    return this.authHttp.get(this.url + `/actors/${actorId}`)
+    .pipe(
+        map((res: Actor) => { 
           return res
         }),
         catchError(this.handleError));

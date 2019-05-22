@@ -9,7 +9,7 @@ import { MovieListComponent } from '../ui/movie-list/movie-list.component';
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent,
+    component: LoginComponent
   },
   {
     path: 'list',

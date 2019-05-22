@@ -57,6 +57,10 @@ export class AuthService {
     this.alertService.info('Logged Out');
   }
 
+  /**
+   * There is no backend tokend validation implemented on the API,
+   * therefore we only check if it has not expired yet.
+   */
   public isJwtValid(token): boolean {
     let resultToken: string = token;
     if(!resultToken) {

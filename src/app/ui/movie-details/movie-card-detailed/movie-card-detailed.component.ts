@@ -44,4 +44,8 @@ export class MovieCardDetailedComponent implements OnInit {
         }
       )
   }
+
+  public openImdbTab(imdbId: string): void {
+    window.open(`https://www.imdb.com/title/${imdbId}`, "_blank");
+  }
 }

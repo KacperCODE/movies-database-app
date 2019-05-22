@@ -1,4 +1,4 @@
 export class Actor {
-    imbdId: string;
+    imdbId: string;
     name: string;
 }
