@@ -20,6 +20,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AlertModule } from 'ngx-alerts';
 import { ListSettingsComponent } from './ui/movie-list/list-settings/list-settings.component';
 import { NavbarComponent } from './ui/navbar/navbar.component';
+import { JwtModule } from '@auth0/angular-jwt';
+
+export function tokenGetter() {
+  return localStorage.getItem("JWT_TOKEN");
+}
 
 @NgModule({
   declarations: [
@@ -39,6 +44,12 @@ import { NavbarComponent } from './ui/navbar/navbar.component';
     HttpClientModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['marblejs-example.herokuapp.com']
+      }
+    }),
     AlertModule.forRoot({
       maxMessages: 3, 
       timeout: 3000, 

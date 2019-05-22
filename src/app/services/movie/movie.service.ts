@@ -1,3 +1,5 @@
+import { Page } from './../../domain/page';
+import { Movie } from './../../domain/movie';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, catchError } from 'rxjs/operators';
@@ -14,20 +16,20 @@ export class MovieService {
 
   constructor(private authHttp: HttpClient) { }
 
-  public getAllMoviesByCriteria(): Observable<any> {
+  public getAllMoviesByCriteria(): Observable<Page> {
     const criteria: SearchCriteria = new SearchCriteria();
-    criteria.limit = 20;
+    criteria.limit = 5;
     criteria.page = 1;
     criteria.sortBy = 'title';
-    criteria.sortDir = 1;
+    criteria.sortDir = -1;
 
     const { limit, page, sortBy, sortDir } = criteria;
 
     // return this.authHttp.get(this.url + `/movies?limit=${ limit }&page=${ page }&sortBy=${ sortBy }&sortDir=${ sortDir }`)
-    return this.authHttp.get(this.url + `/movies?limit=${ limit }&page=${ page }&sortDir=${ sortDir }`)
+    return this.authHttp.get(this.url + `/movies?limit=${ limit }&page=${ page }`)
     .pipe(
-        map((res) => { 
-          return res 
+        map((res: Page) => { 
+          return res
         }),
         catchError(this.handleError));
   }

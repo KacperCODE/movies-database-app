@@ -1,3 +1,4 @@
+import { Page } from './../../domain/page';
 import { Log } from 'ng2-logger/client';
 import { AlertService } from 'ngx-alerts';
 import { MovieService } from './../../services/movie/movie.service';
@@ -21,8 +22,8 @@ export class MovieListComponent implements OnInit {
   private loadMovies(): void {
     this.movieService.getAllMoviesByCriteria()
       .subscribe(
-        (data) => {
-          this.log.d(data);
+        (data: Page) => {
+          this.log.d('Movies', data);
         },
         (error) => {
           this.alertService.danger('Something went wrong');
