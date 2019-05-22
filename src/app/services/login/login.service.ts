@@ -21,7 +21,7 @@ export class LoginService {
       password: password 
     };
 
-    return this.http.post(this.url + '/auth/login/', credentials)
+    return this.http.post(this.url + '/auth/login', credentials)
     .pipe(
         map((res: JwtToken) => { 
           return res 
@@ -30,11 +30,11 @@ export class LoginService {
   }
 
   private handleError(error: any) {
-        let errMsg = (error.message) ? error.message :
-            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        if (errMsg === '400 - OK' || errMsg === '401 OK') {
-            errMsg = 'Invalid username/password';
-        }
-        return throwError(errMsg);
+    let errMsg = (error.message) ? error.message :
+        error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    if (errMsg === '400 - OK' || errMsg === '401 OK') {
+        errMsg = 'Invalid username/password';
     }
+    return throwError(errMsg);
+  }
 }

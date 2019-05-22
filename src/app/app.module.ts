@@ -1,3 +1,4 @@
+import { MovieService } from './services/movie/movie.service';
 import { LoginService } from './services/login/login.service';
 import { AuthService } from './services/auth/auth.service';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -46,7 +47,8 @@ import { NavbarComponent } from './ui/navbar/navbar.component';
   ],
   providers: [
     AuthService,
-    LoginService
+    LoginService,
+    MovieService
   ],
   bootstrap: [AppComponent]
 })
