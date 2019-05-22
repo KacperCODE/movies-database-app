@@ -1,3 +1,5 @@
+import { JwtToken } from './../../domain/jwt-token';
+import { AuthService } from './../../services/auth/auth.service';
 import { LoginService } from './../../services/login/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
@@ -22,18 +24,19 @@ export class LoginComponent implements OnInit {
   })
 
   constructor(private formBuilder: FormBuilder,
-              private loginService: LoginService) { }
+              private loginService: LoginService,
+              private authService: AuthService) { }
 
   ngOnInit() {
   }
 
-  public onLogin() {
+  public onLogin(): void {
     const { login, password } = this.loginForm.value;
-    
+
     this.loginService.login(login, password)
       .subscribe(
-        (data) => {
-          console.log(data);
+        (token: JwtToken) => {
+          this.authService.login(token);
         }
       )
   }
