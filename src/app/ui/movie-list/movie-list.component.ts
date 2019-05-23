@@ -5,6 +5,8 @@ import { AlertService } from 'ngx-alerts';
 import { MovieService } from './../../services/movie/movie.service';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import * as fromStore from '../../store'
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'moviesapp-movie-list',
@@ -27,7 +29,8 @@ export class MovieListComponent implements OnInit {
   animationState = 'initialized';
   public movies: Movie[];
 
-  constructor(private movieService: MovieService,
+  constructor(private moviesStore: Store<fromStore.MoviesState>,
+              private movieService: MovieService,
               private alertService: AlertService) { }
 
   @ViewChild('pageEl') pageRef: ElementRef;
@@ -37,6 +40,13 @@ export class MovieListComponent implements OnInit {
     setTimeout(() => {
       this.animationState = 'loaded'
     }, 100);
+
+    this.moviesStore.select<any>('moviesList')
+      .subscribe(
+        (state) => {
+          this.log.d('state', state);
+        }
+      )
   }
 
   private loadMovies(): void {

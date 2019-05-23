@@ -24,6 +24,8 @@ import { ListSettingsComponent } from './ui/movie-list/list-settings/list-settin
 import { NavbarComponent } from './ui/navbar/navbar.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ActorCardComponent } from './ui/movie-details/movie-card-detailed/actor-card/actor-card.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store';
 
 export function tokenGetter() {
   return localStorage.getItem("JWT_TOKEN");
@@ -45,6 +47,7 @@ export function tokenGetter() {
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    StoreModule.forRoot({ moviesList: reducers.moviesList }),
     HttpClientModule,
     ReactiveFormsModule,
     FontAwesomeModule,
