@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Movie } from './../../domain/movie';
 import { Page } from './../../domain/page';
 import { Log } from 'ng2-logger/client';
@@ -27,9 +28,9 @@ import { Store } from '@ngrx/store';
 export class MovieListComponent implements OnInit {
   private log = Log.create("MovieListComponent")
   animationState = 'initialized';
-  public movies: Movie[];
+  public movies: Observable<Movie[]>;
 
-  constructor(private moviesStore: Store<fromStore.MoviesState>,
+  constructor(private store: Store<fromStore.MoviesState>,
               private movieService: MovieService,
               private alertService: AlertService) { }
 
@@ -41,25 +42,26 @@ export class MovieListComponent implements OnInit {
       this.animationState = 'loaded'
     }, 100);
 
-    this.moviesStore.select<any>('moviesList')
-      .subscribe(
-        (state) => {
-          this.log.d('state', state);
-        }
-      )
+    this.movies = this.store.select(fromStore.getMovies);
+    // this.store.select(fromStore.getMovies)
+    //   .subscribe(
+    //     (state) => {
+    //       this.log.d('state', state);
+    //     }
+    //   )
   }
 
   private loadMovies(): void {
-    this.movieService.getAllMoviesByCriteria()
-      .subscribe(
-        (data: Page) => {
-          this.log.d('Movies', data);
-          this.movies = [...data.collection];
-        },
-        (error) => {
-          this.alertService.danger('Something went wrong');
-          this.log.er("Can't load list of movies", error);
-        }
-      )
+  //   this.movieService.getAllMoviesByCriteria()
+  //     .subscribe(
+  //       (data: Page) => {
+  //         this.log.d('Movies', data);
+  //         this.movies = [...data.collection];
+  //       },
+  //       (error) => {
+  //         this.alertService.danger('Something went wrong');
+  //         this.log.er("Can't load list of movies", error);
+  //       }
+  //     )
   }
 }

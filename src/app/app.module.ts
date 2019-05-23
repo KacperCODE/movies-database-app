@@ -26,6 +26,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { ActorCardComponent } from './ui/movie-details/movie-card-detailed/actor-card/actor-card.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 export function tokenGetter() {
   return localStorage.getItem("JWT_TOKEN");
@@ -48,6 +49,10 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     AppRoutingModule,
     StoreModule.forRoot({ moviesList: reducers.moviesList }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: false,
+    }),
     HttpClientModule,
     ReactiveFormsModule,
     FontAwesomeModule,
