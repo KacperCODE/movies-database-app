@@ -52,6 +52,11 @@ constructor(private store: Store<fromStore.MoviesState>) { }
         })
     );
   }
+
+  /**
+   * TODO BACKEND: Implement getActorsByMovieId
+   * to avoid this workaround  
+  */
   private loadActorsToStore(actorsList): void {
     actorsList.forEach((actor) => {
       this.store.dispatch(new fromStore.LoadActorById(actor.imdbId))
