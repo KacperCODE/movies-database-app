@@ -31,15 +31,16 @@ export class MovieService {
 
   public getAllMoviesByCriteria(): Observable<Page> {
     const criteria: SearchCriteria = new SearchCriteria();
-    criteria.limit = 5;
-    criteria.page = 2;
-    criteria.sortBy = 'title';
+    criteria.limit = 30;
+    criteria.page = 1;
+    // criteria.sortBy = 'title';
+    criteria.sortBy = 'metascore';
     criteria.sortDir = -1;
 
     const { limit, page, sortBy, sortDir } = criteria;
 
     // return this.authHttp.get(this.url + `/movies?limit=${ limit }&page=${ page }&sortBy=${ sortBy }&sortDir=${ sortDir }`)
-    return this.authHttp.get(this.url + `/movies?limit=${ limit }&page=${ page }`)
+    return this.authHttp.get(this.url + `/movies?limit=${ limit }&page=${ page }&sortBy=${ sortBy }`)
     .pipe(
         map((res: Page) => { 
           return res
