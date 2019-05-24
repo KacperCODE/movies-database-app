@@ -6,7 +6,6 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers } from './reducers';
 
-// import AppStoreModule in the AppModule after router module
 @NgModule({
   imports: [
     StoreModule.forRoot(reducers),

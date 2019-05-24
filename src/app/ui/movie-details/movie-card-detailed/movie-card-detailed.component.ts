@@ -26,7 +26,6 @@ export class MovieCardDetailedComponent implements OnInit {
 
   //TODO move to state
   @Input() movie: Movie;
-  public movies: Observable<Movie[]>;
   private movieId: string;
 
 constructor(private activatedRoute: ActivatedRoute) { }
