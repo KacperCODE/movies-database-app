@@ -3,6 +3,8 @@ import { Action } from '@ngrx/store';
 import { Movie } from 'src/app/domain/movie';
 
 export enum MovieDetailsActionTypes {
+    SET_MOVIE_ID = '[MovieDetails] Setting new movie id',
+
     LOAD_MOVIE_BY_ID = '[MovieDetails] Load Movie by id',
     LOAD_MOVIE_BY_ID_SUCCESS = '[MovieDetails] Load Movie by id success',
     LOAD_MOVIE_BY_ID_FAIL = '[MovieDetails] Load Movie by id fail',
@@ -14,6 +16,11 @@ export enum MovieDetailsActionTypes {
 
 // Movie Details
 
+export class SetMovieId implements Action {
+    readonly type = MovieDetailsActionTypes.SET_MOVIE_ID;
+
+    constructor(public payload: string) { }
+}
 export class LoadMovieDetails implements Action {
     readonly type = MovieDetailsActionTypes.LOAD_MOVIE_BY_ID;
 }
@@ -32,27 +39,30 @@ export class LoadMovieDetailsFail implements Action {
 
 // Actors
 
-export class LoadActor implements Action {
+export class LoadActorById implements Action {
     readonly type = MovieDetailsActionTypes.LOAD_ACTOR_BY_ID;
+
+    constructor(public payload: string) { }
 }
 
-export class LoadActorSuccess implements Action {
+export class LoadActorByIdSuccess implements Action {
     readonly type = MovieDetailsActionTypes.LOAD_ACTOR_BY_ID_SUCCESS;
 
-    constructor(public payload: Actor[]) { }
+    constructor(public payload: Actor) { }
 }
 
-export class LoadActorFail implements Action {
+export class LoadActorByIdFail implements Action {
     readonly type = MovieDetailsActionTypes.LOAD_ACTOR_BY_ID_FAIL;
 
     constructor(public payload: any) { }
 }
 
 export type MovieDetailsActions
-                        = LoadMovieDetails
+                        = SetMovieId
+                        | LoadMovieDetails
                         | LoadMovieDetailsSuccess
                         | LoadMovieDetailsFail
-                        | LoadActor
-                        | LoadActorSuccess
-                        | LoadActorFail;
+                        | LoadActorById
+                        | LoadActorByIdSuccess
+                        | LoadActorByIdFail;
                         

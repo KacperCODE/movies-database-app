@@ -1,6 +1,8 @@
+import { Store } from '@ngrx/store';
 import { Component, OnInit, Input } from '@angular/core';
 import { Movie } from 'src/app/domain/movie';
 import { Router } from '@angular/router';
+import * as fromStore from '../../../store'
 
 @Component({
   selector: 'moviesapp-movie-card-short',
@@ -10,7 +12,9 @@ import { Router } from '@angular/router';
 export class MovieCardShortComponent implements OnInit {
   @Input() movie: Movie;
 
-  constructor(private router: Router) { }
+
+  constructor(private store: Store<fromStore.MoviesState>,
+              private router: Router) { }
 
   ngOnInit() {
   }

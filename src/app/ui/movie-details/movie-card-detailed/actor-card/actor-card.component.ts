@@ -18,22 +18,9 @@ export class ActorCardComponent implements OnInit {
               private alertService: AlertService) { }
 
   ngOnInit() {
-    this.loadActorById();
+    console.log('eloo', this.actor);
   }
 
-  private loadActorById(): void {
-    this.movieService.getActorById(this.actor.imdbId)
-      .subscribe(
-        (data: Actor) => {
-          this.log.d('Actor', data);
-          this.actor = Object.create(data);
-        },
-        (error) => {
-          this.alertService.danger('Something went wrong');
-          this.log.er("Can't load actor details", error);
-        }
-      )
-  }
 
   private openImdbTab(imdbId: string): void {
     window.open(`https://www.imdb.com/name/${imdbId}`, "_blank");

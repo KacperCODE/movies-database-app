@@ -1,9 +1,12 @@
+import { Actor } from './../../../domain/actor';
 import { Observable } from 'rxjs';
 import { Log } from 'ng2-logger/client';
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { Movie } from 'src/app/domain/movie';
 import { ActivatedRoute, Params } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import * as fromStore from '../../../store'
+import { Store } from '@ngrx/store';
 @Component({
   selector: 'moviesapp-movie-card-detailed',
   templateUrl: './movie-card-detailed.component.html',
@@ -26,25 +29,34 @@ export class MovieCardDetailedComponent implements OnInit {
 
   //TODO move to state
   @Input() movie: Movie;
-  private movieId: string;
+  public actors = new Observable<Actor[]>();
 
-constructor(private activatedRoute: ActivatedRoute) { }
+constructor(private store: Store<fromStore.MoviesState>) { }
 
   @ViewChild('pageEl') pageRef: ElementRef;
   ngOnInit() {
-    this.subscribeToActivatedRoute();
     
     setTimeout(() => {
       this.animationState = 'loaded'
     }, 300);
+
+    this.actors = this.store.select(fromStore.getActors);
+    
+    this.store.select(fromStore.getMovieDetails)
+      .subscribe((movieData) => {
+        console.log(movieData);
+        if(movieData != null) {
+          this.loadActorsToStore(movieData.actors);
+        }
+      });
+    
   }
 
-  private subscribeToActivatedRoute(): void {
-    this.activatedRoute.queryParams.subscribe((params: Params) => {
-      this.movieId = params['movieId'];
+  private loadActorsToStore(actorsList): void {
+    actorsList.forEach((actor) => {
+      this.store.dispatch(new fromStore.LoadActorById(actor.imdbId))
     })
   }
-
 
   public openImdbTab(imdbId: string): void {
     window.open(`https://www.imdb.com/title/${imdbId}`, "_blank");

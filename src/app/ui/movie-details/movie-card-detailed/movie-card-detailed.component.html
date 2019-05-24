@@ -3,22 +3,22 @@
 
   <div class="card-details__upper">
       <div class="card-details__side-left">
-          <img src="{{movie.posterUrl}}"/>
+          <img src="{{ movie?.posterUrl }}"/>
       </div>
     
       <div class="card-details__side-right">
-        <h1 (click)="openImdbTab(movie?.imdbId)" class="card-details__title">{{ movie.title }}</h1>
+        <h1 (click)="openImdbTab(movie?.imdbId)" class="card-details__title">{{ movie?.title }}</h1>
 
         <div class="card-details__info">
-            <p class="card-details__director">{{ movie.director }}sss</p>
-            <p class="card-details__year">{{ movie.year }}</p>
+            <p class="card-details__director">{{ movie?.director }}</p>
+            <p class="card-details__year">{{ movie?.year }}</p>
         </div>
 
-        <p class="card-details__metascore">{{ movie.metascore }}</p>
+        <p class="card-details__metascore">{{ movie?.metascore }}</p>
       </div>
   </div>
 
   <div class="card-details__lower">
-      <!-- <moviesapp-actor-card class="card-details__actors-card" *ngFor="let actor of movie?.actors" [actor]="actor"></moviesapp-actor-card> -->
+      <moviesapp-actor-card class="card-details__actors-card" *ngFor="let actor of (actors | async)" [actor]="actor"></moviesapp-actor-card>
   </div>
 </div>

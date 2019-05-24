@@ -6,16 +6,28 @@ import { Injectable } from '@angular/core';
 import { map, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { SearchCriteria } from 'src/app/domain/searchCriteria';
+import * as fromStore from '../../store'
+import { Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
+  private movieId: string;
 
   //TODO move url to separate directiory.
   private url = `https://marblejs-example.herokuapp.com/api/v1`;
 
-  constructor(private authHttp: HttpClient) { }
+    constructor(private store: Store<fromStore.MoviesState>,
+                private authHttp: HttpClient) { 
+      
+    this.store.select(fromStore.getMovieId)
+      .subscribe(
+        (id) => {
+          this.movieId = id;
+        }
+      )
+    }
 
   public getAllMoviesByCriteria(): Observable<Page> {
     const criteria: SearchCriteria = new SearchCriteria();
@@ -35,8 +47,8 @@ export class MovieService {
         catchError(this.handleError));
   }
 
-  public getMovieById(movieId: string): Observable<Movie> {
-    return this.authHttp.get(this.url + `/movies/${movieId}`)
+  public getMovieById(): Observable<Movie> {
+    return this.authHttp.get(this.url + `/movies/${this.movieId}`)
     .pipe(
         map((res: Movie) => { 
           return res
