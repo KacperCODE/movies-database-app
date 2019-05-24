@@ -1,6 +1,6 @@
-import * as fromMovies from '../actions/movies.action';
-import { Movie } from './../../domain/movie';
-import { SearchCriteria } from './../../domain/searchCriteria';
+import * as fromMovies from '../actions/moviesList.action';
+import { Movie } from '../../domain/movie';
+import { SearchCriteria } from '../../domain/searchCriteria';
 
 
 export interface MoviesListState {
@@ -22,8 +22,10 @@ export function reducer(state = initialState, action: fromMovies.MoviesListActio
         }
 
         case fromMovies.MoviesListActionTypes.LOAD_MOVIES_BY_CRITRIA_SUCCESS: {
+            const movies = action.payload;
             return {
-                ...state
+                ...state,
+                movies
              };
         }
 

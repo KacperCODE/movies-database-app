@@ -1,5 +1,5 @@
-import * as fromMovies from './movies.reducer';
-import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
+import * as fromMovies from './moviesList.reducer';
+import { ActionReducerMap, createSelector } from '@ngrx/store';
 
 export interface MoviesState {
     moviesList: fromMovies.MoviesListState

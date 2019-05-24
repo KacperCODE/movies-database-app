@@ -1,4 +1,3 @@
-
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
 import { MovieService } from './services/movie/movie.service';
@@ -24,9 +23,18 @@ import { ListSettingsComponent } from './ui/movie-list/list-settings/list-settin
 import { NavbarComponent } from './ui/navbar/navbar.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ActorCardComponent } from './ui/movie-details/movie-card-detailed/actor-card/actor-card.component';
+
+// NGRX Store
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store';
+
+// NGRX Effects
+import { EffectsModule } from '@ngrx/effects';
+import { MoviesListEffects } from './store/effects/moviesList.effect';
+
+// NGRX Devtools
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 
 export function tokenGetter() {
   return localStorage.getItem("JWT_TOKEN");
@@ -49,6 +57,7 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     AppRoutingModule,
     StoreModule.forRoot({ moviesList: reducers.moviesList }),
+    EffectsModule.forRoot([MoviesListEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: false,

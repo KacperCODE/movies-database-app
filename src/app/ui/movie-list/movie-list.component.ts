@@ -36,32 +36,13 @@ export class MovieListComponent implements OnInit {
 
   @ViewChild('pageEl') pageRef: ElementRef;
   ngOnInit() {
-    this.loadMovies();
 
     setTimeout(() => {
       this.animationState = 'loaded'
     }, 100);
 
     this.movies = this.store.select(fromStore.getMovies);
+    this.store.dispatch(new fromStore.LoadMoviesList)
     // this.store.select(fromStore.getMovies)
-    //   .subscribe(
-    //     (state) => {
-    //       this.log.d('state', state);
-    //     }
-    //   )
-  }
-
-  private loadMovies(): void {
-  //   this.movieService.getAllMoviesByCriteria()
-  //     .subscribe(
-  //       (data: Page) => {
-  //         this.log.d('Movies', data);
-  //         this.movies = [...data.collection];
-  //       },
-  //       (error) => {
-  //         this.alertService.danger('Something went wrong');
-  //         this.log.er("Can't load list of movies", error);
-  //       }
-  //     )
   }
 }
