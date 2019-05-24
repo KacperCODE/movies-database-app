@@ -1,6 +1,5 @@
 import { Observable } from 'rxjs';
 import { Movie } from './../../domain/movie';
-import { Page } from './../../domain/page';
 import { Log } from 'ng2-logger/client';
 import { AlertService } from 'ngx-alerts';
 import { MovieService } from './../../services/movie/movie.service';
@@ -43,6 +42,5 @@ export class MovieListComponent implements OnInit {
 
     this.movies = this.store.select(fromStore.getMovies);
     this.store.dispatch(new fromStore.LoadMoviesList)
-    // this.store.select(fromStore.getMovies)
   }
 }

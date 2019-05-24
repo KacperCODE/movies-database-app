@@ -1,4 +1,4 @@
-import * as fromMovies from '../actions/moviesList.action';
+import * as fromMovies from '../actions/movies-list.action';
 import { Movie } from '../../domain/movie';
 import { SearchCriteria } from '../../domain/searchCriteria';
 
@@ -15,13 +15,13 @@ const initialState: MoviesListState = {
 
 export function reducer(state = initialState, action: fromMovies.MoviesListActions ): MoviesListState {
     switch (action.type) {
-        case fromMovies.MoviesListActionTypes.LOAD_MOVIES_BY_CRITRIA: {
+        case fromMovies.MoviesListActionTypes.LOAD_MOVIES_BY_CRITERIA: {
             return {
                 ...state
              };
         }
 
-        case fromMovies.MoviesListActionTypes.LOAD_MOVIES_BY_CRITRIA_SUCCESS: {
+        case fromMovies.MoviesListActionTypes.LOAD_MOVIES_BY_CRITERIA_SUCCESS: {
             const movies = action.payload;
             return {
                 ...state,
@@ -29,7 +29,7 @@ export function reducer(state = initialState, action: fromMovies.MoviesListActio
              };
         }
 
-        case fromMovies.MoviesListActionTypes.LOAD_MOVIES_BY_CRITRIA_FAIL: {
+        case fromMovies.MoviesListActionTypes.LOAD_MOVIES_BY_CRITERIA_FAIL: {
             return {
                 ...state
              };
@@ -41,5 +41,5 @@ export function reducer(state = initialState, action: fromMovies.MoviesListActio
     }
 }
 
-export const getSearchCriteria = (state: MoviesListState) => state.searchCriteria;
-export const getMovies = (state: MoviesListState) => state.movies;
+export const getSearchCriteria = (state: MoviesListState) => state.searchCriteria
+export const getMovies = (state: MoviesListState) => state.movies

@@ -1,4 +1,8 @@
+import { Movie } from './../../domain/movie';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import * as fromStore from '../../store'
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-movie-details',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieDetailsComponent implements OnInit {
 
-  constructor() { }
+  public movie: Observable<Movie>;
+  constructor(private store: Store<fromStore.MoviesState>) {}
 
   ngOnInit() {
+    this.store.dispatch(new fromStore.LoadMovieDetails);
+    this.movie = this.store.select(fromStore.getMovieDetails);
   }
 
 }

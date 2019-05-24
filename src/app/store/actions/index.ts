@@ -1,1 +1,2 @@
-export * from './moviesList.action'
+export * from './movies-list.action';
+export * from './movieetails.action';

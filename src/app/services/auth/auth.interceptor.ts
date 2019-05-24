@@ -11,6 +11,7 @@ import { Log } from 'ng2-logger/client';
 export class AuthInterceptor implements HttpInterceptor {
     private log = Log.create('AuthInterceptor');
 
+
     constructor(private router: Router, 
                 private authService: AuthService,
                 private alertService: AlertService) {}
@@ -28,6 +29,7 @@ export class AuthInterceptor implements HttpInterceptor {
                   this.alertService.warning('Unauthorized access')
                   this.authService.removeToken();
                   this.router.navigate(['/']);
+                  
               }
             }
           })
