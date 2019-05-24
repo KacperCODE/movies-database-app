@@ -51,8 +51,7 @@ export function reducer(state = initialState, action: fromDetails.MovieDetailsAc
 
         case fromDetails.MovieDetailsActionTypes.LOAD_ACTOR_BY_ID_SUCCESS: {
             const actors = [...state.actors, action.payload];
-            console.log(actors);
-
+            
             return {
                 ...state,
                 actors

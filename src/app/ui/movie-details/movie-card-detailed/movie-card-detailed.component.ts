@@ -1,7 +1,7 @@
 import { Actor } from './../../../domain/actor';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Log } from 'ng2-logger/client';
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, OnDestroy } from '@angular/core';
 import { Movie } from 'src/app/domain/movie';
 import { ActivatedRoute, Params } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
@@ -23,11 +23,12 @@ import { Store } from '@ngrx/store';
     ])
   ]
 })
-export class MovieCardDetailedComponent implements OnInit {
+export class MovieCardDetailedComponent implements OnInit, OnDestroy {
   private log = Log.create("MovieCardDetailedComponent")
   animationState = 'initialized';
 
-  //TODO move to state
+  private subscriptions: Subscription = new Subscription();
+
   @Input() movie: Movie;
   public actors = new Observable<Actor[]>();
 
@@ -42,16 +43,15 @@ constructor(private store: Store<fromStore.MoviesState>) { }
 
     this.actors = this.store.select(fromStore.getActors);
     
-    this.store.select(fromStore.getMovieDetails)
+    this.subscriptions.add(
+      this.store.select(fromStore.getMovieDetails)
       .subscribe((movieData) => {
-        console.log(movieData);
-        if(movieData != null) {
-          this.loadActorsToStore(movieData.actors);
-        }
-      });
-    
+          if(movieData != null) {
+            this.loadActorsToStore(movieData.actors);
+          }
+        })
+    );
   }
-
   private loadActorsToStore(actorsList): void {
     actorsList.forEach((actor) => {
       this.store.dispatch(new fromStore.LoadActorById(actor.imdbId))
@@ -60,5 +60,9 @@ constructor(private store: Store<fromStore.MoviesState>) { }
 
   public openImdbTab(imdbId: string): void {
     window.open(`https://www.imdb.com/title/${imdbId}`, "_blank");
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }

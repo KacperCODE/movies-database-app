@@ -36,8 +36,8 @@ export class MovieDetailsEffects {
   @Effect()
   loadActor = this.actions.pipe(
     ofType(movieDetailsActions.MovieDetailsActionTypes.LOAD_ACTOR_BY_ID),
-    mergeMap(() =>
-      this.movieService.getActorById("nm0000093").pipe(
+    mergeMap((action: any) =>
+      this.movieService.getActorById(action.payload).pipe(
         map((actor: Actor) => ({
           type:
           movieDetailsActions.MovieDetailsActionTypes

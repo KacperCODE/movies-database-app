@@ -18,7 +18,6 @@ export class ActorCardComponent implements OnInit {
               private alertService: AlertService) { }
 
   ngOnInit() {
-    console.log('eloo', this.actor);
   }
 
 
