@@ -25,7 +25,10 @@
         width: 80%;
         margin-left: 1em;
         color: $font-dark;
-        cursor: pointer;
+
+        span {
+            cursor: pointer;
+        }
     }
     &__year {
         width: 20%;

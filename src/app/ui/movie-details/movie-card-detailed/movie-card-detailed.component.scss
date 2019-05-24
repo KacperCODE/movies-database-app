@@ -35,7 +35,10 @@
         width: calc(100% - 60px);
         margin-bottom: 5px;
         color: $font-dark;
-        cursor: pointer;
+
+        span {
+            cursor: pointer;
+        }
     }
     &__info {
         display: flex;

@@ -9,7 +9,7 @@ export class SearchCriteria {
     constructor(limit?, page?, sortBy?, sortDir?) {
         this.limit = limit || null; 
         this.page = page || null; 
-        this.sortBy = sortBy || null; 
-        this.sortDir = sortDir || null; 
+        this.sortBy = sortBy || 'title'; 
+        this.sortDir = sortDir || 1; 
     }
 }

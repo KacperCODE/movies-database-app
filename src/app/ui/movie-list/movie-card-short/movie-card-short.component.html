@@ -1,7 +1,7 @@
 <div class="card-short__content">
     <img class="card-short__poster" src="{{movie.posterUrl}}"/>
     <div class="card-short__details">
-        <h2 class="card-short__title" (click)="navigateToMovieDetails()">{{ movie.title }}</h2>
+        <h2 class="card-short__title"><span (click)="navigateToMovieDetails()">{{ movie.title }}</span></h2>
         <p class="card-short__year" (click)="navigateToMovieDetails()">{{ movie.year }}</p>
     </div>
     <div class="card-short__metascore"> 
