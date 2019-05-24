@@ -1,11 +1,56 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixins.scss";
+
 .card-short {
     &__content {
+        position: relative;
         display: flex;
-        width: 100%;
         margin: 5px;
-        border: 1px solid black;
+    }
+    &__poster {
+        max-height: 155px;
+        margin: -5px;
+        margin-left: 15px;
+        width: 15%;
+        min-width: 100px;
+        max-width: 100px;
+    }
+    &__details {
+        display: flex;
+        width: 70%;
+        height: 140px;
+        align-items: center;
     }
     &__title {
+        width: 80%;
+        margin-left: 1em;
+        color: $font-dark;
         cursor: pointer;
+    }
+    &__year {
+        width: 20%;
+    }
+    &__metascore {
+        position: relative;
+        top: -5px;
+        right: -12px;
+        display: flex;
+        justify-content: center;
+        width: 10%;
+        min-width: 90px;
+        line-height: 100%;
+        margin-right: 5px;
+        padding: 70px 15px;
+        color: white;
+        background-color: #7095ef3b;
+        font-family: "Roboto", sans-serif;
+        font-size: 1.6em;
+
+        &--icon {
+            font-size: 0.6em;
+            position: relative;
+            right: 2px;
+            padding-left: 3px;
+        }
     }
 }

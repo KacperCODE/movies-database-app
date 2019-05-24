@@ -32,7 +32,7 @@ export class MovieService {
   public getAllMoviesByCriteria(): Observable<Page> {
     const criteria: SearchCriteria = new SearchCriteria();
     criteria.limit = 5;
-    criteria.page = 1;
+    criteria.page = 2;
     criteria.sortBy = 'title';
     criteria.sortDir = -1;
 

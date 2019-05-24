@@ -1,6 +1,6 @@
 <div #pageEl class="component__wrapper" [@initTransition]="animationState">
     <div class="movie-list__container">
       <p>Movies Database</p>
-      <moviesapp-movie-card-short *ngFor="let movie of (movies | async)" [movie]="movie"></moviesapp-movie-card-short>
+      <moviesapp-movie-card-short *ngFor="let movie of (movies | async)" [movie]="movie" class="movie-list__card"></moviesapp-movie-card-short>
     </div>
   </div>
