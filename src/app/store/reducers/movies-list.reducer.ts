@@ -15,6 +15,23 @@ const initialState: MoviesListState = {
 
 export function reducer(state = initialState, action: fromMovies.MoviesListActions ): MoviesListState {
     switch (action.type) {
+        case fromMovies.MoviesListActionTypes.CHANGE_SEARCH_CRITERIA: {
+            const type = action.payload;
+            const searchCriteria = new SearchCriteria(
+                state.searchCriteria.limit,
+                state.searchCriteria.page,
+                type,
+                1);
+
+            if(type == state.searchCriteria.sortBy) { 
+                searchCriteria.sortDir = +!state.searchCriteria.sortDir; 
+            }
+
+            return {
+                ...state,
+                searchCriteria
+             };
+        }
         case fromMovies.MoviesListActionTypes.LOAD_MOVIES_BY_CRITERIA: {
             return {
                 ...state

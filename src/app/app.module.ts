@@ -9,7 +9,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSignOutAlt, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt, faStar, faSortAmountDown, faSortAmountUp, faFilter, faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
 import { AppRoutingModule } from "./routing/app-routing.module";
 import { AppComponent } from "./app.component";
@@ -76,6 +76,6 @@ export function tokenGetter() {
 export class AppModule {
   constructor() {
     // Font Awesome 5.0 implementation
-    library.add(faSignOutAlt, faStar);
+    library.add(faSignOutAlt, faStar, faSortAmountDown, faSortAmountUp, faFilter, faCaretDown, faCaretUp );
   }
 }

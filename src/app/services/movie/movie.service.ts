@@ -1,11 +1,11 @@
+import { SearchCriteria } from './../../domain/searchCriteria';
 import { Actor } from './../../domain/actor';
 import { Page } from './../../domain/page';
 import { Movie } from './../../domain/movie';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
-import { SearchCriteria } from 'src/app/domain/searchCriteria';
 import * as fromStore from '../../store'
 import { Store } from '@ngrx/store';
 
@@ -14,6 +14,7 @@ import { Store } from '@ngrx/store';
 })
 export class MovieService {
   private movieId: string;
+  private searchCriteria = new SearchCriteria();
 
   //TODO move url to separate directiory.
   private url = `https://marblejs-example.herokuapp.com/api/v1`;
@@ -27,20 +28,36 @@ export class MovieService {
           this.movieId = id;
         }
       )
+
+      this.store.select(fromStore.getSearchCriteria)
+        .subscribe(
+          (criteria) => {
+            this.searchCriteria = criteria;
+          }
+        )
     }
 
   public getAllMoviesByCriteria(): Observable<Page> {
-    const criteria: SearchCriteria = new SearchCriteria();
-    criteria.limit = 30;
-    criteria.page = 1;
-    // criteria.sortBy = 'title';
-    criteria.sortBy = 'metascore';
-    criteria.sortDir = -1;
+    const { limit, page, sortBy, sortDir } = this.searchCriteria;
+    let params = new HttpParams()
 
-    const { limit, page, sortBy, sortDir } = criteria;
+    if (limit != null) {
+      params = params.append('limit', String(limit));
+    }
+    if (page != null) {
+      params = params.append('page', String(page));
+    }
+    if (sortBy != null) {
+      params = params.append('sortBy', String(sortBy));
+    }
+    
+    // Important: IMDB-like backend app is throwing 400 when using sortDir param. 
+    // re-enable to make it work
+    // if (sortDir != null) {
+    //   params = params.set('sortDir', String(sortDir));
+    // }
 
-    // return this.authHttp.get(this.url + `/movies?limit=${ limit }&page=${ page }&sortBy=${ sortBy }&sortDir=${ sortDir }`)
-    return this.authHttp.get(this.url + `/movies?limit=${ limit }&page=${ page }&sortBy=${ sortBy }`)
+    return this.authHttp.get(this.url + `/movies?` + params)
     .pipe(
         map((res: Page) => { 
           return res

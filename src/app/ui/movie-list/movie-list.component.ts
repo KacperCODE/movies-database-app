@@ -1,3 +1,4 @@
+import { SearchCriteria } from 'src/app/domain/searchCriteria';
 import { Observable } from 'rxjs';
 import { Movie } from './../../domain/movie';
 import { Log } from 'ng2-logger/client';
@@ -27,6 +28,7 @@ import { Store } from '@ngrx/store';
 export class MovieListComponent implements OnInit {
   private log = Log.create("MovieListComponent")
   animationState = 'initialized';
+
   public movies: Observable<Movie[]>;
 
   constructor(private store: Store<fromStore.MoviesState>,
@@ -39,7 +41,7 @@ export class MovieListComponent implements OnInit {
     setTimeout(() => {
       this.animationState = 'loaded'
     }, 100);
-
+      
     this.movies = this.store.select(fromStore.getMovies);
     this.store.dispatch(new fromStore.LoadMoviesList)
   }

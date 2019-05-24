@@ -1,5 +1,9 @@
 <div #pageEl class="component__wrapper" [@initTransition]="animationState">
     <div class="movie-list__container">
+      <moviesapp-list-settings class="movie-list__list-settings"></moviesapp-list-settings>
+    </div>
+    
+    <div class="movie-list__container">
       <moviesapp-movie-card-short *ngFor="let movie of (movies | async)" [movie]="movie" class="movie-list__card"></moviesapp-movie-card-short>
     </div>
   </div>

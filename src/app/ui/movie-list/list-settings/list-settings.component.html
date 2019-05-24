@@ -1,3 +1,35 @@
-<p>
-  list-settings works!
-</p>
+<div class="list-settings__content">
+  <p><fa-icon icon="filter"></fa-icon> Filter:</p> 
+
+  <p (click)="changeCriteria('title')" 
+      [ngClass]="{ 'active': searchCriteria.sortBy === 'title',
+                   'inactive': searchCriteria.sortBy !== 'title' }"
+      class="list-settings__sort-button">
+    <fa-icon *ngIf="searchCriteria.sortDir === 1" icon="sort-amount-up"></fa-icon> 
+    <fa-icon *ngIf="searchCriteria.sortDir === 0" icon="sort-amount-down"></fa-icon> 
+    Title
+  </p>
+
+  <p (click)="changeCriteria('year')" 
+  [ngClass]="{ 'active': searchCriteria.sortBy == 'year',
+               'inactive': searchCriteria.sortBy != 'year' }"
+      class="list-settings__sort-button inactive">
+      <fa-icon *ngIf="searchCriteria.sortDir === 1" icon="sort-amount-up"></fa-icon> 
+      <fa-icon *ngIf="searchCriteria.sortDir === 0" icon="sort-amount-down"></fa-icon> 
+    Year
+  </p>
+
+  <p (click)="changeCriteria('metascore')" 
+  [ngClass]="{ 'active': searchCriteria.sortBy == 'metascore',
+               'inactive': searchCriteria.sortBy != 'metascore' }"
+      class="list-settings__sort-button inactive">
+      <fa-icon *ngIf="searchCriteria.sortDir === 1" icon="sort-amount-up"></fa-icon> 
+      <fa-icon *ngIf="searchCriteria.sortDir === 0" icon="sort-amount-down"></fa-icon> 
+    Metascore
+  </p>
+
+  <p class="list-settings__sort-button">
+    <fa-icon icon="caret-down"></fa-icon>
+    15 results 
+  </p>
+</div>

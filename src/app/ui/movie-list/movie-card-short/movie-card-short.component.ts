@@ -1,9 +1,8 @@
-import { Store } from '@ngrx/store';
 import { Component, OnInit, Input } from '@angular/core';
 import { Movie } from 'src/app/domain/movie';
 import { Router } from '@angular/router';
 import * as fromStore from '../../../store'
-
+import { Store } from '@ngrx/store';
 @Component({
   selector: 'moviesapp-movie-card-short',
   templateUrl: './movie-card-short.component.html',
