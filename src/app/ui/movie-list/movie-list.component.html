@@ -7,7 +7,7 @@
     </div>
     
     <div class="movie-list__container">
-      <moviesapp-movie-card-short *ngFor="let movie of (movies | async)" [movie]="movie" class="movie-list__card"></moviesapp-movie-card-short>
+      <moviesapp-movie-card-short *ngFor="let movie of (movies | async); index as i" [index]="i" [movie]="movie" class="movie-list__card"></moviesapp-movie-card-short>
     </div>
     <div class="movie-list__container--simple">
       <moviesapp-list-pagination-bar class="movie-list__list-settings"></moviesapp-list-pagination-bar>

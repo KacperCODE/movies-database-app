@@ -7,6 +7,12 @@
         display: flex;
         margin: 5px;
     }
+    &__index {
+        display: flex;
+        align-items: center;
+        margin-top: -10px;
+        padding: 0 0px 0 6px;
+    }
     &__poster {
         max-height: 155px;
         margin: -5px;
@@ -37,11 +43,11 @@
         position: relative;
         top: -5px;
         right: -12px;
+        line-height: 100%;
         display: flex;
         justify-content: center;
         width: 10%;
         min-width: 90px;
-        line-height: 100%;
         margin-right: 5px;
         padding: 70px 15px;
         color: white;
@@ -74,6 +80,9 @@
  }
 @media all and (max-width: 480px) {
     .card-short {
+        &__index {
+            padding-right: 0 6px 0 0;
+        }
         &__details {
             height: 103px;
         }

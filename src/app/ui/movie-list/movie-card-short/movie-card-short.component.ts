@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 })
 export class MovieCardShortComponent implements OnInit {
   @Input() movie: Movie;
+  @Input() index: number;
 
 
   constructor(private store: Store<fromStore.MoviesState>,

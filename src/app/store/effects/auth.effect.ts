@@ -3,7 +3,7 @@ import { LoginService } from "./../../services/login/login.service";
 import * as authActions from "../actions/auth.action";
 import { Injectable } from "@angular/core";
 import { Effect, Actions, ofType } from "@ngrx/effects";
-import { mergeMap, map, catchError } from "rxjs/operators";
+import { mergeMap, map, catchError, tap } from "rxjs/operators";
 import { of } from "rxjs";
 import { AuthService } from "src/app/services/auth/auth.service";
 
@@ -20,8 +20,10 @@ export class AuthEffects {
     ofType(authActions.AuthActionTypes.USER_LOGIN),
     mergeMap((action: any) =>
       this.loginService.login(action.payload).pipe(
-        map((token: JwtToken) => {
+        tap((token: JwtToken) => {
           this.authService.login(token);
+        }),
+        map((token: JwtToken) => {
           return {
             type: authActions.AuthActionTypes.USER_LOGIN_SUCCESFUL,
             payload: token
@@ -39,8 +41,10 @@ export class AuthEffects {
   @Effect()
   systemLogout = this.actions.pipe(
     ofType(authActions.AuthActionTypes.USER_SYSTEM_LOGOUT),
-    map(() => {
+    tap(() => {
       this.authService.systemLogout();
+    }),
+    map(() => {
       return { type: authActions.AuthActionTypes.USER_LOGGED_OUT };
     }),
     catchError(() =>
@@ -53,8 +57,10 @@ export class AuthEffects {
   @Effect()
   manualLogout = this.actions.pipe(
     ofType(authActions.AuthActionTypes.USER_MANUAL_LOGOUT),
-    map(() => {
+    tap(() => {
       this.authService.manualLogout();
+    }),
+    map(() => {
       return { type: authActions.AuthActionTypes.USER_LOGGED_OUT };
     }),
     catchError(() =>
