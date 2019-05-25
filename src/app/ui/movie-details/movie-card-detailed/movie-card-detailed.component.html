@@ -1,7 +1,7 @@
 
 <div #pageEl class="card-details__container" [@initTransition]="animationState">
 
-  <div class="card-details__upper">
+  <header class="card-details__upper">
       <div class="card-details__side-left">
           <img src="{{ movie?.posterUrl }}"/>
       </div>
@@ -16,7 +16,7 @@
 
         <p class="card-details__metascore">{{ movie?.metascore }}</p>
       </div>
-  </div>
+    </header>
 
   <div class="card-details__lower">
       <moviesapp-actor-card class="card-details__actors-card" *ngFor="let actor of (actors | async)" [actor]="actor"></moviesapp-actor-card>
