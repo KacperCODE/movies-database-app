@@ -1,3 +1,4 @@
+import { User } from './../../domain/user';
 import { JwtToken } from './../../domain/jwt-token';
 import { AuthService } from './../../services/auth/auth.service';
 import { LoginService } from './../../services/login/login.service';
@@ -38,6 +39,14 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+  this.store.select(fromStore.getCurrentUser)
+    .subscribe(
+      (user: User) => {
+        if(user != null) {
+          this.router.navigate(['/list']);
+        }
+      }
+    )
   }
 
   public onLogin(): void {

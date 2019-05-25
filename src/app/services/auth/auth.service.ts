@@ -36,6 +36,7 @@ export class AuthService {
     if (this.isJwtValid(token.token)) {
       localStorage.setItem(this.tokenId, token.token);
       this.setLoggedInUser();
+      this.router.navigate(['/list']);
     }
   }
 
@@ -45,8 +46,6 @@ export class AuthService {
     const user = new User(decodedToken.email);
 
     this.store.dispatch(new fromStore.SetUserData(user));
-
-    this.router.navigate(['/list']);
     this.alertService.info('Logged In');
   }
 
