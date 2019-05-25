@@ -1,4 +1,4 @@
-import { Actor } from '../../domain/actor';
+import { Actor } from './../../domain/actor';
 import { Movie } from '../../domain/movie';
 import * as fromDetails from '../actions/movie-details.action';
 

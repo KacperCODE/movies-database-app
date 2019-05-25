@@ -1,5 +1,5 @@
-import { SearchCriteria } from './../../domain/searchCriteria';
 import { Actor } from './../../domain/actor';
+import { SearchCriteria } from './../../domain/searchCriteria';
 import { Page } from './../../domain/page';
 import { Movie } from './../../domain/movie';
 import { HttpClient, HttpParams } from '@angular/common/http';

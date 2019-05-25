@@ -1,4 +1,3 @@
-import { Log } from 'ng2-logger/client';
 import { Actor } from './../../../../domain/actor';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -16,7 +15,7 @@ export class ActorCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  private openImdbTab(imdbId: string): void {
+  public openImdbTab(imdbId: string): void {
     window.open(`https://www.imdb.com/name/${imdbId}`, "_blank");
   }
 }

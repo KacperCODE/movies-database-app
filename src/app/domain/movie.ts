@@ -1,7 +1,7 @@
-import { Actor } from './actor';
+import { ActorPreview } from './actorPreview';
 
 export class Movie {
-    actors: Actor[];
+    actors: ActorPreview[];
     director: string;
     genres: string[];
     imdbId: string;

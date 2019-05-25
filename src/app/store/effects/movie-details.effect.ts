@@ -1,4 +1,4 @@
-import { Actor } from '../../domain/actor';
+import { Actor } from './../../domain/actor';
 import * as movieDetailsActions from '../actions/movie-details.action';
 import { MovieService } from "../../services/movie/movie.service";
 import { Injectable } from "@angular/core";

@@ -1,4 +1,4 @@
-import { Actor } from '../../domain/actor';
+import { Actor } from './../../domain/actor';
 import { Action } from '@ngrx/store';
 import { Movie } from 'src/app/domain/movie';
 
