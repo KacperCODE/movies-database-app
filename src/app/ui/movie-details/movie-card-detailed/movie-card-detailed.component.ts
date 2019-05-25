@@ -54,8 +54,9 @@ constructor(private store: Store<fromStore.MoviesState>) { }
   }
 
   /**
-   * TODO BACKEND: Implement getActorsByMovieId
-   * to avoid this workaround  
+   * TODO BACKEND: Implement getActorsByMovieId to avoid this workaround.
+   * Currently actors on details page are loaded one by one from an array
+   * that comes with getMovieById and then each actor is added to Actors[]
   */
   private loadActorsToStore(actorsList): void {
     actorsList.forEach((actor) => {

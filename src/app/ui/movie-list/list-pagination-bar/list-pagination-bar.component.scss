@@ -1,0 +1,30 @@
+
+.list-settings {
+    &__content {
+        position: relative;
+        height: 50px;
+        margin: 0 10px;
+    }
+    &__pagination-button {
+        position: absolute;
+        color: white;
+        user-select: none;
+        text-shadow: 1px 1px 2px #6c8ff0;
+        cursor: pointer;
+
+        &:hover {
+            color: #eaeaea;
+        }
+
+        fa-icon {
+            font-size: 0.8em;
+        }
+
+        &--right {
+            right: 0;
+        }
+        &--left {
+            left: 0;
+        }
+    }
+}

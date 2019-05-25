@@ -43,7 +43,6 @@ export class AuthService {
     this.log.d('Token Valid, User Logged In', decodedToken);
     this.user = new User();
     this.user.email = decodedToken.email;
-    // TODO After logging user from cache inform other components.
   }
 
   public logout(): void {

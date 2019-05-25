@@ -9,7 +9,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSignOutAlt, faStar, faSortAmountDown, faSortAmountUp, faFilter, faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt, faStar, faSortAmountDown, faSortAmountUp, faFilter, faCaretDown, faCaretUp, faArrowLeft, faArrowRight, faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 import { AppRoutingModule } from "./routing/app-routing.module";
 import { AppComponent } from "./app.component";
@@ -24,6 +24,7 @@ import { ListSettingsComponent } from "./ui/movie-list/list-settings/list-settin
 import { NavbarComponent } from "./ui/navbar/navbar.component";
 import { JwtModule } from "@auth0/angular-jwt";
 import { ActorCardComponent } from "./ui/movie-details/movie-card-detailed/actor-card/actor-card.component";
+import { ListPaginationBarComponent } from './ui/movie-list/list-pagination-bar/list-pagination-bar.component';
 
 export function tokenGetter() {
   return localStorage.getItem("JWT_TOKEN");
@@ -39,7 +40,8 @@ export function tokenGetter() {
     MovieCardShortComponent,
     ListSettingsComponent,
     NavbarComponent,
-    ActorCardComponent
+    ActorCardComponent,
+    ListPaginationBarComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +78,6 @@ export function tokenGetter() {
 export class AppModule {
   constructor() {
     // Font Awesome 5.0 implementation
-    library.add(faSignOutAlt, faStar, faSortAmountDown, faSortAmountUp, faFilter, faCaretDown, faCaretUp );
+    library.add(faSignOutAlt, faStar, faSortAmountDown, faSortAmountUp, faFilter, faCaretDown, faCaretUp, faChevronRight, faChevronLeft );
   }
 }

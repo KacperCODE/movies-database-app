@@ -30,5 +30,6 @@ export const getMovieId = createSelector(getMovieDetailsState, fromDetails.getMo
 export const getActors = createSelector(getMovieDetailsState, fromDetails.getActors);
 
 export const getMovies = createSelector(getMoviesListState, fromMovies.getMovies);
+export const getPaginationDetails = createSelector(getMoviesListState, fromMovies.getPaginationDetails);
 export const getSearchCriteria = createSelector(getMoviesListState, fromMovies.getSearchCriteria);
 

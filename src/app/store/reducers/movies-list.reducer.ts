@@ -105,4 +105,5 @@ export function reducer(state = initialState, action: fromMovies.MoviesListActio
 }
 
 export const getSearchCriteria = (state: MoviesListState) => state.searchCriteria
+export const getPaginationDetails = (state: MoviesListState) => { return { pageLimit: state.pageLimit, page: state.searchCriteria.page} } 
 export const getMovies = (state: MoviesListState) => state.movies

@@ -19,6 +19,16 @@
         max-width: 800px;
         width: 80%;
         height: auto;
+
+        &--simple {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 800px;
+            width: 80%;
+            height: auto;
+            margin: 4px;
+        }
     }
     &__card {
         @extend %card;
