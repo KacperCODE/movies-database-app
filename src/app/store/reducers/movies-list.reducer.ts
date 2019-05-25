@@ -1,42 +1,46 @@
+import { SearchCriteria } from 'src/app/domain/searchCriteria';
+import { Pagination } from './../../domain/pagination.enum';
 import * as fromMovies from '../actions/movies-list.action';
 import { Movie } from '../../domain/movie';
-import { SearchCriteria } from '../../domain/searchCriteria';
 
 
 export interface MoviesListState {
     searchCriteria: SearchCriteria;
-    movies: Movie[]
+    movies: Movie[],
+    pageLimit: number;
 };
 
 const initialState: MoviesListState = {
     searchCriteria: new SearchCriteria(),
-    movies: []
+    movies: [],
+    pageLimit: 1
 };
 
 export function reducer(state = initialState, action: fromMovies.MoviesListActions ): MoviesListState {
     switch (action.type) {
         case fromMovies.MoviesListActionTypes.CACHE_SEARCH_CRITERIA: {
-            localStorage.setItem("SEARCH_CRITERIA", JSON.stringify(state.searchCriteria));
+            const page = 1;
+            const searchCriteria = {...state.searchCriteria, page}
+            localStorage.setItem("SEARCH_CRITERIA", JSON.stringify(searchCriteria));
+            
             return {
                 ...state
              };
         }
         case fromMovies.MoviesListActionTypes.INITIALIZE_SEARCH_CRITERIA_FROM_CACHE: {
             const searchCriteria = action.payload;
+
             return {
                 ...state,
                 searchCriteria
              };
         }
         case fromMovies.MoviesListActionTypes.CHANGE_SEARCH_CRITERIA: {
-            const type = action.payload;
-            const searchCriteria = new SearchCriteria(
-                state.searchCriteria.limit,
-                state.searchCriteria.page,
-                type,
-                1);
+            const sortBy = action.payload;
+            const page = 1;
+            const searchCriteria = {...state.searchCriteria, sortBy, page}
 
-            if(type == state.searchCriteria.sortBy) { 
+            if(sortBy == state.searchCriteria.sortBy) { 
                 searchCriteria.sortDir = +!state.searchCriteria.sortDir; 
             }
 
@@ -47,12 +51,8 @@ export function reducer(state = initialState, action: fromMovies.MoviesListActio
         }
         case fromMovies.MoviesListActionTypes.CHANGE_SEARCH_MAX_RESULTS: {
             const limit = action.payload
-
-            const searchCriteria = new SearchCriteria(
-                limit,
-                state.searchCriteria.page,
-                state.searchCriteria.sortBy,
-                state.searchCriteria.sortDir);
+            const page = 1;
+            const searchCriteria = {...state.searchCriteria, limit, page}
 
             return {
                 ...state,
@@ -60,22 +60,41 @@ export function reducer(state = initialState, action: fromMovies.MoviesListActio
              };
         }
         case fromMovies.MoviesListActionTypes.LOAD_MOVIES_BY_CRITERIA: {
+
             return {
                 ...state
              };
         }
-
         case fromMovies.MoviesListActionTypes.LOAD_MOVIES_BY_CRITERIA_SUCCESS: {
-            const movies = action.payload;
+            const movies = action.payload.collection;
+            const pageLimit = Math.floor(action.payload.total / state.searchCriteria.limit) + 1;
+
             return {
                 ...state,
-                movies
+                movies,
+                pageLimit
              };
         }
-
         case fromMovies.MoviesListActionTypes.LOAD_MOVIES_BY_CRITERIA_FAIL: {
+
             return {
                 ...state
+             };
+        }
+        case fromMovies.MoviesListActionTypes.CHANGE_PAGE: {
+            const type = action.payload;
+            let page = state.searchCriteria.page;
+
+            if(type === Pagination.NEXT && page < state.pageLimit) {
+                page++
+            } else if(type == Pagination.PREVIOUS && page > 1) {
+                page--
+            }
+            const searchCriteria = {...state.searchCriteria, page}
+
+            return {
+                ...state,
+                searchCriteria
              };
         }
 

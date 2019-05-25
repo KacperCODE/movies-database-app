@@ -27,14 +27,15 @@
       <fa-icon *ngIf="searchCriteria.sortDir === 0" icon="sort-amount-down"></fa-icon> 
     Metascore
   </p>
-
+  <p (click)="changePage(Pagination.PREVIOUS)">Previous Page</p>
+  <p (click)="changePage(Pagination.NEXT)"> Next page</p>
   <div class="list-settings__dropdown-button">
     
     <p><fa-icon icon="caret-down"></fa-icon> {{searchCriteria.limit}} results </p>
     <div class="list-settings__sort-dropdown">
+      <a (click)="changeMaxResults(3)">3 results</a>
       <a (click)="changeMaxResults(5)">5 results</a>
       <a (click)="changeMaxResults(10)">10 results</a>
-      <a (click)="changeMaxResults(15)">15 results</a>
       <a (click)="changeMaxResults(25)">25 results</a>
     </div>
   </div>

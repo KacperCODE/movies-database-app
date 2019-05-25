@@ -1,3 +1,4 @@
+import { Pagination } from './../../../domain/pagination.enum';
 import { SearchCriteria } from 'src/app/domain/searchCriteria';
 import { Component, OnInit, Input } from '@angular/core';
 import * as fromStore from '../../../store'
@@ -10,6 +11,7 @@ import { Store } from '@ngrx/store';
 })
 export class ListSettingsComponent implements OnInit {
 
+  public Pagination = Pagination; // making enum accesible from template
   public searchCriteria: SearchCriteria;
 
   constructor(private store: Store<fromStore.MoviesState>) { }
@@ -34,6 +36,11 @@ export class ListSettingsComponent implements OnInit {
     this.store.dispatch(new fromStore.ChangeSearchMaxResults(count));
     this.store.dispatch(new fromStore.LoadMoviesList);
     this.store.dispatch(new fromStore.CacheSearchCriteria);
+  }
+
+  public changePage(type: Pagination): void {
+    this.store.dispatch(new fromStore.ChangePage(type));
+    this.store.dispatch(new fromStore.LoadMoviesList);
   }
 
 }

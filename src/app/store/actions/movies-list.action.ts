@@ -1,3 +1,4 @@
+import { Pagination } from './../../domain/pagination.enum';
 import { SearchCriteria } from './../../domain/searchCriteria';
 import { Action } from '@ngrx/store';
 import { Movie } from 'src/app/domain/movie';
@@ -5,11 +6,15 @@ import { Movie } from 'src/app/domain/movie';
 export enum MoviesListActionTypes {
     CACHE_SEARCH_CRITERIA = '[Movies Cache] Cache search Criteria',
     INITIALIZE_SEARCH_CRITERIA_FROM_CACHE = '[Movies Cache] Initialize cached data',
+
     CHANGE_SEARCH_CRITERIA = '[Movies] Change search criteria',
     CHANGE_SEARCH_MAX_RESULTS = '[Movies] Change search max results',
-    LOAD_MOVIES_BY_CRITERIA = '[Movies] Load Movis by criteria',
+
+    LOAD_MOVIES_BY_CRITERIA = '[Movies] Load Movies by criteria',
     LOAD_MOVIES_BY_CRITERIA_SUCCESS = '[Movies] Load Movies by criteria success',
-    LOAD_MOVIES_BY_CRITERIA_FAIL = '[Movies] Load Movies by criteria fail'
+    LOAD_MOVIES_BY_CRITERIA_FAIL = '[Movies] Load Movies by criteria fail',
+
+    CHANGE_PAGE = '[Movies] Change page number'
 };
 
 
@@ -40,13 +45,18 @@ export class LoadMoviesList implements Action {
 export class LoadMoviesListSuccess implements Action {
     readonly type = MoviesListActionTypes.LOAD_MOVIES_BY_CRITERIA_SUCCESS;
 
-    constructor(public payload: Movie[]) { }
+    constructor(public payload: any) { }
 }
 
 export class LoadMoviesListFail implements Action {
     readonly type = MoviesListActionTypes.LOAD_MOVIES_BY_CRITERIA_FAIL;
 
     constructor(public payload: any) { }
+}
+export class ChangePage implements Action {
+    readonly type = MoviesListActionTypes.CHANGE_PAGE;
+
+    constructor(public payload: Pagination) { }
 }
 
 
@@ -57,5 +67,6 @@ export type MoviesListActions
                         | ChangeSearchMaxResults
                         | LoadMoviesList
                         | LoadMoviesListSuccess
-                        | LoadMoviesListFail;
+                        | LoadMoviesListFail
+                        | ChangePage;
                         

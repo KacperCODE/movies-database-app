@@ -16,11 +16,11 @@ export class MoviesListEffects {
     ofType(moviesListActions.MoviesListActionTypes.LOAD_MOVIES_BY_CRITERIA),
     mergeMap(() =>
       this.movieService.getAllMoviesByCriteria().pipe(
-        map((movies: Page) => ({
+        map((movies) => ({
           type:
             moviesListActions.MoviesListActionTypes
               .LOAD_MOVIES_BY_CRITERIA_SUCCESS,
-          payload: movies.collection
+          payload: movies
         })),
         catchError(() =>
           of({
