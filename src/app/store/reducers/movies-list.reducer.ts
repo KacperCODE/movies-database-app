@@ -15,6 +15,19 @@ const initialState: MoviesListState = {
 
 export function reducer(state = initialState, action: fromMovies.MoviesListActions ): MoviesListState {
     switch (action.type) {
+        case fromMovies.MoviesListActionTypes.CACHE_SEARCH_CRITERIA: {
+            localStorage.setItem("SEARCH_CRITERIA", JSON.stringify(state.searchCriteria));
+            return {
+                ...state
+             };
+        }
+        case fromMovies.MoviesListActionTypes.INITIALIZE_SEARCH_CRITERIA_FROM_CACHE: {
+            const searchCriteria = action.payload;
+            return {
+                ...state,
+                searchCriteria
+             };
+        }
         case fromMovies.MoviesListActionTypes.CHANGE_SEARCH_CRITERIA: {
             const type = action.payload;
             const searchCriteria = new SearchCriteria(

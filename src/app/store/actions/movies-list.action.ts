@@ -1,7 +1,10 @@
+import { SearchCriteria } from './../../domain/searchCriteria';
 import { Action } from '@ngrx/store';
 import { Movie } from 'src/app/domain/movie';
 
 export enum MoviesListActionTypes {
+    CACHE_SEARCH_CRITERIA = '[Movies Cache] Cache search Criteria',
+    INITIALIZE_SEARCH_CRITERIA_FROM_CACHE = '[Movies Cache] Initialize cached data',
     CHANGE_SEARCH_CRITERIA = '[Movies] Change search criteria',
     CHANGE_SEARCH_MAX_RESULTS = '[Movies] Change search max results',
     LOAD_MOVIES_BY_CRITERIA = '[Movies] Load Movis by criteria',
@@ -10,6 +13,16 @@ export enum MoviesListActionTypes {
 };
 
 
+export class CacheSearchCriteria implements Action {
+    readonly type = MoviesListActionTypes.CACHE_SEARCH_CRITERIA;
+
+    constructor() { }
+}
+export class InitializeSearchCriteriaFromCache implements Action {
+    readonly type = MoviesListActionTypes.INITIALIZE_SEARCH_CRITERIA_FROM_CACHE;
+
+    constructor(public payload: SearchCriteria) { }
+}
 export class ChangeSearchCriteria implements Action {
     readonly type = MoviesListActionTypes.CHANGE_SEARCH_CRITERIA;
 
@@ -38,7 +51,9 @@ export class LoadMoviesListFail implements Action {
 
 
 export type MoviesListActions
-                        = ChangeSearchCriteria
+                        = CacheSearchCriteria
+                        | InitializeSearchCriteriaFromCache
+                        | ChangeSearchCriteria
                         | ChangeSearchMaxResults
                         | LoadMoviesList
                         | LoadMoviesListSuccess

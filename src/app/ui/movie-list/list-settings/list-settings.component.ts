@@ -27,11 +27,13 @@ export class ListSettingsComponent implements OnInit {
     console.warn(`ATTENTION! Please keep in mind sorting by direction fails on the backend therefore it doesn't work. Functionality responible for sorting is implemented and need to be just uncommented in movie.service.ts`)
     this.store.dispatch(new fromStore.ChangeSearchCriteria(type));
     this.store.dispatch(new fromStore.LoadMoviesList)
+    this.store.dispatch(new fromStore.CacheSearchCriteria);
   }
 
   public changeMaxResults(count: number): void {
     this.store.dispatch(new fromStore.ChangeSearchMaxResults(count));
-    this.store.dispatch(new fromStore.LoadMoviesList)
+    this.store.dispatch(new fromStore.LoadMoviesList);
+    this.store.dispatch(new fromStore.CacheSearchCriteria);
   }
 
 }

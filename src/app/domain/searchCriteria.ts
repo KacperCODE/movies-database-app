@@ -10,6 +10,6 @@ export class SearchCriteria {
         this.limit = limit || 5; 
         this.page = page || null; 
         this.sortBy = sortBy || 'title'; 
-        this.sortDir = sortDir || 1; 
+        this.sortDir = sortDir && 1; 
     }
 }
