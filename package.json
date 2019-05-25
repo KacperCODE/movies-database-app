@@ -2,21 +2,20 @@
   "name": "moviesapp",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
+    "ng": "node_modules/.bin/ng",
     "start": "ng serve",
+    "start:local": "NODE_ENV=local node server.js",
+    "start:dev": "ng serve",
+    "postinstall": "ng build --aot --prod",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start:dev": "ng serve",
-    "postinstall": "ng build --aot --prod",
     "deploy": "git push heroku master",
     "logs": "heroku logs --tail"
   },
   "private": true,
   "dependencies": {
-    "@angular/cli": "7.3.9",
-    "@angular/compiler-cli": "~7.2.15",
     "@angular-devkit/build-angular": "~0.13.0",
     "@angular/animations": "7.2.0",
     "@angular/common": "7.2.0",
@@ -26,6 +25,7 @@
     "@angular/platform-browser": "7.2.0",
     "@angular/platform-browser-dynamic": "7.2.0",
     "@angular/router": "7.2.0",
+    "ts-node": "~7.0.0",
     "@auth0/angular-jwt": "2.1.0",
     "@fortawesome/angular-fontawesome": "0.3.0",
     "@fortawesome/fontawesome-svg-core": "1.2.18",
@@ -41,9 +41,11 @@
     "zone.js": "0.8.26"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "~0.13.0",
     "@angular/cli": "~7.3.9",
     "@angular/compiler-cli": "~7.2.15",
-    "@angular-devkit/build-angular": "~0.13.0",
+    "ts-node": "~7.0.0",
+    "tslint": "~5.11.0",  
     "@angular/language-service": "~7.2.0",
     "@types/node": "~8.9.4",
     "@types/jasmine": "~2.8.8",
@@ -57,8 +59,6 @@
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.4.0",
-    "ts-node": "~7.0.0",
-    "tslint": "~5.11.0",
     "typescript": "~3.2.2"
   },
   "engines": {
