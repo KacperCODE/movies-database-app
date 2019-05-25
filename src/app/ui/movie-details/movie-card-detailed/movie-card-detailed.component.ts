@@ -3,7 +3,6 @@ import { Observable, Subscription } from 'rxjs';
 import { Log } from 'ng2-logger/client';
 import { Component, OnInit, ViewChild, ElementRef, Input, OnDestroy } from '@angular/core';
 import { Movie } from 'src/app/domain/movie';
-import { ActivatedRoute, Params } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import * as fromStore from '../../../store'
 import { Store } from '@ngrx/store';
@@ -54,7 +53,8 @@ constructor(private store: Store<fromStore.MoviesState>) { }
   }
 
   /**
-   * TODO BACKEND: Implement getActorsByMovieId to avoid this workaround.
+   * TODO backlog-id: 87654
+   * Implement getActorsByMovieId to avoid this workaround.
    * Currently actors on details page are loaded one by one from an array
    * that comes with getMovieById and then each actor is added to Actors[]
   */

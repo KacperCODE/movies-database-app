@@ -28,7 +28,7 @@ export function reducer(state = initialState, action: fromAuth.AuthActions ): Au
              };
         }
         case fromAuth.AuthActionTypes.SET_USER_DATA: {
-            const user = action.payload;
+            const user: User = action.payload;
             return {
                 ...state,
                 user
@@ -45,10 +45,15 @@ export function reducer(state = initialState, action: fromAuth.AuthActions ): Au
              };
         }
         case fromAuth.AuthActionTypes.USER_LOGGED_OUT: {
-            const user = null;
+            const user: User = null;
             return {
                 ...state,
                 user
+             };
+        }
+        case fromAuth.AuthActionTypes.USER_LOG_OUT_FAIL: {
+            return {
+                ...state
              };
         }
 

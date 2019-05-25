@@ -1,7 +1,6 @@
 import { Pagination } from './../../domain/pagination.enum';
 import { SearchCriteria } from './../../domain/searchCriteria';
 import { Action } from '@ngrx/store';
-import { Movie } from 'src/app/domain/movie';
 
 export enum MoviesListActionTypes {
     CACHE_SEARCH_CRITERIA = '[Movies Cache] Cache search Criteria',

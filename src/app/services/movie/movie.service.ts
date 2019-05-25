@@ -16,7 +16,6 @@ export class MovieService {
   private movieId: string;
   private searchCriteria = new SearchCriteria();
 
-  //TODO move url to separate directiory.
   private url = `https://marblejs-example.herokuapp.com/api/v1`;
 
     constructor(private store: Store<fromStore.MoviesState>,
@@ -38,7 +37,7 @@ export class MovieService {
     }
 
   public getAllMoviesByCriteria(): Observable<Page> {
-    const { limit, page, sortBy, sortDir } = this.searchCriteria;
+    const { limit, page, sortBy, sortDir }: SearchCriteria = this.searchCriteria;
     let params = new HttpParams()
 
     if (limit != null) {
@@ -51,8 +50,12 @@ export class MovieService {
       params = params.append('sortBy', String(sortBy));
     }
     
-    // Important: IMDB-like backend app is throwing 400 when using sortDir param. 
-    // re-enable to make it work
+    /**
+     * TODO backlog-id: 98765
+     * Important: IMDB-like backend app is throwing 400 when using sortDir param. 
+     * re-enable to make it work once an issue is fixed.
+     * */
+
     // if (sortDir != null) {
     //   params = params.set('sortDir', String(sortDir));
     // }
@@ -83,7 +86,7 @@ export class MovieService {
         catchError(this.handleError));
   }
 
-  private handleError(error: any) {
+  private handleError(error: any): Observable<never> {
     let errMsg = (error.message) ? error.message :
         error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     if (errMsg === '400 - OK' || errMsg === '401 OK') {

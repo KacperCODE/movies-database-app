@@ -1,5 +1,4 @@
 import { AlertService } from 'ngx-alerts';
-import { Log } from 'ng2-logger/client';
 import { User } from './../../domain/user';
 import { JwtToken } from './../../domain/jwt-token';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -7,18 +6,14 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as fromStore from '../../store'
 import { Store } from '@ngrx/store';
-import { from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private log = Log.create('AuthService');
 
   private tokenId: string = "JWT_TOKEN";
   private jwtHelper: JwtHelperService = new JwtHelperService();
-
-  //TODO Implement Initialisation service for validating JWT.
 
   constructor(private store: Store<fromStore.MoviesState>,
               private router: Router,
@@ -43,7 +38,7 @@ export class AuthService {
   private setLoggedInUser(): void {
     let token: string = localStorage.getItem(this.tokenId);
     let decodedToken = this.jwtHelper.decodeToken(token);
-    const user = new User(decodedToken.email);
+    const user: User = new User(decodedToken.email);
 
     this.store.dispatch(new fromStore.SetUserData(user));
     this.alertService.info('Logged In');

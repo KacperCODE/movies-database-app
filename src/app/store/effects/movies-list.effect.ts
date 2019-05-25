@@ -1,4 +1,3 @@
-import { Page } from "../../domain/page";
 import { MovieService } from "../../services/movie/movie.service";
 import { Injectable } from "@angular/core";
 import { Effect, Actions, ofType } from "@ngrx/effects";

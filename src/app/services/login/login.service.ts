@@ -9,7 +9,6 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class LoginService {
 
-  //TODO move url to separate directiory.
   private url = `https://marblejs-example.herokuapp.com/api/v1`;
 
   constructor(private http: HttpClient) { }
@@ -23,7 +22,7 @@ export class LoginService {
         catchError(this.handleError));
   }
 
-  private handleError(error: any) {
+  private handleError(error: any): Observable<never> {
     let errMsg = (error.message) ? error.message :
         error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     if (errMsg === '400 - OK' || errMsg === '401 OK') {

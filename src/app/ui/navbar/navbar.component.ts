@@ -15,7 +15,6 @@ export class NavbarComponent implements OnInit {
   public canShowNavbarOptions: boolean;
 
   constructor(private store: Store<fromStore.MoviesState>,
-              private authService: AuthService,
               private router: Router) { }
 
   ngOnInit() {

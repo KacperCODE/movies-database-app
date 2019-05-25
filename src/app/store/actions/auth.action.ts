@@ -10,7 +10,8 @@ export enum AuthActionTypes {
 
     USER_SYSTEM_LOGOUT = '[AUTH] User automaticaly logged out',
     USER_MANUAL_LOGOUT = '[AUTH] User manually logged out',
-    USER_LOGGED_OUT = '[AUTH] User logged out'
+    USER_LOGGED_OUT = '[AUTH] User logged out',
+    USER_LOG_OUT_FAIL = "[AUTH] User can't log out"
 };
 
 
@@ -50,6 +51,11 @@ export class UserLoggedOut implements Action {
 
     constructor() { }
 }
+export class UserLogOutFail implements Action {
+    readonly type = AuthActionTypes.USER_LOG_OUT_FAIL;
+
+    constructor() { }
+}
 
 
 export type AuthActions
@@ -59,5 +65,6 @@ export type AuthActions
                         | SetUserData
                         | UserSystemLogout
                         | UserManualLogout
-                        | UserLoggedOut;
+                        | UserLoggedOut
+                        | UserLogOutFail;
                         

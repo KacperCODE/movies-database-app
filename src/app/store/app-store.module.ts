@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { MovieDetailsEffects } from './effects/movie-details.effect';
 import { MoviesListEffects } from './effects/movies-list.effect';
 import { AuthEffects } from './effects/auth.effect';
@@ -11,11 +12,12 @@ import { reducers } from './reducers';
   imports: [
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([MoviesListEffects, MovieDetailsEffects, AuthEffects]),
-    StoreDevtoolsModule.instrument({
+    !environment.production ? StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: false
-    }),
+    }): [],
   ],
   exports: [StoreModule]
 })
 export class AppStoreModule { }
+

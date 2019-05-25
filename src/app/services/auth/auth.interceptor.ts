@@ -1,9 +1,7 @@
 import { AlertService } from 'ngx-alerts';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Router } from "@angular/router";
 import { tap } from "rxjs/operators";
-import { AuthService } from "./auth.service";
 import { Injectable } from "@angular/core";
 import { Log } from 'ng2-logger/client';
 import * as fromStore from '../../store'
@@ -14,9 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
     private log = Log.create('AuthInterceptor');
 
 
-    constructor(private router: Router, 
-              private store: Store<fromStore.MoviesState>,
-                private authService: AuthService,
+    constructor(private store: Store<fromStore.MoviesState>,
                 private alertService: AlertService) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
