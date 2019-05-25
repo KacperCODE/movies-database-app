@@ -2,13 +2,14 @@
   "name": "moviesapp",
   "version": "0.0.0",
   "scripts": {
-    "ng": "node_modules/.bin/ng",
-    "start": "ng serve",
+    "ng": "ng",
+    "start": "node server.js",
     "postinstall": "ng build --aot --prod",
     "build": "ng build",
     "lint": "ng lint",
     "deploy": "git push heroku master",
     "logs": "heroku logs --tail",
+    "e2e": "ng e2e",
     "test": ""
   },
   "private": true,
