@@ -3,9 +3,9 @@ import { Actor } from './../../domain/actor';
 import { Page } from './../../domain/page';
 import { Movie } from './../../domain/movie';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { map, catchError } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, Subscription } from 'rxjs';
 import * as fromStore from '../../store'
 import { Store } from '@ngrx/store';
 

@@ -1,35 +1,38 @@
 import { User } from './../../domain/user';
-import { AuthService } from './../../services/auth/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import * as fromStore from '../../store'
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'moviesapp-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   public user: User;
   public canShowNavbarOptions: boolean;
+  private subscriptions: Subscription = new Subscription();
 
   constructor(private store: Store<fromStore.MoviesState>,
               private router: Router) { }
 
   ngOnInit() {
-    this.store.select(fromStore.getCurrentUser)
-      .subscribe(
-        (user: User) => {
-          this.user = user;
+    this.subscriptions.add( 
+      this.store.select(fromStore.getCurrentUser)
+        .subscribe(
+          (user: User) => {
+            this.user = user;
 
-          if(user != null) {
-            this.canShowNavbarOptions = true;
-          } else {
-            this.canShowNavbarOptions = false;
+            if(user != null) {
+              this.canShowNavbarOptions = true;
+            } else {
+              this.canShowNavbarOptions = false;
+            }
           }
-        }
-      )
+        )
+      );
   }
 
   public navigateHome(): void {
@@ -38,5 +41,9 @@ export class NavbarComponent implements OnInit {
 
   public logout(): void {
     this.store.dispatch(new fromStore.UserManualLogout);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }

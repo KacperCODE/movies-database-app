@@ -1,7 +1,6 @@
-import { Router } from '@angular/router';
-import { Pagination } from './../../../domain/pagination.enum';
+import { Subscription } from 'rxjs';
 import { SearchCriteria } from 'src/app/domain/searchCriteria';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as fromStore from '../../../store'
 import { Store } from '@ngrx/store';
 
@@ -10,19 +9,22 @@ import { Store } from '@ngrx/store';
   templateUrl: './list-settings.component.html',
   styleUrls: ['./list-settings.component.scss']
 })
-export class ListSettingsComponent implements OnInit {
+export class ListSettingsComponent implements OnInit, OnDestroy {
 
   public searchCriteria: SearchCriteria;
+  private subscriptions: Subscription = new Subscription();
 
   constructor(private store: Store<fromStore.MoviesState>) { }
 
   ngOnInit() {
-    this.store.select(fromStore.getSearchCriteria)
-      .subscribe(
-        (criteria) => {
-          this.searchCriteria = criteria;
-        }
-      )
+    this.subscriptions.add(
+      this.store.select(fromStore.getSearchCriteria)
+        .subscribe(
+          (criteria) => {
+            this.searchCriteria = criteria;
+          }
+        )
+    );
   }
 
   public changeCriteria(type: string): void {
@@ -38,4 +40,7 @@ export class ListSettingsComponent implements OnInit {
     this.store.dispatch(new fromStore.CacheSearchCriteria);
   }
 
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+  }
 }

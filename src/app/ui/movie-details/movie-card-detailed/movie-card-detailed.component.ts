@@ -1,6 +1,5 @@
 import { Actor } from './../../../domain/actor';
 import { Observable, Subscription } from 'rxjs';
-import { Log } from 'ng2-logger/client';
 import { Component, OnInit, ViewChild, ElementRef, Input, OnDestroy } from '@angular/core';
 import { Movie } from 'src/app/domain/movie';
 import { trigger, state, style, transition, animate } from '@angular/animations';
@@ -23,7 +22,6 @@ import { Store } from '@ngrx/store';
   ]
 })
 export class MovieCardDetailedComponent implements OnInit, OnDestroy {
-  private log = Log.create("MovieCardDetailedComponent")
   animationState = 'initialized';
 
   private subscriptions: Subscription = new Subscription();
