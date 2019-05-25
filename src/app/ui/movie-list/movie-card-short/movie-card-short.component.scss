@@ -57,3 +57,40 @@
         }
     }
 }
+
+@media all and (max-width: 1024px) { } 
+@media all and (max-width: 839px) {
+    .card-short {
+        &__title {
+            font-size: 1em;
+        }
+        &__metascore {
+            top: -8px;
+            padding: 70px 0;
+            min-width: 60px;
+            font-size: 1.2em;
+        }
+    }
+ }
+@media all and (max-width: 480px) {
+    .card-short {
+        &__details {
+            height: 103px;
+        }
+        &__title {
+            font-size: 0.8em;
+        }
+        &__year {
+            font-size: 0.8em;
+        }
+        &__poster {
+            margin-left: 0;
+            min-width: 70px;
+            max-width: 70px;
+            max-height: 110px;
+        }
+        &__metascore {
+            padding: 52px 0;
+        }
+    }
+ }

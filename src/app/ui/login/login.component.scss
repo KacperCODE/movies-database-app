@@ -50,3 +50,14 @@
         }
     }
 }
+
+
+@media all and (max-width: 1024px) { } 
+@media all and (max-width: 839px) { }
+@media all and (max-width: 480px) {
+    .component {
+        &__wrapper {
+            padding-top: 50px;
+        }
+    }
+ }
