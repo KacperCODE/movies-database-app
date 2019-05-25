@@ -18,18 +18,21 @@ export class AppComponent implements OnInit {
   }
 
   private initializeSearchCriteriaFromCache(): void {
-    const { limit, page, sortBy, sortDir }: SearchCriteria = JSON.parse(
-      localStorage.getItem("SEARCH_CRITERIA")
-    );
-    const searchCriteria: SearchCriteria = new SearchCriteria(
-      limit,
-      page,
-      sortBy,
-      sortDir
-    );
+    const criteria = localStorage.getItem("SEARCH_CRITERIA")
+    
+    if(criteria) {
+      const { limit, page, sortBy, sortDir }: SearchCriteria = JSON.parse(criteria);
 
-    this.store.dispatch(
-      new fromStore.InitializeSearchCriteriaFromCache(searchCriteria)
-    );
+      const searchCriteria: SearchCriteria = new SearchCriteria(
+        limit,
+        page,
+        sortBy,
+        sortDir
+      );
+  
+      this.store.dispatch(
+        new fromStore.InitializeSearchCriteriaFromCache(searchCriteria)
+      );
+    }
   }
 }

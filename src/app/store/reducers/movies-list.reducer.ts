@@ -29,7 +29,6 @@ export function reducer(state = initialState, action: fromMovies.MoviesListActio
         }
         case fromMovies.MoviesListActionTypes.INITIALIZE_SEARCH_CRITERIA_FROM_CACHE: {
             const searchCriteria = action.payload;
-
             return {
                 ...state,
                 searchCriteria

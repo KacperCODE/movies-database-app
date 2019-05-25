@@ -8,6 +8,6 @@ export class SearchCriteria {
         this.limit = limit || 5; 
         this.page = page || 1; 
         this.sortBy = sortBy || 'title'; 
-        this.sortDir = sortDir && 1; 
+        this.sortDir = (sortDir && 1 ) || 0; 
     }
 }
