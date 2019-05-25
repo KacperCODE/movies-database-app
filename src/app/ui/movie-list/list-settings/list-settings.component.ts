@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Pagination } from './../../../domain/pagination.enum';
 import { SearchCriteria } from 'src/app/domain/searchCriteria';
 import { Component, OnInit, Input } from '@angular/core';
@@ -14,13 +15,15 @@ export class ListSettingsComponent implements OnInit {
   public Pagination = Pagination; // making enum accesible from template
   public searchCriteria: SearchCriteria;
 
-  constructor(private store: Store<fromStore.MoviesState>) { }
+  constructor(private store: Store<fromStore.MoviesState>,
+              private router: Router) { }
 
   ngOnInit() {
     this.store.select(fromStore.getSearchCriteria)
       .subscribe(
         (criteria) => {
           this.searchCriteria = criteria;
+          this.router.navigate(['/list'], { queryParams: { page: this.searchCriteria.page }});
         }
       )
   }
