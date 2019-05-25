@@ -15,6 +15,7 @@ import { AlertService } from 'ngx-alerts';
 })
 export class LoginComponent implements OnInit {
   private log = Log.create('LoginComponent');
+  public loader: boolean = false;
 
   loginForm = this.formBuilder.group({
     login: ['', [
@@ -37,11 +38,13 @@ export class LoginComponent implements OnInit {
   }
 
   public onLogin(): void {
+    this.loader = true;
     const { login, password } = this.loginForm.value;
 
     this.loginService.login(login, password)
       .subscribe(
         (token: JwtToken) => {
+          this.loader = false;
           this.authService.login(token);
           this.router.navigate(['/list']);
           this.alertService.info('Logged In');

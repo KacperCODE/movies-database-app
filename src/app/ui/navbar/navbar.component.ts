@@ -16,8 +16,9 @@ export class NavbarComponent implements OnInit {
   }
 
   public navigateHome(): void {
-    this.router.navigate(['/list']);
+    this.router.navigate(['/list'], { skipLocationChange: true });
   }
+
   public logout(): void {
     this.authService.manualLogout();
   }

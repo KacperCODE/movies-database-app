@@ -22,16 +22,18 @@
         height: 30px;
         padding: 1em;
     }
+    &__navigation {
+        display: flex;
+    }
     &__details {
         display: inline-flex;
     }
     &__title {
         font-size: 1.5em;
         line-height: 100%;
-        margin: 5px;
+        margin: 2px;
         font-weight: 700;
         color: $movies-blue;
-        cursor: pointer;
     }
     &__btn-logout {
         border: 1px solid $movies-blue;
@@ -45,9 +47,14 @@
         color: $movies-blue;
         cursor: pointer;
     }
-    &__text {
+    &__navigation-link {
         color: $movies-blue;
         margin: 6px 16px;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
     &__link-text {
         font-size: 1.2em;

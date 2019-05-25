@@ -1,8 +1,10 @@
 <div class="component__wrapper">
     <nav class="navbar__container">
-      <p (click)="navigateHome()" class="navbar__title">Movies Database</p>
+      <div class="navbar__navigation">
+        <p class="navbar__title">Movies Database</p>
+        <p (click)="navigateHome('/list')" class="navbar__navigation-link">Movie List</p>
+      </div>
       <div class="navbar__details">
-        <p class="navbar__text">placeholder@now.com</p>
         <div (click)="logout()" class="navbar__btn-logout">
               <fa-icon icon="sign-out-alt"></fa-icon>
               <!-- TODO RWD and connection with store - NgIf -->

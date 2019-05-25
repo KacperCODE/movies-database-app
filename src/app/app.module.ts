@@ -25,6 +25,7 @@ import { NavbarComponent } from "./ui/navbar/navbar.component";
 import { JwtModule } from "@auth0/angular-jwt";
 import { ActorCardComponent } from "./ui/movie-details/movie-card-detailed/actor-card/actor-card.component";
 import { ListPaginationBarComponent } from './ui/movie-list/list-pagination-bar/list-pagination-bar.component';
+import { LoaderComponent } from './ui/util/loader/loader.component';
 
 export function tokenGetter() {
   return localStorage.getItem("JWT_TOKEN");
@@ -41,7 +42,8 @@ export function tokenGetter() {
     ListSettingsComponent,
     NavbarComponent,
     ActorCardComponent,
-    ListPaginationBarComponent
+    ListPaginationBarComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

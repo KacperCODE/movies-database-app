@@ -1,6 +1,8 @@
+<moviesapp-loader *ngIf="loader"></moviesapp-loader>
+
 <div class="component__wrapper">
   <div class="login__container">
-    <p>Movies Database</p>
+    <h1>Movies Database</h1>
     
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login__form">
 
@@ -18,7 +20,7 @@
                required>
       </label>
 
-      <button type="submit" [disabled]="!loginForm.valid">Sign in</button>
+      <button class="login__login-button" type="submit" [disabled]="!loginForm.valid">Sign in</button>
     </form>
 
   </div>
