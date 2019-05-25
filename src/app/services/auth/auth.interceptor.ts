@@ -6,6 +6,8 @@ import { tap } from "rxjs/operators";
 import { AuthService } from "./auth.service";
 import { Injectable } from "@angular/core";
 import { Log } from 'ng2-logger/client';
+import * as fromStore from '../../store'
+import { Store } from '@ngrx/store';
 
 @Injectable({providedIn: 'root'})
 export class AuthInterceptor implements HttpInterceptor {
@@ -13,6 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
 
     constructor(private router: Router, 
+              private store: Store<fromStore.MoviesState>,
                 private authService: AuthService,
                 private alertService: AlertService) {}
 
@@ -27,8 +30,7 @@ export class AuthInterceptor implements HttpInterceptor {
               if (err.status === 401) {
                   this.log.d('Unauthorized response returned: ', err.status);
                   this.alertService.warning('Unauthorized access')
-                  this.authService.removeToken();
-                  this.router.navigate(['/']);
+                  this.store.dispatch(new fromStore.UserSystemLogout);
                   
               }
             }

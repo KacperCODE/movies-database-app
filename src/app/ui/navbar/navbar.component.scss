@@ -56,6 +56,10 @@
             text-decoration: underline;
         }
     }
+    &__text {
+        color: $movies-blue;
+        margin: 6px 16px;
+    }
     &__link-text {
         font-size: 1.2em;
     }

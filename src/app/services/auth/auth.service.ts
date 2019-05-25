@@ -5,6 +5,9 @@ import { JwtToken } from './../../domain/jwt-token';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import * as fromStore from '../../store'
+import { Store } from '@ngrx/store';
+import { from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +17,11 @@ export class AuthService {
 
   private tokenId: string = "JWT_TOKEN";
   private jwtHelper: JwtHelperService = new JwtHelperService();
-  // TODO Move to Store NgRx
-  public user: User;
 
   //TODO Implement Initialisation service for validating JWT.
 
-  constructor(private router: Router,
+  constructor(private store: Store<fromStore.MoviesState>,
+              private router: Router,
               private alertService: AlertService) {
     this.loginUserIfTokenValid();
   }
@@ -40,19 +42,21 @@ export class AuthService {
   private setLoggedInUser(): void {
     let token: string = localStorage.getItem(this.tokenId);
     let decodedToken = this.jwtHelper.decodeToken(token);
-    this.log.d('Token Valid, User Logged In', decodedToken);
-    this.user = new User();
-    this.user.email = decodedToken.email;
+    const user = new User(decodedToken.email);
+
+    this.store.dispatch(new fromStore.SetUserData(user));
+
+    this.router.navigate(['/list']);
+    this.alertService.info('Logged In');
   }
 
-  public logout(): void {
+  public systemLogout(): void {
     localStorage.removeItem(this.tokenId);
-    this.user = null;
     this.router.navigate(['']);
   }
 
   public manualLogout(): void {
-    this.logout();
+    this.systemLogout();
     this.alertService.info('Logged Out');
   }
 

@@ -15,9 +15,9 @@ const initialState: MovieDetailsState = {
     actors: []
 };
 
-export function reducer(state = initialState, action: fromDetails.MovieDetailsActions ): MovieDetailsState {
+export function reducer(state = initialState, action: fromDetails.LoginActions ): MovieDetailsState {
     switch (action.type) {
-        case fromDetails.MovieDetailsActionTypes.SET_MOVIE_ID: {
+        case fromDetails.LoginActionTypes.SET_MOVIE_ID: {
             const movieId =  action.payload;
             const movie = null;
             const actors = [];
@@ -29,7 +29,7 @@ export function reducer(state = initialState, action: fromDetails.MovieDetailsAc
              };
         }
 
-        case fromDetails.MovieDetailsActionTypes.LOAD_MOVIE_BY_ID_SUCCESS: {
+        case fromDetails.LoginActionTypes.LOAD_MOVIE_BY_ID_SUCCESS: {
             const movie = action.payload;
             return {
                 ...state,
@@ -37,19 +37,19 @@ export function reducer(state = initialState, action: fromDetails.MovieDetailsAc
              };
         }
 
-        case fromDetails.MovieDetailsActionTypes.LOAD_MOVIE_BY_ID_FAIL: {
+        case fromDetails.LoginActionTypes.LOAD_MOVIE_BY_ID_FAIL: {
             return {
                 ...state
              };
         }
 
-        case fromDetails.MovieDetailsActionTypes.LOAD_ACTOR_BY_ID: {
+        case fromDetails.LoginActionTypes.LOAD_ACTOR_BY_ID: {
             return {
                 ...state
              };
         }
 
-        case fromDetails.MovieDetailsActionTypes.LOAD_ACTOR_BY_ID_SUCCESS: {
+        case fromDetails.LoginActionTypes.LOAD_ACTOR_BY_ID_SUCCESS: {
             const actors = [...state.actors, action.payload];
             
             return {
@@ -58,7 +58,7 @@ export function reducer(state = initialState, action: fromDetails.MovieDetailsAc
              };
         }
 
-        case fromDetails.MovieDetailsActionTypes.LOAD_ACTOR_BY_ID_FAIL: {
+        case fromDetails.LoginActionTypes.LOAD_ACTOR_BY_ID_FAIL: {
             return {
                 ...state
              };

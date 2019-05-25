@@ -14,13 +14,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  public login(login: string, password: string): Observable<JwtToken> {
-
-    const credentials = { 
-      login: login, 
-      password: password 
-    };
-
+  public login(credentials: any): Observable<JwtToken> {
     return this.http.post(this.url + '/auth/login', credentials)
     .pipe(
         map((res: JwtToken) => { 

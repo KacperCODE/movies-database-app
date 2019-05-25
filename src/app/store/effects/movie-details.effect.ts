@@ -13,19 +13,19 @@ export class MovieDetailsEffects {
 
   @Effect()
   loadMovieDetails = this.actions.pipe(
-    ofType(movieDetailsActions.MovieDetailsActionTypes.LOAD_MOVIE_BY_ID),
+    ofType(movieDetailsActions.LoginActionTypes.LOAD_MOVIE_BY_ID),
     mergeMap(() =>
       this.movieService.getMovieById().pipe(
         map((movie: Movie) => ({
           type:
-          movieDetailsActions.MovieDetailsActionTypes
+          movieDetailsActions.LoginActionTypes
               .LOAD_MOVIE_BY_ID_SUCCESS,
           payload: movie
         })),
         catchError(() =>
           of({
             type:
-            movieDetailsActions.MovieDetailsActionTypes
+            movieDetailsActions.LoginActionTypes
                 .LOAD_MOVIE_BY_ID_FAIL
           })
         )
@@ -35,19 +35,19 @@ export class MovieDetailsEffects {
 
   @Effect()
   loadActor = this.actions.pipe(
-    ofType(movieDetailsActions.MovieDetailsActionTypes.LOAD_ACTOR_BY_ID),
+    ofType(movieDetailsActions.LoginActionTypes.LOAD_ACTOR_BY_ID),
     mergeMap((action: any) =>
       this.movieService.getActorById(action.payload).pipe(
         map((actor: Actor) => ({
           type:
-          movieDetailsActions.MovieDetailsActionTypes
+          movieDetailsActions.LoginActionTypes
               .LOAD_ACTOR_BY_ID_SUCCESS,
           payload: actor
         })),
         catchError(() =>
           of({
             type:
-            movieDetailsActions.MovieDetailsActionTypes
+            movieDetailsActions.LoginActionTypes
                 .LOAD_ACTOR_BY_ID_FAIL
           })
         )

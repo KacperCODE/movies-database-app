@@ -2,7 +2,7 @@ import { Actor } from '../../domain/actor';
 import { Action } from '@ngrx/store';
 import { Movie } from 'src/app/domain/movie';
 
-export enum MovieDetailsActionTypes {
+export enum LoginActionTypes {
     SET_MOVIE_ID = '[MovieDetails] Setting new movie id',
 
     LOAD_MOVIE_BY_ID = '[MovieDetails] Load Movie by id',
@@ -17,22 +17,22 @@ export enum MovieDetailsActionTypes {
 // Movie Details
 
 export class SetMovieId implements Action {
-    readonly type = MovieDetailsActionTypes.SET_MOVIE_ID;
+    readonly type = LoginActionTypes.SET_MOVIE_ID;
 
     constructor(public payload: string) { }
 }
 export class LoadMovieDetails implements Action {
-    readonly type = MovieDetailsActionTypes.LOAD_MOVIE_BY_ID;
+    readonly type = LoginActionTypes.LOAD_MOVIE_BY_ID;
 }
 
 export class LoadMovieDetailsSuccess implements Action {
-    readonly type = MovieDetailsActionTypes.LOAD_MOVIE_BY_ID_SUCCESS;
+    readonly type = LoginActionTypes.LOAD_MOVIE_BY_ID_SUCCESS;
 
     constructor(public payload: Movie) { }
 }
 
 export class LoadMovieDetailsFail implements Action {
-    readonly type = MovieDetailsActionTypes.LOAD_MOVIE_BY_ID_FAIL;
+    readonly type = LoginActionTypes.LOAD_MOVIE_BY_ID_FAIL;
 
     constructor(public payload: any) { }
 }
@@ -40,24 +40,24 @@ export class LoadMovieDetailsFail implements Action {
 // Actors
 
 export class LoadActorById implements Action {
-    readonly type = MovieDetailsActionTypes.LOAD_ACTOR_BY_ID;
+    readonly type = LoginActionTypes.LOAD_ACTOR_BY_ID;
 
     constructor(public payload: string) { }
 }
 
 export class LoadActorByIdSuccess implements Action {
-    readonly type = MovieDetailsActionTypes.LOAD_ACTOR_BY_ID_SUCCESS;
+    readonly type = LoginActionTypes.LOAD_ACTOR_BY_ID_SUCCESS;
 
     constructor(public payload: Actor) { }
 }
 
 export class LoadActorByIdFail implements Action {
-    readonly type = MovieDetailsActionTypes.LOAD_ACTOR_BY_ID_FAIL;
+    readonly type = LoginActionTypes.LOAD_ACTOR_BY_ID_FAIL;
 
     constructor(public payload: any) { }
 }
 
-export type MovieDetailsActions
+export type LoginActions
                         = SetMovieId
                         | LoadMovieDetails
                         | LoadMovieDetailsSuccess

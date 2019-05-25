@@ -1,5 +1,6 @@
 import { MovieDetailsEffects } from './effects/movie-details.effect';
 import { MoviesListEffects } from './effects/movies-list.effect';
+import { AuthEffects } from './effects/auth.effect';
 import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -9,7 +10,7 @@ import { reducers } from './reducers';
 @NgModule({
   imports: [
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([MoviesListEffects, MovieDetailsEffects]),
+    EffectsModule.forRoot([MoviesListEffects, MovieDetailsEffects, AuthEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: false

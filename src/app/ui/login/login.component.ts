@@ -6,6 +6,8 @@ import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Log } from 'ng2-logger/client';
 import { Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
+import { Store } from '@ngrx/store';
+import * as fromStore from '../../store';
 
 
 @Component({
@@ -28,7 +30,8 @@ export class LoginComponent implements OnInit {
         Validators.maxLength(35)]]
   })
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private store: Store<fromStore.MoviesState>,
+              private formBuilder: FormBuilder,
               private loginService: LoginService,
               private authService: AuthService,
               private alertService: AlertService,
@@ -39,20 +42,6 @@ export class LoginComponent implements OnInit {
 
   public onLogin(): void {
     this.loader = true;
-    const { login, password } = this.loginForm.value;
-
-    this.loginService.login(login, password)
-      .subscribe(
-        (token: JwtToken) => {
-          this.loader = false;
-          this.authService.login(token);
-          this.router.navigate(['/list']);
-          this.alertService.info('Logged In');
-        },
-        (error) => {
-          this.alertService.warning('Incorrect email/password');
-          this.log.er("Incorrect email/password", error);
-        }
-      )
+    this.store.dispatch(new fromStore.UserLogin(this.loginForm.value));
   }
 }
