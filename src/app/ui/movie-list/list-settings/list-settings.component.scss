@@ -9,11 +9,47 @@
     }
     &__sort-button {
         cursor: pointer;
+        user-select: none;
 
         &:hover {
             font-weight: bold;
         }
     }
+    &__dropdown-button {
+        cursor: pointer;
+        user-select: none;
+
+        &:hover {
+            font-weight: bold;
+        }
+
+        &:hover .list-settings__sort-dropdown {
+            display: block;
+          }
+    }
+    &__sort-dropdown {
+        @extend %card;
+        margin: 0;
+        display: none;
+        position: absolute;
+        z-index: 1;
+
+        a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+          }
+
+        a:hover { 
+            background-color: #f1f1f1;
+            cursor: pointer;
+        }
+
+          &:hover .dropbtn {
+            background-color: #3e8e41;
+          }
+      }
 }
 
 .active {

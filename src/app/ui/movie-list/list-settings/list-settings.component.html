@@ -28,8 +28,14 @@
     Metascore
   </p>
 
-  <p class="list-settings__sort-button">
-    <fa-icon icon="caret-down"></fa-icon>
-    15 results 
-  </p>
+  <div class="list-settings__dropdown-button">
+    
+    <p><fa-icon icon="caret-down"></fa-icon> {{searchCriteria.limit}} results </p>
+    <div class="list-settings__sort-dropdown">
+      <a (click)="changeMaxResults(5)">5 results</a>
+      <a (click)="changeMaxResults(10)">10 results</a>
+      <a (click)="changeMaxResults(15)">15 results</a>
+      <a (click)="changeMaxResults(25)">25 results</a>
+    </div>
+  </div>
 </div>

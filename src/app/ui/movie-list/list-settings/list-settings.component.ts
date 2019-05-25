@@ -29,4 +29,9 @@ export class ListSettingsComponent implements OnInit {
     this.store.dispatch(new fromStore.LoadMoviesList)
   }
 
+  public changeMaxResults(count: number): void {
+    this.store.dispatch(new fromStore.ChangeSearchMaxResults(count));
+    this.store.dispatch(new fromStore.LoadMoviesList)
+  }
+
 }

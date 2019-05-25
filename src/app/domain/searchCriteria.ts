@@ -7,7 +7,7 @@ export class SearchCriteria {
     sortDir: number;
 
     constructor(limit?, page?, sortBy?, sortDir?) {
-        this.limit = limit || null; 
+        this.limit = limit || 5; 
         this.page = page || null; 
         this.sortBy = sortBy || 'title'; 
         this.sortDir = sortDir || 1; 

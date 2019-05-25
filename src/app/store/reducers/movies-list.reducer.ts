@@ -32,6 +32,20 @@ export function reducer(state = initialState, action: fromMovies.MoviesListActio
                 searchCriteria
              };
         }
+        case fromMovies.MoviesListActionTypes.CHANGE_SEARCH_MAX_RESULTS: {
+            const limit = action.payload
+
+            const searchCriteria = new SearchCriteria(
+                limit,
+                state.searchCriteria.page,
+                state.searchCriteria.sortBy,
+                state.searchCriteria.sortDir);
+
+            return {
+                ...state,
+                searchCriteria
+             };
+        }
         case fromMovies.MoviesListActionTypes.LOAD_MOVIES_BY_CRITERIA: {
             return {
                 ...state
