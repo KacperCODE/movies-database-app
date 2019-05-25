@@ -59,3 +59,26 @@
 .inactive {
     color: $font-inactive;
 }
+
+
+@media all and (max-width: 1024px) { } 
+@media all and (max-width: 839px) { }
+@media all and (max-width: 480px) { 
+    .list-settings {
+        &__filter-icon,
+        &__sort-button {
+            font-size: 0.7em;
+            margin-top: 15px;
+        }
+        &__results-button {
+            font-size: 0.8em;
+            margin-top: 15px;
+        }
+        &__sort-dropdown {
+            a {
+                padding: 12px 9px;
+                font-size: 0.7em;
+            }
+        }
+    }
+ }

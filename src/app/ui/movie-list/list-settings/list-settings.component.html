@@ -1,5 +1,5 @@
 <div class="list-settings__content">
-  <p><fa-icon icon="filter"></fa-icon> Filter:</p> 
+  <p class="list-settings__filter-icon"><fa-icon icon="filter"></fa-icon> Filter:</p> 
 
   <p (click)="changeCriteria('title')" 
       [ngClass]="{ 'active': searchCriteria.sortBy === 'title',
@@ -29,7 +29,7 @@
   </p>
   <div class="list-settings__dropdown-button">
     
-    <p><fa-icon icon="caret-down"></fa-icon> {{searchCriteria.limit}} results </p>
+    <p class="list-settings__results-button"><fa-icon icon="caret-down"></fa-icon> {{searchCriteria.limit}} results </p>
     <div class="list-settings__sort-dropdown">
       <a (click)="changeMaxResults(3)">3 results</a>
       <a (click)="changeMaxResults(5)">5 results</a>

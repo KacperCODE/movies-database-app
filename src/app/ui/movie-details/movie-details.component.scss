@@ -8,3 +8,13 @@
         margin-top: 100px;
     }
 }
+
+@media all and (max-width: 1024px) { } 
+@media all and (max-width: 839px) {
+    .component {
+        &__wrapper {
+            margin-top: 50px;
+        }
+    }
+ }
+@media all and (max-width: 480px) { }

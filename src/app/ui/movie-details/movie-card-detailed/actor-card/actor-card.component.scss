@@ -10,3 +10,14 @@
         cursor: pointer;
     }
 }
+
+@media all and (max-width: 1024px) { } 
+@media all and (max-width: 839px) { }
+@media all and (max-width: 480px) {  
+    .actor-card {
+        &__image {
+            width: auto;
+            height: 170px;
+        }   
+    }
+}

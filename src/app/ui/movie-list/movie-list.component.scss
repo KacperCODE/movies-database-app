@@ -47,13 +47,27 @@
     .movie-list {
         &__container {
             width: 90%;
+            
+            &--simple {
+                width: 90%;
+            }
         }
     }  
 }
 @media all and (max-width: 480px) {
+    .component {
+        &__wrapper {
+            margin-top: 50px;
+        }
+    }
     .movie-list {
         &__container {
             width: 100%;
+            border: 0;
+            
+            &--simple {
+                width: 100%;
+            }
         }
         &__card {
             height: 110px;

@@ -13,3 +13,13 @@
         padding-bottom: 150px;
     }
 }
+
+@media all and (max-width: 1024px) { } 
+@media all and (max-width: 839px) { }
+@media all and (max-width: 480px) { 
+    .component {
+        &__wrapper  {
+            padding-bottom: 40px;
+        }
+    }
+}
