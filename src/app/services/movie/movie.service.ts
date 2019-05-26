@@ -19,22 +19,25 @@ export class MovieService {
   private url = `https://marblejs-example.herokuapp.com/api/v1`;
 
     constructor(private store: Store<fromStore.MoviesState>,
-                private authHttp: HttpClient) { 
-      
+                private authHttp: HttpClient) {  }
+
+  public subscribeToMovieId(): void {
     this.store.select(fromStore.getMovieId)
       .subscribe(
         (id) => {
           this.movieId = id;
         }
       )
+  }
 
-      this.store.select(fromStore.getSearchCriteria)
-        .subscribe(
-          (criteria) => {
-            this.searchCriteria = criteria;
-          }
-        )
-    }
+  public subscribToSearchCriteria(): void {
+    this.store.select(fromStore.getSearchCriteria)
+      .subscribe(
+        (criteria) => {
+          this.searchCriteria = criteria;
+        }
+      )
+  }
 
   public getAllMoviesByCriteria(): Observable<Page> {
     const { limit, page, sortBy, sortDir }: SearchCriteria = this.searchCriteria;
