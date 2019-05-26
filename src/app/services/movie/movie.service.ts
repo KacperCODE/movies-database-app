@@ -19,7 +19,10 @@ export class MovieService {
   private url = `https://marblejs-example.herokuapp.com/api/v1`;
 
     constructor(private store: Store<fromStore.MoviesState>,
-                private authHttp: HttpClient) {  }
+                private authHttp: HttpClient) { 
+                  this.subscribeToMovieId();
+                  this.subscribToSearchCriteria();
+                 }
 
   public subscribeToMovieId(): void {
     this.store.select(fromStore.getMovieId)
