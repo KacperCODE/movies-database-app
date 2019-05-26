@@ -1,35 +1,60 @@
-// import { TestBed, async } from '@angular/core/testing';
-// import { RouterTestingModule } from '@angular/router/testing';
-// import { AppComponent } from './app.component';
+import { SearchCriteria } from './domain/searchCriteria';
+import { Component } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { HttpClientModule } from "@angular/common/http";
+import { TestBed, async, ComponentFixture, tick, fakeAsync } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { AppComponent } from "./app.component";
+import { MockStore } from "@ngrx/store/testing";
+import * as fromStore from "./store";
 
-// describe('AppComponent', () => {
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       imports: [
-//         RouterTestingModule
-//       ],
-//       declarations: [
-//         AppComponent
-//       ],
-//     }).compileComponents();
-//   }));
+describe("AppComponent", () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+  let store: MockStore<fromStore.MoviesState>;
+  let testStore = jasmine.createSpyObj('store', ['dispatch']);
 
-//   it('should create the app', () => {
-//     const fixture = TestBed.createComponent(AppComponent);
-//     const app = fixture.debugElement.componentInstance;
-//     expect(app).toBeTruthy();
-//   });
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [AppComponent, NavbarStubComponent, NgxAlertsStubComponent],
+      imports: [RouterTestingModule, HttpClientModule, FontAwesomeModule],
+      providers: [{ provide: Store, useValue: testStore }]
+    }).compileComponents();
 
-//   it(`should have as title 'moviesapp'`, () => {
-//     const fixture = TestBed.createComponent(AppComponent);
-//     const app = fixture.debugElement.componentInstance;
-//     expect(app.title).toEqual('moviesapp');
-//   });
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    store = TestBed.get(Store);
+  }));
 
-//   it('should render title in a h1 tag', () => {
-//     const fixture = TestBed.createComponent(AppComponent);
-//     fixture.detectChanges();
-//     const compiled = fixture.debugElement.nativeElement;
-//     expect(compiled.querySelector('h1').textContent).toContain('Welcome to moviesapp!');
-//   });
-// });
+  it("should create the app", () => {
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it(`should have as title 'moviesapp'`, () => {
+    const app = fixture.debugElement.componentInstance;
+    expect(app.title).toEqual("moviesapp");
+  });
+
+  it(`should call dispatch if there are cached searchCriteria '`, () => {
+    const criteria = new SearchCriteria();
+    const criteriaStringified = JSON.stringify(criteria);
+
+    spyOn(localStorage, 'getItem').and.callFake(() => {
+        return criteriaStringified;
+      });
+    spyOn(component, "storeSearchCriteria");
+    
+    component.ngOnInit();
+
+    expect(component.storeSearchCriteria).toHaveBeenCalled();
+    expect(component.storeSearchCriteria).toHaveBeenCalledWith(criteria)
+  });
+});
+
+@Component({ selector: "moviesapp-navbar", template: "" })
+class NavbarStubComponent {}
+
+@Component({ selector: "ngx-alerts", template: "" })
+class NgxAlertsStubComponent {}

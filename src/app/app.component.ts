@@ -1,4 +1,4 @@
-import { SearchCriteria } from "src/app/domain/searchCriteria";
+import { SearchCriteria } from './domain/searchCriteria';
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import * as fromStore from "./store";
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
     this.initializeSearchCriteriaFromCache();
   }
 
-  private initializeSearchCriteriaFromCache(): void {
+  public initializeSearchCriteriaFromCache(): void {
     const criteria = localStorage.getItem("SEARCH_CRITERIA")
     
     if(criteria) {
@@ -29,10 +29,13 @@ export class AppComponent implements OnInit {
         sortBy,
         sortDir
       );
-  
-      this.store.dispatch(
-        new fromStore.InitializeSearchCriteriaFromCache(searchCriteria)
-      );
+      this.storeSearchCriteria(searchCriteria);
     }
+  }
+
+  public storeSearchCriteria(searchCriteria: SearchCriteria): void {
+    this.store.dispatch(
+      new fromStore.InitializeSearchCriteriaFromCache(searchCriteria)
+    );
   }
 }
