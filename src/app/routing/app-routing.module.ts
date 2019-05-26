@@ -6,7 +6,7 @@ import { LoginComponent } from '../ui/login/login.component';
 import { MovieListComponent } from '../ui/movie-list/movie-list.component';
 
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: LoginComponent

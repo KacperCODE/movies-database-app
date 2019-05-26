@@ -5,7 +5,7 @@
         <p *ngIf="canShowNavbarOptions" (click)="navigateHome('/list')" class="navbar__navigation-link">Movie List</p>
       </div>
       <div class="navbar__details">        
-        <p *ngIf="canShowNavbarOptions" class="navbar__text">{{ user?.email }}</p>
+        <p *ngIf="canShowNavbarOptions" class="navbar__email">{{ user?.email }}</p>
         <div *ngIf="canShowNavbarOptions" (click)="logout()" class="navbar__btn-logout">
               <fa-icon icon="sign-out-alt"></fa-icon>
               <span class="navbar__link-text"> Logout</span>

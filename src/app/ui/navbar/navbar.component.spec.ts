@@ -1,25 +1,57 @@
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { User } from './../../domain/user';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { Store } from '@ngrx/store';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { ComponentFixture, TestBed, fakeAsync, async } from '@angular/core/testing';
+import * as fromStore from '../../store';
+import { NavbarComponent } from './navbar.component';
+import { MockStore } from '@ngrx/store/testing';
+import { of } from 'rxjs';
 
-// import { NavbarComponent } from './navbar.component';
+describe('NavbarComponent', () => {
+  let component: NavbarComponent;
+  let fixture: ComponentFixture<NavbarComponent>;
+  let store: MockStore<fromStore.MoviesState>;
 
-// describe('NavbarComponent', () => {
-//   let component: NavbarComponent;
-//   let fixture: ComponentFixture<NavbarComponent>;
+  let config: any = { selector: fromStore.getCurrentUser, value: null}
 
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [ NavbarComponent ]
-//     })
-//     .compileComponents();
-//   }));
+  const testStore = jasmine.createSpyObj('Store', ['select']);
+  beforeEach(async() => {
+    TestBed.configureTestingModule({
+      declarations: [ NavbarComponent ],
+      imports: [ RouterTestingModule, HttpClientModule, FontAwesomeModule ],
+      providers: [{ provide: Store, useValue: testStore }]
+    });
+    
+    fixture = TestBed.createComponent(NavbarComponent);
+    component = fixture.componentInstance;
+    store = TestBed.get(Store);
+  });
 
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(NavbarComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  it('should set local user details and show navbar options after user was upated in the store', () => {
+    const user: User = new User('admin@admin.com');
+
+    testStore.select.and.returnValue( of(user) );
+    component.subscribeToCurrentUser();
+    const isOfTypeUser = (component.user instanceof User);
+
+    expect(isOfTypeUser).toBeTruthy();
+    expect(component.canShowNavbarOptions).toBeTruthy();
+  });
+
+  it('should remove local user details and hide navbar options after user was removed from store', () => {
+    const user: User = null;
+
+    testStore.select.and.returnValue( of(user) );
+    component.subscribeToCurrentUser();
+    const isOfTypeUser = (component.user instanceof User);
+
+    expect(isOfTypeUser).toBeFalsy();
+    expect(component.canShowNavbarOptions).toBeFalsy();
+  });
+});

@@ -11,14 +11,18 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  public user: User;
-  public canShowNavbarOptions: boolean;
+  public user: User = null;
+  public canShowNavbarOptions: boolean = false;
   private subscriptions: Subscription = new Subscription();
 
   constructor(private store: Store<fromStore.MoviesState>,
               private router: Router) { }
 
   ngOnInit() {
+    this.subscribeToCurrentUser();
+  }
+
+  public subscribeToCurrentUser(): void {
     this.subscriptions.add( 
       this.store.select(fromStore.getCurrentUser)
         .subscribe(
@@ -34,7 +38,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         )
       );
   }
-
+  
   public navigateHome(): void {
     this.router.navigate(['/list'], { skipLocationChange: true });
   }

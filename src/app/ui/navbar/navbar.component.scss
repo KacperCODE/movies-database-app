@@ -56,7 +56,7 @@
             text-decoration: underline;
         }
     }
-    &__text {
+    &__email {
         color: $movies-blue;
         margin: 6px 16px;
     }
@@ -76,7 +76,7 @@
         &__navigation-link {
             font-size: 0.8em;
         }
-        &__text {
+        &__email {
             display: none;
         }
         &__btn-logout {
