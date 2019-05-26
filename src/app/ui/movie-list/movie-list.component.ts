@@ -31,9 +31,7 @@ export class MovieListComponent implements OnInit {
 
   public movies: Observable<Movie[]>;
 
-  constructor(private store: Store<fromStore.MoviesState>,
-              private movieService: MovieService,
-              private alertService: AlertService) { }
+  constructor(private store: Store<fromStore.MoviesState>) { }
 
   @ViewChild('pageEl') pageRef: ElementRef;
   ngOnInit() {
@@ -42,7 +40,15 @@ export class MovieListComponent implements OnInit {
       this.animationState = 'loaded'
     }, 100);
       
+    this.getMoviesListFromStore();
+    this.loadMovies();
+  }
+
+  public getMoviesListFromStore(): void {
     this.movies = this.store.select(fromStore.getMovies);
+  }
+
+  public loadMovies(): void {
     this.store.dispatch(new fromStore.LoadMoviesList)
   }
 }

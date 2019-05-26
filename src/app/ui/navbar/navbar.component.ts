@@ -19,10 +19,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
               private router: Router) { }
 
   ngOnInit() {
-    this.subscribeToCurrentUser();
+    this.getCurrentUserFromStore();
   }
 
-  public subscribeToCurrentUser(): void {
+  public getCurrentUserFromStore(): void {
     this.subscriptions.add( 
       this.store.select(fromStore.getCurrentUser)
         .subscribe(
