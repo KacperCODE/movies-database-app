@@ -26,6 +26,19 @@ describe('MovieCardDetailedComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  
+  it('should navigate to IMBD movie page if clicked on his name', async(() => {
+    spyOn(component, 'openImdbTab');
+
+    let movieTitle = fixture.debugElement.nativeElement.querySelector('.card-details__title span');
+    movieTitle.click();
+
+    fixture.whenStable()
+      .then(() => {
+          expect(component.openImdbTab).toHaveBeenCalled();
+      })
+    }))
 });
 
 @Component({ selector: "moviesapp-actor-card", template: "" })

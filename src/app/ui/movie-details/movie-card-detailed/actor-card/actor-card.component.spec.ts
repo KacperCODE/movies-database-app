@@ -22,4 +22,16 @@ describe('ActorCardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should navigate to IMBD actor page if clicked on his name', async(() => {
+      spyOn(component, 'openImdbTab');
+
+      let actorName = fixture.debugElement.nativeElement.querySelector('.actor-card__name');
+      actorName.click();
+
+      fixture.whenStable()
+        .then(() => {
+            expect(component.openImdbTab).toHaveBeenCalled();
+        })
+  }))
 });

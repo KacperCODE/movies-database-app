@@ -35,7 +35,7 @@ describe('NavbarComponent', () => {
     const user: User = new User('admin@admin.com');
 
     testStore.select.and.returnValue( of(user) );
-    component.getCurrentUserFromStore();
+    component.ngOnInit();
     const isOfTypeUser = (component.user instanceof User);
 
     expect(isOfTypeUser).toBeTruthy();
@@ -46,7 +46,7 @@ describe('NavbarComponent', () => {
     const user: User = null;
 
     testStore.select.and.returnValue( of(user) );
-    component.getCurrentUserFromStore();
+    component.ngOnInit();
     const isOfTypeUser = (component.user instanceof User);
 
     expect(isOfTypeUser).toBeFalsy();
