@@ -1,25 +1,30 @@
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { Store } from '@ngrx/store';
+import { RouterTestingModule } from '@angular/router/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import * as fromStore from '../../../store';
+import { ListPaginationBarComponent } from './list-pagination-bar.component';
+import { MockStore } from '@ngrx/store/testing';
 
-// import { ListPaginationBarComponent } from './list-pagination-bar.component';
+describe('ListPaginationBarComponent', () => {
+  let component: ListPaginationBarComponent;
+  let fixture: ComponentFixture<ListPaginationBarComponent>;
+  let store: MockStore<fromStore.MoviesState>;
 
-// describe('ListPaginationBarComponent', () => {
-//   let component: ListPaginationBarComponent;
-//   let fixture: ComponentFixture<ListPaginationBarComponent>;
+  const testStore = jasmine.createSpyObj('Store', ['select', 'dispatch']);
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ ListPaginationBarComponent ],
+      imports: [ RouterTestingModule, FontAwesomeModule ],
+      providers: [{ provide: Store, useValue: testStore }]
+    }).compileComponents();
+    
+    fixture = TestBed.createComponent(ListPaginationBarComponent);
+    component = fixture.componentInstance;
+    store = TestBed.get(Store);
+  }));
 
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [ ListPaginationBarComponent ]
-//     })
-//     .compileComponents();
-//   }));
-
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(ListPaginationBarComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
-
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

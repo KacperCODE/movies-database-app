@@ -11,8 +11,8 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./movie-details.component.scss']
 })
 export class MovieDetailsComponent implements OnInit {
-
   public movie: Observable<Movie>;
+  
   constructor(private store: Store<fromStore.MoviesState>,
               private activatedRoute: ActivatedRoute) {}
 
