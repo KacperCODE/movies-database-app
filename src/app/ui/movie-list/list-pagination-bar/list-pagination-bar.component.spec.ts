@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListPaginationBarComponent } from './list-pagination-bar.component';
+// import { ListPaginationBarComponent } from './list-pagination-bar.component';
 
-describe('ListPaginationBarComponent', () => {
-  let component: ListPaginationBarComponent;
-  let fixture: ComponentFixture<ListPaginationBarComponent>;
+// describe('ListPaginationBarComponent', () => {
+//   let component: ListPaginationBarComponent;
+//   let fixture: ComponentFixture<ListPaginationBarComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ListPaginationBarComponent ]
-    })
-    .compileComponents();
-  }));
+//   beforeEach(async(() => {
+//     TestBed.configureTestingModule({
+//       declarations: [ ListPaginationBarComponent ]
+//     })
+//     .compileComponents();
+//   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ListPaginationBarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//   beforeEach(() => {
+//     fixture = TestBed.createComponent(ListPaginationBarComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });
