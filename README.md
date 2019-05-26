@@ -1,5 +1,5 @@
 # Movies Database App
-![picture alt](/doc/images/ui_showcase.PNG?raw=true "moviesapp")
+![picture alt](./doc/moviesapp.png?raw=true "moviesapp")
 
 ## Required to run project
 * Node.js v10.13.0
