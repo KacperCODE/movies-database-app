@@ -13,8 +13,7 @@ export class MovieCardShortComponent implements OnInit {
   @Input() index: number;
 
 
-  constructor(private store: Store<fromStore.MoviesState>,
-              private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }

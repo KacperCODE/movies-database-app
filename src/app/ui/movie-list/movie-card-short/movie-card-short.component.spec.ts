@@ -1,25 +1,29 @@
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterTestingModule } from '@angular/router/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { MovieCardShortComponent } from './movie-card-short.component';
+import { MovieCardShortComponent } from './movie-card-short.component';
 
-// describe('MovieCardShortComponent', () => {
-//   let component: MovieCardShortComponent;
-//   let fixture: ComponentFixture<MovieCardShortComponent>;
+describe('MovieCardShortComponent', () => {
+  let component: MovieCardShortComponent;
+  let fixture: ComponentFixture<MovieCardShortComponent>;
 
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [ MovieCardShortComponent ]
-//     })
-//     .compileComponents();
-//   }));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ MovieCardShortComponent ],
+      imports: [ RouterTestingModule, FontAwesomeModule ]
+    })
+    .compileComponents();
 
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(MovieCardShortComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+    fixture = TestBed.createComponent(MovieCardShortComponent);
+    component = fixture.componentInstance;
+  }));
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+  beforeEach(() => {
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

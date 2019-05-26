@@ -1,25 +1,31 @@
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { Store } from '@ngrx/store';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { ListSettingsComponent } from './list-settings.component';
+import { ListSettingsComponent } from './list-settings.component';
+import * as fromStore from '../../../store';
+import { MockStore } from '@ngrx/store/testing';
 
-// describe('ListSettingsComponent', () => {
-//   let component: ListSettingsComponent;
-//   let fixture: ComponentFixture<ListSettingsComponent>;
+describe('ListSettingsComponent', () => {
+  let component: ListSettingsComponent;
+  let fixture: ComponentFixture<ListSettingsComponent>;
+  let store: MockStore<fromStore.MoviesState>;
 
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [ ListSettingsComponent ]
-//     })
-//     .compileComponents();
-//   }));
+  const testStore = jasmine.createSpyObj('Store', ['select']);
 
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(ListSettingsComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ ListSettingsComponent ],
+      imports: [ FontAwesomeModule ],
+      providers: [{ provide: Store, useValue: testStore }]
+    }).compileComponents();
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+    fixture = TestBed.createComponent(ListSettingsComponent);
+    component = fixture.componentInstance;
+    store = TestBed.get(Store);
+  }));
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

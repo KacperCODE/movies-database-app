@@ -17,6 +17,10 @@ export class ListSettingsComponent implements OnInit, OnDestroy {
   constructor(private store: Store<fromStore.MoviesState>) { }
 
   ngOnInit() {
+    this.subscribeToSearchCriteria();
+  }
+
+  public subscribeToSearchCriteria(): void {
     this.subscriptions.add(
       this.store.select(fromStore.getSearchCriteria)
         .subscribe(

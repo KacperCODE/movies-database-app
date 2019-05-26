@@ -2,34 +2,34 @@
   <p class="list-settings__filter-icon"><fa-icon icon="filter"></fa-icon> Filter:</p> 
 
   <p (click)="changeCriteria('title')" 
-      [ngClass]="{ 'active': searchCriteria.sortBy === 'title',
-                   'inactive': searchCriteria.sortBy !== 'title' }"
+      [ngClass]="{ 'active': searchCriteria?.sortBy === 'title',
+                   'inactive': searchCriteria?.sortBy !== 'title' }"
       class="list-settings__sort-button">
-    <fa-icon *ngIf="searchCriteria.sortDir === 1" icon="sort-amount-up"></fa-icon> 
-    <fa-icon *ngIf="searchCriteria.sortDir === 0" icon="sort-amount-down"></fa-icon> 
+    <fa-icon *ngIf="searchCriteria?.sortDir === 1" icon="sort-amount-up"></fa-icon> 
+    <fa-icon *ngIf="searchCriteria?.sortDir === 0" icon="sort-amount-down"></fa-icon> 
     Title
   </p>
 
   <p (click)="changeCriteria('year')" 
-  [ngClass]="{ 'active': searchCriteria.sortBy == 'year',
-               'inactive': searchCriteria.sortBy != 'year' }"
+  [ngClass]="{ 'active': searchCriteria?.sortBy == 'year',
+               'inactive': searchCriteria?.sortBy != 'year' }"
       class="list-settings__sort-button inactive">
-      <fa-icon *ngIf="searchCriteria.sortDir === 1" icon="sort-amount-up"></fa-icon> 
-      <fa-icon *ngIf="searchCriteria.sortDir === 0" icon="sort-amount-down"></fa-icon> 
+      <fa-icon *ngIf="searchCriteria?.sortDir === 1" icon="sort-amount-up"></fa-icon> 
+      <fa-icon *ngIf="searchCriteria?.sortDir === 0" icon="sort-amount-down"></fa-icon> 
     Year
   </p>
 
   <p (click)="changeCriteria('metascore')" 
-  [ngClass]="{ 'active': searchCriteria.sortBy == 'metascore',
-               'inactive': searchCriteria.sortBy != 'metascore' }"
+  [ngClass]="{ 'active': searchCriteria?.sortBy == 'metascore',
+               'inactive': searchCriteria?.sortBy != 'metascore' }"
       class="list-settings__sort-button inactive">
-      <fa-icon *ngIf="searchCriteria.sortDir === 1" icon="sort-amount-up"></fa-icon> 
-      <fa-icon *ngIf="searchCriteria.sortDir === 0" icon="sort-amount-down"></fa-icon> 
+      <fa-icon *ngIf="searchCriteria?.sortDir === 1" icon="sort-amount-up"></fa-icon> 
+      <fa-icon *ngIf="searchCriteria?.sortDir === 0" icon="sort-amount-down"></fa-icon> 
     Metascore
   </p>
   <div class="list-settings__dropdown-button">
     
-    <p class="list-settings__results-button"><fa-icon icon="caret-down"></fa-icon> {{searchCriteria.limit}} results </p>
+    <p class="list-settings__results-button"><fa-icon icon="caret-down"></fa-icon> {{searchCriteria?.limit}} results </p>
     <div class="list-settings__sort-dropdown">
       <a (click)="changeMaxResults(3)">3 results</a>
       <a (click)="changeMaxResults(5)">5 results</a>
