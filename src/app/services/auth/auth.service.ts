@@ -56,7 +56,7 @@ export class AuthService {
 
   /**
    * There is no backend tokend validation implemented on the API,
-   * therefore we only check if it has not expired yet.
+   * therefore we only check if token has not expired yet.
    */
   public isJwtValid(token): boolean {
     let resultToken: string = token;

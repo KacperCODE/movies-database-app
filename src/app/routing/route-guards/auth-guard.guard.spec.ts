@@ -1,15 +1,30 @@
-// import { TestBed, async, inject } from '@angular/core/testing';
+import { Injectable } from "@angular/core";
+import { AuthService } from "./../../services/auth/auth.service";
+import { TestBed, async, inject } from "@angular/core/testing";
 
-// import { AuthGuard as AuthGuard } from './auth-guard.guard';
+import { AuthGuard } from "./auth-guard.guard";
+import { RouterTestingModule } from "@angular/router/testing";
 
-// describe('AuthGuardGuard', () => {
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({
-//       providers: [AuthGuard]
-//     });
-//   });
+describe("AuthGuardGuard", () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+      providers: [
+        AuthGuard,
+        {
+          provide: AuthService,
+          userClass: AuthServiceStub
+        }
+      ]
+    });
+  });
 
-//   it('should ...', inject([AuthGuard], (guard: AuthGuard) => {
-//     expect(guard).toBeTruthy();
-//   }));
-// });
+  it("should be created", inject([AuthGuard], (guard: AuthGuard) => {
+    expect(guard).toBeTruthy();
+  }));
+});
+
+@Injectable()
+export class AuthServiceStub {
+  constructor() {}
+}
