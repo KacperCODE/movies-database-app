@@ -9,10 +9,11 @@
 	npm install –g @angular/cli@7.3.9
 ```
 
-By default Angular7 front end is built for PROD (compression, removal of comments, AOT compilation, uglifying, removal of logging, etc.), if we add this parameter we should be able to see logs in the console.
-```sh
-ng.build.type='ng build'
-```
+
+Live App Preview
+----------------------------------------------------------
+
+[Demo](https://movie-database-app.herokuapp.com/)
 
 ## Technology stack
 * Angular 7 (built with @angular/cli & TypeScript)
@@ -22,6 +23,7 @@ ng.build.type='ng build'
 * Json Web Token (stateless authentication)
 * Jasmine (test)
 * Karma (test)
+* Heroku (demo hosting)
 
 
 ## Development server
