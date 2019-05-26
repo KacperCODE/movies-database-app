@@ -1,5 +1,5 @@
-import { of } from 'rxjs';
-import { Observable } from 'rxjs';
+import { Movie } from 'src/app/domain/movie';
+import { of, Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { MockStore } from '@ngrx/store/testing';
@@ -34,6 +34,17 @@ describe('MovieDetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should attept to load details of a movie from state on init', () => {
+    spyOn(component, 'getMovieDetailsFromState');
+    spyOn(component, 'subscribeToActivatedRoute').and.stub();
+    const movie: Movie = new Movie();
+
+    testStore.select.and.returnValue( of(movie))
+    component.ngOnInit();
+
+    expect(component.getMovieDetailsFromState).toHaveBeenCalled();
+  })
 });
 
 

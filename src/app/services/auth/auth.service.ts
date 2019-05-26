@@ -74,7 +74,7 @@ export class AuthService {
     localStorage.removeItem(this.tokenId);
   }
 
-  private getUtcDate() : number {
+  public getUtcDate() : number {
     return new Date().getUTCDate();
   }
 

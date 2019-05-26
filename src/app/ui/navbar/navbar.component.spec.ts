@@ -63,7 +63,7 @@ describe('NavbarComponent', () => {
   });
 
   it('should display user email is user has logged in', async() => {
-    const user = new User('admin@admin.com');
+    const user: User = new User('admin@admin.com');
     testStore.select.and.returnValue(
       of(user)
     );
