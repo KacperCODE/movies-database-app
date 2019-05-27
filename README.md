@@ -14,6 +14,10 @@ Live App Preview
 ----------------------------------------------------------
 
 [Demo](https://movie-database-app.herokuapp.com/)
+```sh
+login: admin@admin.com
+password: admin
+```
 
 ## Technology stack
 * Angular 7 (built with @angular/cli & TypeScript)
