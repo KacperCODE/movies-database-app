@@ -28,8 +28,6 @@ export class UserLoginSuccesful implements Action {
 }
 export class UserLoginFail implements Action {
     readonly type = AuthActionTypes.USER_LOGIN_FAIL;
-
-    constructor() { }
 }
 export class SetUserData implements Action {
     readonly type = AuthActionTypes.SET_USER_DATA;

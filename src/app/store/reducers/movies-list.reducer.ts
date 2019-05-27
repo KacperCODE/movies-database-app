@@ -2,6 +2,7 @@ import { SearchCriteria } from 'src/app/domain/searchCriteria';
 import { Pagination } from './../../domain/pagination.enum';
 import * as fromMovies from '../actions/movies-list.action';
 import { Movie } from '../../domain/movie';
+import { SearchType } from 'src/app/domain/searchType.enum';
 
 
 export interface MoviesListState {
@@ -34,8 +35,25 @@ export function reducer(state = initialState, action: fromMovies.MoviesListActio
                 searchCriteria
              };
         }
-        case fromMovies.MoviesListActionTypes.CHANGE_SEARCH_CRITERIA: {
-            const sortBy = action.payload;
+        case fromMovies.MoviesListActionTypes.CHANGE_SEARCH_TYPE: {
+            let sortBy: string;
+            switch(action.payload) {
+                case SearchType.TITLE: {
+                    sortBy = 'title'
+                    break;
+                }
+                case SearchType.YEAR: {
+                    sortBy = 'year'
+                    break;
+                }
+                case SearchType.METASCORE: {
+                    sortBy = 'metascore'
+                    break;
+                }
+                default: {
+                    sortBy = 'title'
+                }
+            }
             const page = 1;
             const searchCriteria = {...state.searchCriteria, sortBy, page}
 
