@@ -1,4 +1,3 @@
-import { MoviesListActions } from './../actions/movies-list.action';
 import * as fromAuth from './auth.reducer';
 
 import {
@@ -9,8 +8,7 @@ import {
     UserSystemLogout,
     UserManualLogout,
     UserLoggedOut,
-    UserLogOutFail,
-    AuthActionTypes
+    UserLogOutFail
   } from "../actions/auth.action";
 import { JwtToken } from 'src/app/domain/jwt-token';
 import { User } from 'src/app/domain/user';
@@ -97,5 +95,11 @@ describe('AuthReducer', () => {
         expect(state).not.toEqual(initialState);
         expect(state.user).toBeNull();
     });
+    
+    it('UserLogOutFail action should not modify state', () => {
+        const action = new UserLogOutFail();
+        state = reducer(state, action);
 
+        expect(state).toEqual(initialState);
+    });
 });

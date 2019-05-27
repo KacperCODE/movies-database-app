@@ -1,10 +1,11 @@
+import { Action } from '@ngrx/store';
 import { JwtToken } from "./../../domain/jwt-token";
 import { LoginService } from "./../../services/login/login.service";
 import * as authActions from "../actions/auth.action";
 import { Injectable } from "@angular/core";
 import { Effect, Actions, ofType } from "@ngrx/effects";
 import { mergeMap, map, catchError, tap } from "rxjs/operators";
-import { of } from "rxjs";
+import { of, Observable } from "rxjs";
 import { AuthService } from "src/app/services/auth/auth.service";
 import { MovieService } from 'src/app/services/movie/movie.service';
 
@@ -18,7 +19,7 @@ export class AuthEffects {
   ) {}
 
   @Effect()
-  userLogin = this.actions.pipe(
+  userLogin: Observable<Action> = this.actions.pipe(
     ofType(authActions.AuthActionTypes.USER_LOGIN),
     mergeMap((action: any) =>
       this.loginService.login(action.payload).pipe(
@@ -43,7 +44,7 @@ export class AuthEffects {
   );
 
   @Effect()
-  systemLogout = this.actions.pipe(
+  systemLogout: Observable<Action> = this.actions.pipe(
     ofType(authActions.AuthActionTypes.USER_SYSTEM_LOGOUT),
     tap(() => {
       this.authService.systemLogout();
