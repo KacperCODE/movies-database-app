@@ -1,3 +1,4 @@
+import { SearchType } from './../../../domain/searchType.enum';
 import { Subscription } from 'rxjs';
 import { SearchCriteria } from 'src/app/domain/searchCriteria';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -11,6 +12,7 @@ import { Store } from '@ngrx/store';
 })
 export class ListSettingsComponent implements OnInit, OnDestroy {
 
+  public SearchType = SearchType; //making enum accesible from a template
   public searchCriteria: SearchCriteria;
   private subscriptions: Subscription = new Subscription();
 
@@ -31,9 +33,9 @@ export class ListSettingsComponent implements OnInit, OnDestroy {
     );
   }
 
-  public changeCriteria(type: string): void {
+  public changeCriteria(type: SearchType): void {
     console.warn(`ATTENTION! Please keep in mind sorting by direction fails on the backend therefore it doesn't work. Functionality responible for sorting is implemented and need to be just uncommented in movie.service.ts`)
-    this.store.dispatch(new fromStore.ChangeSearchCriteria(type));
+    this.store.dispatch(new fromStore.ChangeSearchType(type));
     this.store.dispatch(new fromStore.LoadMoviesList)
     this.store.dispatch(new fromStore.CacheSearchCriteria);
   }

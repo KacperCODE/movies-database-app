@@ -1,7 +1,7 @@
 <div class="list-settings__content">
   <p class="list-settings__filter-icon"><fa-icon icon="filter"></fa-icon> Filter:</p> 
 
-  <p (click)="changeCriteria('title')" 
+  <p (click)="changeCriteria(SearchType.TITLE)" 
       [ngClass]="{ 'active': searchCriteria?.sortBy === 'title',
                    'inactive': searchCriteria?.sortBy !== 'title' }"
       class="list-settings__sort-button">
@@ -10,7 +10,7 @@
     Title
   </p>
 
-  <p (click)="changeCriteria('year')" 
+  <p (click)="changeCriteria(SearchType.YEAR)" 
   [ngClass]="{ 'active': searchCriteria?.sortBy == 'year',
                'inactive': searchCriteria?.sortBy != 'year' }"
       class="list-settings__sort-button inactive">
@@ -19,7 +19,7 @@
     Year
   </p>
 
-  <p (click)="changeCriteria('metascore')" 
+  <p (click)="changeCriteria(SearchType.METASCORE)" 
   [ngClass]="{ 'active': searchCriteria?.sortBy == 'metascore',
                'inactive': searchCriteria?.sortBy != 'metascore' }"
       class="list-settings__sort-button inactive">

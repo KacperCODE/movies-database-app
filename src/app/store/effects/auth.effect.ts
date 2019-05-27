@@ -6,12 +6,14 @@ import { Effect, Actions, ofType } from "@ngrx/effects";
 import { mergeMap, map, catchError, tap } from "rxjs/operators";
 import { of } from "rxjs";
 import { AuthService } from "src/app/services/auth/auth.service";
+import { MovieService } from 'src/app/services/movie/movie.service';
 
 @Injectable()
 export class AuthEffects {
   constructor(
     private actions: Actions,
     private authService: AuthService,
+    public movieService: MovieService,
     private loginService: LoginService
   ) {}
 
@@ -22,6 +24,8 @@ export class AuthEffects {
       this.loginService.login(action.payload).pipe(
         tap((token: JwtToken) => {
           this.authService.login(token);
+          this.movieService.subscribeToMovieId();
+          this.movieService.subscribToSearchCriteria();
         }),
         map((token: JwtToken) => {
           return {

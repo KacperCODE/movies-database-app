@@ -1,3 +1,4 @@
+import { Credentials } from './../../domain/credentials';
 import { User } from './../../domain/user';
 import { JwtToken } from './../../domain/jwt-token';
 import { Action } from '@ngrx/store';
@@ -18,7 +19,7 @@ export enum AuthActionTypes {
 export class UserLogin implements Action {
     readonly type = AuthActionTypes.USER_LOGIN;
 
-    constructor(public payload: any) { }
+    constructor(public payload: Credentials) { }
 }
 export class UserLoginSuccesful implements Action {
     readonly type = AuthActionTypes.USER_LOGIN_SUCCESFUL;

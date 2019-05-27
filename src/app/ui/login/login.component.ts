@@ -1,3 +1,4 @@
+import { Credentials } from './../../domain/credentials';
 import { User } from './../../domain/user';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -50,6 +51,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public onLogin(): void {
     this.loader = true;
+    const credentials: Credentials = this.loginForm.value;
     this.store.dispatch(new fromStore.UserLogin(this.loginForm.value));
   }
 
