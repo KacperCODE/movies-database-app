@@ -53,7 +53,7 @@ Run `ng test --code-coverage` to execute the unit tests with code coverage analy
 
 ## Heroku deployment
 In order to deploy to heroku you must be granted access.
-Once that requirement is fulfilled follow this [Heroku](https://devcenter.heroku.com/articles/git) tutorial on deploy an app.
+Once that requirement is fulfilled follow this [Heroku](https://devcenter.heroku.com/articles/git) tutorial on app deployment.
 
 If the heroku remote is already setup you can deploy it with `git push heroku master`
 
