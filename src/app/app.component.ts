@@ -1,3 +1,4 @@
+import { MovieService } from './services/movie/movie.service';
 import { SearchCriteria } from './domain/searchCriteria';
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
@@ -11,10 +12,13 @@ import * as fromStore from "./store";
 export class AppComponent implements OnInit {
   title = "moviesapp";
 
-  constructor(private store: Store<fromStore.MoviesState>) {}
+  constructor(private store: Store<fromStore.MoviesState>,
+              private movieService: MovieService) {}
 
   ngOnInit() {
     this.initializeSearchCriteriaFromCache();
+    this.movieService.subscribeToMovieId();
+    this.movieService.subscribToSearchCriteria();
   }
 
   public initializeSearchCriteriaFromCache(): void {

@@ -25,8 +25,6 @@ export class AuthEffects {
       this.loginService.login(action.payload).pipe(
         tap((token: JwtToken) => {
           this.authService.login(token);
-          this.movieService.subscribeToMovieId();
-          this.movieService.subscribToSearchCriteria();
         }),
         map((token: JwtToken) => {
           return {

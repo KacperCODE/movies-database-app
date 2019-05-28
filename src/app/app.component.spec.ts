@@ -1,3 +1,4 @@
+import { MovieService } from './services/movie/movie.service';
 import { SearchCriteria } from './domain/searchCriteria';
 import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
@@ -19,7 +20,7 @@ describe("AppComponent", () => {
     TestBed.configureTestingModule({
       declarations: [AppComponent, NavbarStubComponent, NgxAlertsStubComponent],
       imports: [RouterTestingModule, HttpClientModule, FontAwesomeModule],
-      providers: [{ provide: Store, useValue: testStore }]
+      providers: [{ provide: Store, useValue: testStore }, MovieService]
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
