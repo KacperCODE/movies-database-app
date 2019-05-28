@@ -86,6 +86,7 @@ Response:
 __GET: [api/v1/movies](https://marblejs.docs.apiary.io/#reference/movies/movie-list/get-all-movies)__  
 Media Type: application/json  
 Headers: Authorization: “Bearer jwt.token.value”
+
 Path params: search criteria params - limit, page, sortBy, sortDir
 
 Response:  
@@ -107,6 +108,7 @@ Response:
 __GET: [api/v1/actors/{imdbId}](https://marblejs.docs.apiary.io/reference/actors/actor/get-single-actor)__  
 Media Type: application/json  
 Headers: Authorization: “Bearer jwt.token.value”
+
 Path params: imdb actor id
 
 Response:  
