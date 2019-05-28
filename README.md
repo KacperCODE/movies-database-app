@@ -96,6 +96,7 @@ Response:
 __GET: [api/v1/movies/{imdbId}](https://marblejs.docs.apiary.io/reference/movies/movie/get-single-movie)__  
 Media Type: application/json  
 Headers: Authorization: “Bearer jwt.token.value”
+
 Path params: imdb movie id
 
 Response:  
@@ -103,7 +104,7 @@ Response:
 [{"genres":["action","comedy","crime"],"_id":"5cc5c7e3d9f7ba0848020be2","imdbId":"tt0356910","title":"Mr. & Mrs. Smith","director":"Doug Liman","year":2005,"metascore":55,"actors":[{"imdbId":"nm0000093","name":"Brad Pitt"},{"imdbId":"nm0001401","name":"Angelina Jolie"}],"posterUrl":"https://marblejs-example.herokuapp.com/api/v1/assets/img/movies/tt0356910.jpg","__v":0}]
 ```
 - - - -
-__GET: [api/v1/actors//{imdbId}](https://marblejs.docs.apiary.io/reference/actors/actor/get-single-actor)__  
+__GET: [api/v1/actors/{imdbId}](https://marblejs.docs.apiary.io/reference/actors/actor/get-single-actor)__  
 Media Type: application/json  
 Headers: Authorization: “Bearer jwt.token.value”
 Path params: imdb actor id
