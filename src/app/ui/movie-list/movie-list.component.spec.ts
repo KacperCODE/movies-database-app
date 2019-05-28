@@ -1,19 +1,18 @@
-import { FontAwesomeCustomModule } from './../../utility/fontAwesomeCustom.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Store } from '@ngrx/store';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Component, Input } from "@angular/core";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-import * as fromStore from '../../store';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { Store } from "@ngrx/store";
+import { MockStore } from "@ngrx/store/testing";
+import * as fromStore from "../../store";
+import { FontAwesomeCustomModule } from "./../../utility/fontAwesomeCustom.module";
 import { MovieListComponent } from "./movie-list.component";
-import { MockStore } from '@ngrx/store/testing';
 
 describe("MovieListComponent", () => {
   let component: MovieListComponent;
   let fixture: ComponentFixture<MovieListComponent>;
   let store: MockStore<fromStore.MoviesState>;
 
-  const testStore = jasmine.createSpyObj('Store', ['select', 'dispatch']);
+  const testStore = jasmine.createSpyObj("Store", ["select", "dispatch"]);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,7 +22,7 @@ describe("MovieListComponent", () => {
         ListPaginationBarComponent,
         MovieCarShortComponent
       ],
-      imports: [ FontAwesomeCustomModule, BrowserAnimationsModule ],
+      imports: [FontAwesomeCustomModule, BrowserAnimationsModule],
       providers: [{ provide: Store, useValue: testStore }]
     }).compileComponents();
 
@@ -51,6 +50,6 @@ class ListPaginationBarComponent {}
 
 @Component({ selector: "moviesapp-movie-card-short", template: "" })
 class MovieCarShortComponent {
-    @Input() index;
-    @Input() movie;
+  @Input() index;
+  @Input() movie;
 }

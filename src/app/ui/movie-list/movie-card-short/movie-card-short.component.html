@@ -1,12 +1,14 @@
 <div class="card-short__content">
-    <p class="card-short__index">{{ index + 1}}.</p>
-    <img class="card-short__poster" src="{{movie?.posterUrl}}"/>
-    <div class="card-short__details">
-        <h2 class="card-short__title"><span (click)="navigateToMovieDetails()"> {{ movie?.title }}</span></h2>
-        <p class="card-short__year">{{ movie?.year }}</p>
-    </div>
-    <div class="card-short__metascore"> 
-      <fa-icon class="card-short__metascore--icon" icon="star"></fa-icon>
-      {{ movie?.metascore }}
-    </div>
+  <p class="card-short__index">{{ index + 1 }}.</p>
+  <img class="card-short__poster" src="{{ movie?.posterUrl }}" />
+  <div class="card-short__details">
+    <h2 class="card-short__title">
+      <span (click)="navigateToMovieDetails()"> {{ movie?.title }}</span>
+    </h2>
+    <p class="card-short__year">{{ movie?.year }}</p>
+  </div>
+  <div class="card-short__metascore">
+    <fa-icon class="card-short__metascore--icon" icon="star"></fa-icon>
+    {{ movie?.metascore }}
+  </div>
 </div>

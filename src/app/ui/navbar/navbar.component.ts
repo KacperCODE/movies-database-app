@@ -1,50 +1,49 @@
-import { User } from './../../domain/user';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import * as fromStore from '../../store'
-import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { Subscription } from "rxjs";
+import * as fromStore from "../../store";
+import { User } from "./../../domain/user";
 
 @Component({
-  selector: 'moviesapp-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  selector: "moviesapp-navbar",
+  templateUrl: "./navbar.component.html",
+  styleUrls: ["./navbar.component.scss"]
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   public user: User = null;
   public canShowNavbarOptions: boolean = false;
   private subscriptions: Subscription = new Subscription();
 
-  constructor(private store: Store<fromStore.MoviesState>,
-              private router: Router) { }
+  constructor(
+    private store: Store<fromStore.MoviesState>,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.getCurrentUserFromStore();
   }
 
   public getCurrentUserFromStore(): void {
-    this.subscriptions.add( 
-      this.store.select(fromStore.getCurrentUser)
-        .subscribe(
-          (user: User) => {
-            this.user = user;
+    this.subscriptions.add(
+      this.store.select(fromStore.getCurrentUser).subscribe((user: User) => {
+        this.user = user;
 
-            if(user != null) {
-              this.canShowNavbarOptions = true;
-            } else {
-              this.canShowNavbarOptions = false;
-            }
-          }
-        )
-      );
+        if (user != null) {
+          this.canShowNavbarOptions = true;
+        } else {
+          this.canShowNavbarOptions = false;
+        }
+      })
+    );
   }
-  
+
   public navigateHome(): void {
-    this.router.navigate(['/list'], { skipLocationChange: true });
+    this.router.navigate(["/list"], { skipLocationChange: true });
   }
 
   public logout(): void {
-    this.store.dispatch(new fromStore.UserManualLogout);
+    this.store.dispatch(new fromStore.UserManualLogout());
   }
 
   ngOnDestroy() {

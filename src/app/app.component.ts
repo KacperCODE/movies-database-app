@@ -1,7 +1,7 @@
-import { MovieService } from './services/movie/movie.service';
-import { SearchCriteria } from './domain/searchCriteria';
 import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
+import { SearchCriteria } from "./domain/searchCriteria";
+import { MovieService } from "./services/movie/movie.service";
 import * as fromStore from "./store";
 
 @Component({
@@ -12,8 +12,10 @@ import * as fromStore from "./store";
 export class AppComponent implements OnInit {
   title = "moviesapp";
 
-  constructor(private store: Store<fromStore.MoviesState>,
-              private movieService: MovieService) {}
+  constructor(
+    private store: Store<fromStore.MoviesState>,
+    private movieService: MovieService
+  ) {}
 
   ngOnInit() {
     this.initializeSearchCriteriaFromCache();
@@ -22,10 +24,12 @@ export class AppComponent implements OnInit {
   }
 
   public initializeSearchCriteriaFromCache(): void {
-    const criteria = localStorage.getItem("SEARCH_CRITERIA")
-    
-    if(criteria) {
-      const { limit, page, sortBy, sortDir }: SearchCriteria = JSON.parse(criteria);
+    const criteria = localStorage.getItem("SEARCH_CRITERIA");
+
+    if (criteria) {
+      const { limit, page, sortBy, sortDir }: SearchCriteria = JSON.parse(
+        criteria
+      );
 
       const searchCriteria: SearchCriteria = new SearchCriteria(
         limit,

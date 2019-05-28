@@ -1,26 +1,29 @@
-import { MovieService } from './services/movie/movie.service';
-import { SearchCriteria } from './domain/searchCriteria';
-import { Component } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { HttpClientModule } from "@angular/common/http";
-import { TestBed, async, ComponentFixture } from "@angular/core/testing";
+import { Component } from "@angular/core";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
-import { AppComponent } from "./app.component";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { Store } from "@ngrx/store";
 import { MockStore } from "@ngrx/store/testing";
+import { AppComponent } from "./app.component";
+import { SearchCriteria } from "./domain/searchCriteria";
+import { MovieService } from "./services/movie/movie.service";
 import * as fromStore from "./store";
 
 describe("AppComponent", () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   let store: MockStore<fromStore.MoviesState>;
-  let testStore = jasmine.createSpyObj('store', ['dispatch']);
+  let testStore = jasmine.createSpyObj("store", ["dispatch"]);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AppComponent, NavbarStubComponent, NgxAlertsStubComponent],
       imports: [RouterTestingModule, HttpClientModule, FontAwesomeModule],
-      providers: [{ provide: Store, useValue: testStore }, { provide: MovieService, useClass: MovieServiceStub }]
+      providers: [
+        { provide: Store, useValue: testStore },
+        { provide: MovieService, useClass: MovieServiceStub }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
@@ -42,15 +45,15 @@ describe("AppComponent", () => {
     const criteria = new SearchCriteria();
     const criteriaStringified = JSON.stringify(criteria);
 
-    spyOn(localStorage, 'getItem').and.callFake(() => {
-        return criteriaStringified;
-      });
+    spyOn(localStorage, "getItem").and.callFake(() => {
+      return criteriaStringified;
+    });
     spyOn(component, "storeSearchCriteria");
-    
+
     component.ngOnInit();
 
     expect(component.storeSearchCriteria).toHaveBeenCalled();
-    expect(component.storeSearchCriteria).toHaveBeenCalledWith(criteria)
+    expect(component.storeSearchCriteria).toHaveBeenCalledWith(criteria);
   });
 });
 
@@ -61,7 +64,7 @@ class NavbarStubComponent {}
 class NgxAlertsStubComponent {}
 
 class MovieServiceStub {
-  constructor() { }
+  constructor() {}
   public subscribeToMovieId() {}
   public subscribToSearchCriteria() {}
 }

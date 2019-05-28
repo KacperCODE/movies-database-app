@@ -1,15 +1,27 @@
 <div class="component__wrapper">
-    <nav class="navbar__container">
-      <div class="navbar__navigation">
-        <p class="navbar__title">Movies Database</p>
-        <p *ngIf="canShowNavbarOptions" (click)="navigateHome('/list')" class="navbar__navigation-link">Movie List</p>
+  <nav class="navbar__container">
+    <div class="navbar__navigation">
+      <p class="navbar__title">Movies Database</p>
+      <p
+        *ngIf="canShowNavbarOptions"
+        (click)="navigateHome('/list')"
+        class="navbar__navigation-link"
+      >
+        Movie List
+      </p>
+    </div>
+    <div class="navbar__details">
+      <p *ngIf="canShowNavbarOptions" class="navbar__email">
+        {{ user?.email }}
+      </p>
+      <div
+        *ngIf="canShowNavbarOptions"
+        (click)="logout()"
+        class="navbar__btn-logout"
+      >
+        <fa-icon icon="sign-out-alt"></fa-icon>
+        <span class="navbar__link-text"> Logout</span>
       </div>
-      <div class="navbar__details">        
-        <p *ngIf="canShowNavbarOptions" class="navbar__email">{{ user?.email }}</p>
-        <div *ngIf="canShowNavbarOptions" (click)="logout()" class="navbar__btn-logout">
-              <fa-icon icon="sign-out-alt"></fa-icon>
-              <span class="navbar__link-text"> Logout</span>
-          </div>
-      </div>
-    </nav>
-  </div>
+    </div>
+  </nav>
+</div>

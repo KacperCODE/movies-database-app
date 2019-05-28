@@ -1,45 +1,47 @@
-import { SearchCriteria } from 'src/app/domain/searchCriteria';
-import { Observable } from 'rxjs';
-import { Movie } from './../../domain/movie';
-import { Log } from 'ng2-logger/client';
-import { AlertService } from 'ngx-alerts';
-import { MovieService } from './../../services/movie/movie.service';
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import * as fromStore from '../../store'
-import { Store } from '@ngrx/store';
+import { animate, state, style, transition, trigger } from "@angular/animations";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { Log } from "ng2-logger/client";
+import { Observable } from "rxjs";
+import * as fromStore from "../../store";
+import { Movie } from "./../../domain/movie";
 
 @Component({
-  selector: 'moviesapp-movie-list',
-  templateUrl: './movie-list.component.html',
-  styleUrls: ['./movie-list.component.scss'],
-  animations:[
-    trigger('initTransition', [
-      state('initialized', style({
-        'opacity': '0.1'
-      })),
-      state('loaded', style({
-        'opacity': '1.0'
-      })),
-      transition('initialized => loaded', animate(400))
+  selector: "moviesapp-movie-list",
+  templateUrl: "./movie-list.component.html",
+  styleUrls: ["./movie-list.component.scss"],
+  animations: [
+    trigger("initTransition", [
+      state(
+        "initialized",
+        style({
+          opacity: "0.1"
+        })
+      ),
+      state(
+        "loaded",
+        style({
+          opacity: "1.0"
+        })
+      ),
+      transition("initialized => loaded", animate(400))
     ])
   ]
 })
 export class MovieListComponent implements OnInit {
-  private log = Log.create("MovieListComponent")
-  animationState = 'initialized';
+  private log = Log.create("MovieListComponent");
+  animationState = "initialized";
 
   public movies: Observable<Movie[]>;
 
-  constructor(private store: Store<fromStore.MoviesState>) { }
+  constructor(private store: Store<fromStore.MoviesState>) {}
 
-  @ViewChild('pageEl') pageRef: ElementRef;
+  @ViewChild("pageEl") pageRef: ElementRef;
   ngOnInit() {
-
     setTimeout(() => {
-      this.animationState = 'loaded'
+      this.animationState = "loaded";
     }, 100);
-      
+
     this.getMoviesListFromStore();
     this.loadMovies();
   }
@@ -49,6 +51,6 @@ export class MovieListComponent implements OnInit {
   }
 
   public loadMovies(): void {
-    this.store.dispatch(new fromStore.LoadMoviesList)
+    this.store.dispatch(new fromStore.LoadMoviesList());
   }
 }
