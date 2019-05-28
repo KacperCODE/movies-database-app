@@ -1,27 +1,27 @@
-import { MoviesState } from './../reducers/index';
-import { Store, select, Action } from '@ngrx/store';
-import { MovieService } from "../../services/movie/movie.service";
 import { Injectable } from "@angular/core";
-import { Effect, Actions, ofType } from "@ngrx/effects";
+import { Actions, Effect, ofType } from "@ngrx/effects";
+import { Action, Store } from "@ngrx/store";
+import { Observable, of } from "rxjs";
+import { catchError, map, mergeMap } from "rxjs/operators";
 
+import { MovieService } from "../../services/movie/movie.service";
 import * as moviesListActions from "../actions/movies-list.action";
-import { getSearchCriteria } from '../reducers';
-import { mergeMap, map, catchError, withLatestFrom, tap, switchMap } from "rxjs/operators";
-import { of, EMPTY, Observable } from "rxjs";
+import { MoviesState } from "./../reducers";
 
 @Injectable()
 export class MoviesListEffects {
   constructor(
     private store: Store<MoviesState>,
-    private actions: Actions, 
-    private movieService: MovieService) {}
+    private actions: Actions,
+    private movieService: MovieService
+  ) {}
 
   @Effect()
   loadMoviesList: Observable<Action> = this.actions.pipe(
     ofType(moviesListActions.MoviesListActionTypes.LOAD_MOVIES_BY_CRITERIA),
     mergeMap(() =>
       this.movieService.getAllMoviesByCriteria().pipe(
-        map((movies) => ({
+        map(movies => ({
           type:
             moviesListActions.MoviesListActionTypes
               .LOAD_MOVIES_BY_CRITERIA_SUCCESS,

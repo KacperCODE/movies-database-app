@@ -3,25 +3,34 @@
 <div class="component__wrapper">
   <div class="login__container">
     <h1>Movies Database</h1>
-    
+
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login__form">
-
       <label class="login__label">
-        <input type="text" 
-               formControlName="login" 
-               placeholder="Email Address"
-               required>
+        <input
+          type="text"
+          formControlName="login"
+          placeholder="Email Address"
+          required
+        />
       </label>
 
       <label class="login__label">
-        <input type="password" 
-               formControlName="password"
-               placeholder="Password"
-               required>
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="Password"
+          required
+        />
       </label>
 
-      <button [ngClass]="{ 'login__login-button--inactive': !loginForm.valid }" class="login__login-button" type="submit" [disabled]="!loginForm.valid">Sign in</button>
+      <button
+        [ngClass]="{ 'login__login-button--inactive': !loginForm.valid }"
+        class="login__login-button"
+        type="submit"
+        [disabled]="!loginForm.valid"
+      >
+        Sign in
+      </button>
     </form>
-
   </div>
 </div>

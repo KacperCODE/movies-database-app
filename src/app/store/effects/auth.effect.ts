@@ -1,13 +1,14 @@
+import { Injectable } from '@angular/core';
+import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { JwtToken } from "./../../domain/jwt-token";
-import { LoginService } from "./../../services/login/login.service";
-import * as authActions from "../actions/auth.action";
-import { Injectable } from "@angular/core";
-import { Effect, Actions, ofType } from "@ngrx/effects";
-import { mergeMap, map, catchError, tap } from "rxjs/operators";
-import { of, Observable } from "rxjs";
-import { AuthService } from "src/app/services/auth/auth.service";
+import { Observable, of } from 'rxjs';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { MovieService } from 'src/app/services/movie/movie.service';
+
+import * as authActions from '../actions/auth.action';
+import { JwtToken } from './../../domain/jwt-token';
+import { LoginService } from './../../services/login/login.service';
 
 @Injectable()
 export class AuthEffects {

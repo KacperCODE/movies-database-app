@@ -2,19 +2,21 @@
 @import "../../styles/mixins.scss";
 
 .component {
-    &__wrapper {
-        display: flex;
-        justify-content: center;
-        margin-top: 100px;
-    }
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+  }
 }
 
-@media all and (max-width: 1024px) { } 
+@media all and (max-width: 1024px) {
+}
 @media all and (max-width: 839px) {
-    .component {
-        &__wrapper {
-            margin-top: 50px;
-        }
+  .component {
+    &__wrapper {
+      margin-top: 50px;
     }
- }
-@media all and (max-width: 480px) { }
+  }
+}
+@media all and (max-width: 480px) {
+}

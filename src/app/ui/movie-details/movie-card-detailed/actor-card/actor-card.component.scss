@@ -2,22 +2,24 @@
 @import "../../../../styles/mixins.scss";
 
 .actor-card {
-    &__image {
-        width: auto;
-        height: 240px;
-    }   
-    &__name {
-        cursor: pointer;
-    }
+  &__image {
+    width: auto;
+    height: 240px;
+  }
+  &__name {
+    cursor: pointer;
+  }
 }
 
-@media all and (max-width: 1024px) { } 
-@media all and (max-width: 839px) { }
-@media all and (max-width: 480px) {  
-    .actor-card {
-        &__image {
-            width: auto;
-            height: 170px;
-        }   
+@media all and (max-width: 1024px) {
+}
+@media all and (max-width: 839px) {
+}
+@media all and (max-width: 480px) {
+  .actor-card {
+    &__image {
+      width: auto;
+      height: 170px;
     }
+  }
 }

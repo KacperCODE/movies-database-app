@@ -1,12 +1,13 @@
+import { Injectable } from '@angular/core';
+import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { Actor } from './../../domain/actor';
-import * as movieDetailsActions from '../actions/movie-details.action';
-import { MovieService } from "../../services/movie/movie.service";
-import { Injectable } from "@angular/core";
-import { Effect, Actions, ofType } from "@ngrx/effects";
-import { mergeMap, map, catchError, tap } from "rxjs/operators";
-import { of, Observable } from "rxjs";
+import { Observable, of } from 'rxjs';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { Movie } from 'src/app/domain/movie';
+
+import { MovieService } from '../../services/movie/movie.service';
+import * as movieDetailsActions from '../actions/movie-details.action';
+import { Actor } from './../../domain/actor';
 
 @Injectable()
 export class MovieDetailsEffects {
@@ -21,16 +22,12 @@ export class MovieDetailsEffects {
     mergeMap(() =>
       this.movieService.getMovieById().pipe(
         map((movie: Movie) => ({
-          type:
-          movieDetailsActions.MovieDetailsTypes
-              .LOAD_MOVIE_BY_ID_SUCCESS,
+          type: movieDetailsActions.MovieDetailsTypes.LOAD_MOVIE_BY_ID_SUCCESS,
           payload: movie
         })),
         catchError(() =>
           of({
-            type:
-            movieDetailsActions.MovieDetailsTypes
-                .LOAD_MOVIE_BY_ID_FAIL
+            type: movieDetailsActions.MovieDetailsTypes.LOAD_MOVIE_BY_ID_FAIL
           })
         )
       )
@@ -43,16 +40,12 @@ export class MovieDetailsEffects {
     mergeMap((action: any) =>
       this.movieService.getActorById(action.payload).pipe(
         map((actor: Actor) => ({
-          type:
-          movieDetailsActions.MovieDetailsTypes
-              .LOAD_ACTOR_BY_ID_SUCCESS,
+          type: movieDetailsActions.MovieDetailsTypes.LOAD_ACTOR_BY_ID_SUCCESS,
           payload: actor
         })),
         catchError(() =>
           of({
-            type:
-            movieDetailsActions.MovieDetailsTypes
-                .LOAD_ACTOR_BY_ID_FAIL
+            type: movieDetailsActions.MovieDetailsTypes.LOAD_ACTOR_BY_ID_FAIL
           })
         )
       )

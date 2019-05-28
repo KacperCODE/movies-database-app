@@ -1,16 +1,19 @@
 <div class="list-settings__content">
-    <p *ngIf="canLoadPrevious"
-        class="list-settings__pagination-button list-settings__pagination-button--left" 
-        (click)="changePage(Pagination.PREVIOUS)">
-        <fa-icon icon="chevron-left"></fa-icon> 
-        <span> Previous page</span>
-    </p>
+  <p
+    *ngIf="canLoadPrevious"
+    class="list-settings__pagination-button list-settings__pagination-button--left"
+    (click)="changePage(Pagination.PREVIOUS)"
+  >
+    <fa-icon icon="chevron-left"></fa-icon>
+    <span> Previous page</span>
+  </p>
 
-    <p *ngIf="canLoadNext"
-        class="list-settings__pagination-button list-settings__pagination-button--right" 
-        (click)="changePage(Pagination.NEXT)">
-        <span>Next page </span>
-        <fa-icon icon="chevron-right"></fa-icon> 
-    </p>
+  <p
+    *ngIf="canLoadNext"
+    class="list-settings__pagination-button list-settings__pagination-button--right"
+    (click)="changePage(Pagination.NEXT)"
+  >
+    <span>Next page </span>
+    <fa-icon icon="chevron-right"></fa-icon>
+  </p>
 </div>
-  

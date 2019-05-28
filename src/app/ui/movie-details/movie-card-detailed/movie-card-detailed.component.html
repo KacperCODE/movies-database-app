@@ -1,24 +1,28 @@
-
 <div #pageEl class="card-details__container" [@initTransition]="animationState">
-
   <header class="card-details__upper">
-      <div class="card-details__side-left">
-          <img src="{{ movie?.posterUrl }}"/>
-      </div>
-    
-      <div class="card-details__side-right">
-        <h1 class="card-details__title"><span (click)="openImdbTab(movie?.imdbId)">{{ movie?.title }}</span></h1>
+    <div class="card-details__side-left">
+      <img src="{{ movie?.posterUrl }}" />
+    </div>
 
-        <div class="card-details__info">
-            <p class="card-details__director">{{ movie?.director }}</p>
-            <p class="card-details__year">{{ movie?.year }}</p>
-        </div>
+    <div class="card-details__side-right">
+      <h1 class="card-details__title">
+        <span (click)="openImdbTab(movie?.imdbId)">{{ movie?.title }}</span>
+      </h1>
 
-        <p class="card-details__metascore">{{ movie?.metascore }}</p>
+      <div class="card-details__info">
+        <p class="card-details__director">{{ movie?.director }}</p>
+        <p class="card-details__year">{{ movie?.year }}</p>
       </div>
-    </header>
+
+      <p class="card-details__metascore">{{ movie?.metascore }}</p>
+    </div>
+  </header>
 
   <div class="card-details__lower">
-      <moviesapp-actor-card class="card-details__actors-card" *ngFor="let actor of (actors | async)" [actor]="actor"></moviesapp-actor-card>
+    <moviesapp-actor-card
+      class="card-details__actors-card"
+      *ngFor="let actor of actors | async"
+      [actor]="actor"
+    ></moviesapp-actor-card>
   </div>
 </div>

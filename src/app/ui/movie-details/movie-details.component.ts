@@ -1,21 +1,23 @@
-import { ActivatedRoute, Params } from '@angular/router';
-import { Movie } from './../../domain/movie';
-import { Observable, Subscription } from 'rxjs';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import * as fromStore from '../../store'
-import { Store } from '@ngrx/store';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { ActivatedRoute, Params } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { Observable, Subscription } from "rxjs";
+import * as fromStore from "../../store";
+import { Movie } from "./../../domain/movie";
 
 @Component({
-  selector: 'app-movie-details',
-  templateUrl: './movie-details.component.html',
-  styleUrls: ['./movie-details.component.scss']
+  selector: "app-movie-details",
+  templateUrl: "./movie-details.component.html",
+  styleUrls: ["./movie-details.component.scss"]
 })
 export class MovieDetailsComponent implements OnInit, OnDestroy {
   public movie: Observable<Movie> = null;
   private subscriptions: Subscription = new Subscription();
 
-  constructor(private store: Store<fromStore.MoviesState>,
-              private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private store: Store<fromStore.MoviesState>,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.subscribeToActivatedRoute();
@@ -29,10 +31,10 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   public subscribeToActivatedRoute(): void {
     this.subscriptions.add(
       this.activatedRoute.queryParams.subscribe((params: Params) => {
-        const movieId = params['movieId'];
+        const movieId = params["movieId"];
 
-        this.store.dispatch(new fromStore.SetMovieId(movieId))
-        this.store.dispatch(new fromStore.LoadMovieDetails);
+        this.store.dispatch(new fromStore.SetMovieId(movieId));
+        this.store.dispatch(new fromStore.LoadMovieDetails());
       })
     );
   }
@@ -40,5 +42,4 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
-
 }
