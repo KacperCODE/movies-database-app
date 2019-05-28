@@ -50,9 +50,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   public onLogin(): void {
-    this.loader = true;
     const credentials: Credentials = this.loginForm.value;
-    this.store.dispatch(new fromStore.UserLogin(this.loginForm.value));
+    this.store.dispatch(new fromStore.UserLogin(credentials));
   }
 
   ngOnDestroy() {

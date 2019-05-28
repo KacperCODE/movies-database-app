@@ -1,4 +1,4 @@
-<moviesapp-loader *ngIf="loader"></moviesapp-loader>
+<moviesapp-loader></moviesapp-loader>
 
 <div class="component__wrapper">
   <div class="login__container">
@@ -20,7 +20,7 @@
                required>
       </label>
 
-      <button class="login__login-button" type="submit" [disabled]="!loginForm.valid">Sign in</button>
+      <button [ngClass]="{ 'login__login-button--inactive': !loginForm.valid }" class="login__login-button" type="submit" [disabled]="!loginForm.valid">Sign in</button>
     </form>
 
   </div>

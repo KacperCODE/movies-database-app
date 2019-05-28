@@ -41,4 +41,5 @@ export const getPaginationDetails = createSelector(getMoviesListState, fromMovie
 export const getSearchCriteria = createSelector(getMoviesListState, fromMovies.getSearchCriteria);
 
 export const getCurrentUser = createSelector(getAuthState, fromAuth.getCurrentUser);
+export const getIsLoading = createSelector(getAuthState, fromAuth.getIsLoading);
 

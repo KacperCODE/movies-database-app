@@ -4,27 +4,35 @@ import * as fromAuth from '../actions/auth.action';
 
 export interface AuthState {
     user: User;
+    isLoading: boolean;
 };
 
 const initialState: AuthState = {
-    user: null
+    user: null,
+    isLoading: false
 };
 
 export function reducer(state = initialState, action: fromAuth.AuthActions ): AuthState {
     switch (action.type) {
         case fromAuth.AuthActionTypes.USER_LOGIN: {
+            const isLoading: boolean = true;
             return {
-                ...state
+                ...state,
+                isLoading
              };
         }
         case fromAuth.AuthActionTypes.USER_LOGIN_SUCCESFUL: {
+            const isLoading: boolean = false;
             return {
-                ...state
+                ...state,
+                isLoading
              };
         }
         case fromAuth.AuthActionTypes.USER_LOGIN_FAIL: {
+            const isLoading: boolean = false;
             return {
-                ...state
+                ...state,
+                isLoading
              };
         }
         case fromAuth.AuthActionTypes.SET_USER_DATA: {
@@ -64,3 +72,4 @@ export function reducer(state = initialState, action: fromAuth.AuthActions ): Au
 }
 
 export const getCurrentUser = (state: AuthState) => state.user;
+export const getIsLoading = (state: AuthState) => state.isLoading;

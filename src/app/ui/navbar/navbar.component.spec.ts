@@ -12,7 +12,6 @@ import { of } from 'rxjs';
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
-  let store: MockStore<fromStore.MoviesState>;
 
   const testStore = jasmine.createSpyObj('Store', ['select']);
   beforeEach(async() => {
@@ -24,7 +23,6 @@ describe('NavbarComponent', () => {
     
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
   });
 
   it('should create', () => {

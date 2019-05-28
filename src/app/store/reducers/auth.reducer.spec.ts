@@ -20,7 +20,8 @@ describe('AuthReducer', () => {
     
     beforeEach(() => {
         initialState  = {
-            user: null
+            user: null,
+            isLoading: false
         }
         state = {...initialState};
     })
@@ -33,7 +34,7 @@ describe('AuthReducer', () => {
         expect(state).toEqual(initialState);
     })
   
-    it('UserLogin action should not modify state', () => {
+    it('UserLogin action should set isLoading to tru', () => {
         const action = new UserLogin({
             login: 'user@user.com',
             password: 'password'
@@ -41,23 +42,26 @@ describe('AuthReducer', () => {
 
         state = reducer(state, action);
 
-        expect(state).toEqual(initialState);
+        expect(state).not.toEqual(initialState);
+        expect(state.isLoading).toBeTruthy();
     });
 
-    it('UserLoginSuccesful action should not modify state', () => {
+    it('UserLoginSuccesful action should set isLoading to false', () => {
         const action = new UserLoginSuccesful(new JwtToken('token'));
 
         state = reducer(state, action);
 
         expect(state).toEqual(initialState);
+        expect(state.isLoading).toBeFalsy();
     });
 
-    it('UserLoginFail action should not modify state', () => {
+    it('UserLoginFail action should set isLoading to false', () => {
         const action = new UserLoginFail();
 
         state = reducer(state, action);
 
         expect(state).toEqual(initialState);
+        expect(state.isLoading).toBeFalsy();
     });
 
     it('SetUserData action should modify state with user data', () => {

@@ -48,6 +48,14 @@
         &:hover {
             background-color: #5672ce;
         }
+        &--inactive {
+            background-color: #7786b5;
+            cursor: default;
+            
+            &:hover {
+                background-color: #7786b5;
+            }
+        }
     }
 }
 

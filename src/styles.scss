@@ -10,113 +10,112 @@
 
 /* start of spinner */
 
-// @keyframes lds-eclipse {
-//     0% {
-//       -webkit-transform: rotate(0deg);
-//       transform: rotate(0deg);
-//     }
-//     50% {
-//       -webkit-transform: rotate(180deg);
-//       transform: rotate(180deg);
-//     }
-//     100% {
-//       -webkit-transform: rotate(360deg);
-//       transform: rotate(360deg);
-//     }
-// }
-//     @-webkit-keyframes lds-eclipse {
-//         0% {
-//         -webkit-transform: rotate(0deg);
-//         transform: rotate(0deg);
-//         }
-//         50% {
-//         -webkit-transform: rotate(180deg);
-//         transform: rotate(180deg);
-//         }
-//         100% {
-//         -webkit-transform: rotate(360deg);
-//         transform: rotate(360deg);
-//         }
-//     }
-//     .lds-css {
-//         top: 0;
-//         bottom: 0;
-//         left: 0;
-//         right: 0;
-//         position: fixed;
-//     }
-//     .lds-eclipse {
-//         position: relative;
-//     }
-//     .lds-eclipse .lds-spinner {
-//         position: absolute;
-//         -webkit-animation: lds-eclipse 1.8s linear infinite;
-//         animation: lds-eclipse 1.8s linear infinite;
-//         width: 180px;
-//         height: 180px;
-//         top: 10px;
-//         left: 10px;
-//         border-radius: 50%;
-//         box-shadow: 0 4px 0 0 #93dbe9;
-//         -webkit-transform-origin: 90px 92px;
-//         transform-origin: 90px 92px;
-//     }
-//     .lds-eclipse {
-//         position: absolute;
-//         left: 0;
-//         right: 0;
-//         bottom: 0;
-//         top: 0;
-//         margin-left: auto;
-//         margin-right: auto;
-//         margin-top: auto;
-//         margin-bottom: auto;
+@keyframes lds-eclipse {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    50% {
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+}
+    @-webkit-keyframes lds-eclipse {
+        0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+        }
+        50% {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+        }
+        100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+        }
+    }
+    .lds-css {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        position: fixed;
+    }
+    .lds-eclipse {
+        position: relative;
+    }
+    .lds-eclipse .lds-spinner {
+        position: absolute;
+        -webkit-animation: lds-eclipse 1.8s linear infinite;
+        animation: lds-eclipse 1.8s linear infinite;
+        width: 180px;
+        height: 180px;
+        top: 10px;
+        left: 10px;
+        border-radius: 50%;
+        box-shadow: 0 4px 0 0 #93dbe9;
+        -webkit-transform-origin: 90px 92px;
+        transform-origin: 90px 92px;
+    }
+    .lds-eclipse {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: auto;
+        margin-bottom: auto;
 
-//         width: 200px !important;
-//         height: 200px !important;
-//     }
+        width: 200px !important;
+        height: 200px !important;
+    }
 
-//    .lds-eclipse-wrapper {
-//         position: absolute;
-//         left: 0;
-//         right: 0;
-//         bottom: 0;
-//         top: 0;
-//         margin-left: auto;
-//         margin-right: auto;
-//         margin-top: auto;
-//         margin-bottom: auto;
-//         background-color: #ffffff73;
-//     }
+   .lds-eclipse-wrapper {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+        background-color: #ffffff73;
+    }
 
-// .welcome-loader {
-//     position: absolute;
-//     left: 50%;
-//     top: 50%;
-//     z-index: 1;
-//     width: 150px;
-//     height: 150px;
-//     margin: -75px 0 0 -75px;
-//     border: 16px solid #f3f3f3;
-//     border-radius: 50%;
-//     border-top: 16px solid #3498db;
-//     width: 120px;
-//     height: 120px;
-//     -webkit-animation: spin 2s linear infinite;
-//     animation: spin 2s linear infinite;
-//   }
+.welcome-loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
 
-//   @-webkit-keyframes spin {
-//     0% { -webkit-transform: rotate(0deg); }
-//     100% { -webkit-transform: rotate(360deg); }
-//   }
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
 
-//   @keyframes spin {
-//     0% { transform: rotate(0deg); }
-//     100% { transform: rotate(360deg); }
-//   }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
   /* end of spinner */
-  /*  */
 
   // The Material Design Lite (MDL) Breakpoints 
   @media all and (max-width: 1024px) { } 

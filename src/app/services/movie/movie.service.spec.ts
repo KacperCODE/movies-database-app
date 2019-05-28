@@ -10,17 +10,25 @@ import * as fromStore from "../../store";
 describe('MovieService', () => {
     let store: MockStore<fromStore.MoviesState>;
     let service: MovieService;
-    let testStore = jasmine.createSpyObj('store', ['dispatch', 'select']);
+    let movieId: string;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [ HttpClientModule, BrowserModule],
-            providers: [ MovieService, { provide: Store, useValue: testStore }]
+            providers: [ MovieService, { provide: Store, useClass: StoreMock }]
         });
         service = TestBed.get(MovieService);
+        store = TestBed.get(Store);
+        movieId = null;
     });
 
     it('should be created', () => {
         expect(service).toBeTruthy();
     });
 });
+
+class StoreMock {
+    constructor() {}
+
+    public select() {}
+}
