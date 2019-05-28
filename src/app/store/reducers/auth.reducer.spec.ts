@@ -1,3 +1,5 @@
+import { User } from './../../domain/user';
+import { JwtToken } from './../../domain/jwt-token';
 import * as fromAuth from './auth.reducer';
 
 import {
@@ -10,8 +12,6 @@ import {
     UserLoggedOut,
     UserLogOutFail
   } from "../actions/auth.action";
-import { JwtToken } from 'src/app/domain/jwt-token';
-import { User } from 'src/app/domain/user';
 
 describe('AuthReducer', () => {
     let initialState: fromAuth.AuthState;

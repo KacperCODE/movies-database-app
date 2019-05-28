@@ -4,7 +4,7 @@ import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { HttpClientModule } from "@angular/common/http";
-import { TestBed, async, ComponentFixture, tick, fakeAsync } from "@angular/core/testing";
+import { TestBed, async, ComponentFixture } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { AppComponent } from "./app.component";
 import { MockStore } from "@ngrx/store/testing";
@@ -20,7 +20,7 @@ describe("AppComponent", () => {
     TestBed.configureTestingModule({
       declarations: [AppComponent, NavbarStubComponent, NgxAlertsStubComponent],
       imports: [RouterTestingModule, HttpClientModule, FontAwesomeModule],
-      providers: [{ provide: Store, useValue: testStore }, MovieService]
+      providers: [{ provide: Store, useValue: testStore }, { provide: MovieService, useClass: MovieServiceStub }]
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
@@ -59,3 +59,9 @@ class NavbarStubComponent {}
 
 @Component({ selector: "ngx-alerts", template: "" })
 class NgxAlertsStubComponent {}
+
+class MovieServiceStub {
+  constructor() { }
+  public subscribeToMovieId() {}
+  public subscribToSearchCriteria() {}
+}

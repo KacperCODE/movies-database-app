@@ -1,3 +1,4 @@
+import { FontAwesomeCustomModule } from './../../utility/fontAwesomeCustom.module';
 import { User } from './../../domain/user';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Store } from '@ngrx/store';
@@ -17,7 +18,7 @@ describe('NavbarComponent', () => {
   beforeEach(async() => {
     TestBed.configureTestingModule({
       declarations: [ NavbarComponent ],
-      imports: [ RouterTestingModule, HttpClientModule, FontAwesomeModule ],
+      imports: [ RouterTestingModule, HttpClientModule, FontAwesomeCustomModule ],
       providers: [{ provide: Store, useValue: testStore }]
     }).compileComponents();
     

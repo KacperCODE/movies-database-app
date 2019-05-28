@@ -1,3 +1,4 @@
+import { FontAwesomeCustomModule } from './../../../utility/fontAwesomeCustom.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Store } from '@ngrx/store';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -16,7 +17,7 @@ describe('ListSettingsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ListSettingsComponent ],
-      imports: [ FontAwesomeModule ],
+      imports: [ FontAwesomeCustomModule ],
       providers: [{ provide: Store, useValue: testStore }]
     }).compileComponents();
 

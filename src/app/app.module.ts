@@ -1,3 +1,4 @@
+import { FontAwesomeCustomModule } from './utility/fontAwesomeCustom.module';
 import { AppStoreModule } from './store/app-store.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthInterceptor } from "./services/auth/auth.interceptor";
@@ -7,9 +8,6 @@ import { AuthService } from "./services/auth/auth.service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSignOutAlt, faStar, faSortAmountDown, faSortAmountUp, faFilter, faCaretDown, faCaretUp, faArrowLeft, faArrowRight, faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 import { AppRoutingModule } from "./routing/app-routing.module";
 import { AppComponent } from "./app.component";
@@ -52,7 +50,7 @@ export function tokenGetter() {
     HttpClientModule,
     AppStoreModule,
     ReactiveFormsModule,
-    FontAwesomeModule,
+    FontAwesomeCustomModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -78,8 +76,6 @@ export function tokenGetter() {
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor() {
-    // Font Awesome 5.0 implementation
-    library.add(faSignOutAlt, faStar, faSortAmountDown, faSortAmountUp, faFilter, faCaretDown, faCaretUp, faChevronRight, faChevronLeft );
-  }
+  constructor() { }
 }
+

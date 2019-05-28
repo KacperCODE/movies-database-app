@@ -1,3 +1,4 @@
+import { FontAwesomeCustomModule } from './../../../utility/fontAwesomeCustom.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterTestingModule } from '@angular/router/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -11,7 +12,7 @@ describe('MovieCardShortComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ MovieCardShortComponent ],
-      imports: [ RouterTestingModule, FontAwesomeModule ]
+      imports: [ RouterTestingModule, FontAwesomeCustomModule ]
     })
     .compileComponents();
 

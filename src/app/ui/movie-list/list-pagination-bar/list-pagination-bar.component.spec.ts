@@ -1,3 +1,4 @@
+import { FontAwesomeCustomModule } from './../../../utility/fontAwesomeCustom.module';
 import { tick } from '@angular/core/testing';
 import { fakeAsync } from '@angular/core/testing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -19,7 +20,7 @@ describe('ListPaginationBarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ListPaginationBarComponent ],
-      imports: [ RouterTestingModule, FontAwesomeModule ],
+      imports: [ RouterTestingModule, FontAwesomeCustomModule ],
       providers: [{ provide: Store, useValue: testStore }]
     }).compileComponents();
     

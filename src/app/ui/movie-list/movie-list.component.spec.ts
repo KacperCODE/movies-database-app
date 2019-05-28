@@ -1,3 +1,4 @@
+import { FontAwesomeCustomModule } from './../../utility/fontAwesomeCustom.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -22,7 +23,7 @@ describe("MovieListComponent", () => {
         ListPaginationBarComponent,
         MovieCarShortComponent
       ],
-      imports: [ FontAwesomeModule, BrowserAnimationsModule ],
+      imports: [ FontAwesomeCustomModule, BrowserAnimationsModule ],
       providers: [{ provide: Store, useValue: testStore }]
     }).compileComponents();
 
