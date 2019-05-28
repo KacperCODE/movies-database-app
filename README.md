@@ -13,11 +13,12 @@
 Live App Preview
 ----------------------------------------------------------
 
-[Demo](https://movie-database-app.herokuapp.com/)
+[Heroku Demo](https://movie-database-app.herokuapp.com/)
 ```sh
 login: admin@admin.com
 password: admin
 ```
+Please let backend heroku instance to load. This may take up to several seconds.
 
 ## Technology stack
 * Angular 7 (built with @angular/cli & TypeScript)
@@ -51,6 +52,12 @@ Run `ng test --code-coverage` to execute the unit tests with code coverage analy
 ## Rest
 Types of API calls application uses to get movies data.
 Description of each call purpose is in the links below.
+
+## Heroku deployment
+In order to deploy to heroku you must be granted access.
+Once that requirement is fulfilled follow this [Heroku](https://devcenter.heroku.com/articles/git) tutorial on deploy an app.
+
+If the heroku remote is already setup you can deploy it with `git push heroku master`
 - - - -
 __POST: [rest/api/v1/auth/login](https://marblejs.docs.apiary.io/#reference/authorization/login/authorize-user)__  
 Media Type: application/json
