@@ -1,15 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { LoginService } from './login.service';
-import { HttpClientModule } from '@angular/common/http';
 
-describe('LoginService', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-      imports: [ BrowserModule, HttpClientModule ]
-  }));
+describe("LoginService", () => {
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [BrowserModule, HttpClientModule]
+    })
+  );
 
-  it('should be created', () => {
+  it("should be created", () => {
     const service: LoginService = TestBed.get(LoginService);
     expect(service).toBeTruthy();
   });

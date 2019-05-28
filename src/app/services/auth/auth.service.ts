@@ -1,23 +1,25 @@
-import { AlertService } from 'ngx-alerts';
-import { User } from './../../domain/user';
-import { JwtToken } from './../../domain/jwt-token';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import * as fromStore from '../../store'
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Store } from '@ngrx/store';
+import { AlertService } from 'ngx-alerts';
+
+import * as fromStore from '../../store';
+import { JwtToken } from './../../domain/jwt-token';
+import { User } from './../../domain/user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthService {
-
   private tokenId: string = "JWT_TOKEN";
   private jwtHelper: JwtHelperService = new JwtHelperService();
 
-  constructor(private store: Store<fromStore.MoviesState>,
-              private router: Router,
-              private alertService: AlertService) {
+  constructor(
+    private store: Store<fromStore.MoviesState>,
+    private router: Router,
+    private alertService: AlertService
+  ) {
     this.loginUserIfTokenValid();
   }
 
@@ -31,7 +33,7 @@ export class AuthService {
     if (this.isJwtValid(token.token)) {
       localStorage.setItem(this.tokenId, token.token);
       this.setLoggedInUser();
-      this.router.navigate(['/list']);
+      this.router.navigate(["/list"]);
     }
   }
 
@@ -41,17 +43,17 @@ export class AuthService {
     const user: User = new User(decodedToken.email);
 
     this.store.dispatch(new fromStore.SetUserData(user));
-    this.alertService.info('Logged In');
+    this.alertService.info("Logged In");
   }
 
   public systemLogout(): void {
     localStorage.removeItem(this.tokenId);
-    this.router.navigate(['']);
+    this.router.navigate([""]);
   }
 
   public manualLogout(): void {
     this.systemLogout();
-    this.alertService.info('Logged Out');
+    this.alertService.info("Logged Out");
   }
 
   /**
@@ -60,10 +62,13 @@ export class AuthService {
    */
   public isJwtValid(token): boolean {
     let resultToken: string = token;
-    if(!resultToken) {
+    if (!resultToken) {
       resultToken = this.getToken();
     }
-    return resultToken != null && !this.jwtHelper.isTokenExpired(resultToken, this.getUtcDate());
+    return (
+      resultToken != null &&
+      !this.jwtHelper.isTokenExpired(resultToken, this.getUtcDate())
+    );
   }
 
   public getToken(): string {
@@ -74,8 +79,7 @@ export class AuthService {
     localStorage.removeItem(this.tokenId);
   }
 
-  public getUtcDate() : number {
+  public getUtcDate(): number {
     return new Date().getUTCDate();
   }
-
 }

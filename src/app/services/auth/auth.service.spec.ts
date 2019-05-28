@@ -1,12 +1,12 @@
+import { Injectable } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Store } from '@ngrx/store';
+import { MockStore } from '@ngrx/store/testing';
 import { AlertService } from 'ngx-alerts';
-import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { TestBed } from "@angular/core/testing";
 
-import { AuthService } from "./auth.service";
-import { MockStore } from "@ngrx/store/testing";
-import * as fromStore from "../../store";
-import { RouterTestingModule } from "@angular/router/testing";
+import * as fromStore from '../../store';
+import { AuthService } from './auth.service';
 
 describe("AuthService", () => {
   let store: MockStore<fromStore.MoviesState>;

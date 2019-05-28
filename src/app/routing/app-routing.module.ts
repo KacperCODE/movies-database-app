@@ -1,35 +1,35 @@
-import { AuthGuard } from './route-guards/auth-guard.guard';
-import { MovieDetailsComponent } from './../ui/movie-details/movie-details.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule, CanActivate } from '@angular/router';
-import { LoginComponent } from '../ui/login/login.component';
-import { MovieListComponent } from '../ui/movie-list/movie-list.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 
+import { LoginComponent } from "../ui/login/login.component";
+import { MovieListComponent } from "../ui/movie-list/movie-list.component";
+import { MovieDetailsComponent } from "./../ui/movie-details/movie-details.component";
+import { AuthGuard } from "./route-guards/auth-guard.guard";
 
 export const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: LoginComponent
   },
   {
-    path: 'list',
+    path: "list",
     component: MovieListComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: 'movie',
+    path: "movie",
     component: MovieDetailsComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: '**',
-    redirectTo: '',
-    pathMatch: 'full'
+    path: "**",
+    redirectTo: "",
+    pathMatch: "full"
   }
-]
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

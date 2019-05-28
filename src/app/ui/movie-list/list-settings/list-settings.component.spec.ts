@@ -1,11 +1,10 @@
-import { FontAwesomeCustomModule } from './../../../utility/fontAwesomeCustom.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { Store } from '@ngrx/store';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ListSettingsComponent } from './list-settings.component';
-import * as fromStore from '../../../store';
+import { Store } from '@ngrx/store';
 import { MockStore } from '@ngrx/store/testing';
+
+import * as fromStore from '../../../store';
+import { FontAwesomeCustomModule } from './../../../utility/fontAwesomeCustom.module';
+import { ListSettingsComponent } from './list-settings.component';
 
 describe('ListSettingsComponent', () => {
   let component: ListSettingsComponent;
