@@ -73,6 +73,7 @@ Description of each call purpose is in the links below.
 - - - -
 __POST: [api/v1/auth/login](https://marblejs.docs.apiary.io/#reference/authorization/login/authorize-user)__  
 Media Type: application/json
+
 Request:  
 ```json
 [{"login": "admin@admin.com","password": "admin"}]
@@ -86,6 +87,7 @@ __GET: [api/v1/movies](https://marblejs.docs.apiary.io/#reference/movies/movie-l
 Media Type: application/json  
 Headers: Authorization: “Bearer jwt.token.value”
 Path params: search criteria params - limit, page, sortBy, sortDir
+
 Response:  
 ```json
 [{"collection": [ { "genres": [ "action", "comedy", "crime" ], "_id": "5cc5c7e3d9f7ba0848020be2", "imdbId": "tt0356910", "title": "Mr. & Mrs. Smith", "director": "Doug Liman", "year": 2005, "metascore": 55, "actors": [ { "imdbId": "nm0000093", "name": "Brad Pitt" }, { "imdbId": "nm0001401", "name": "Angelina Jolie" } ], "posterUrl": "https://marblejs-example.herokuapp.com/api/v1/assets/img/movies/tt0356910.jpg", "__v": 0 }, { "genres": [ "action", "adventure", "sci-fi" ], "_id": "5cc5c7e3d9f7ba0848020be5", "imdbId": "tt1228705", "title": "Iron Man 2", "director": "Jon Favreau", "year": 2010, "metascore": 57, "actors": [ { "imdbId": "nm0000375", "name": "Robert Downey Jr." }, { "imdbId": "nm0000569", "name": "Gwyneth Paltrow" } ], "posterUrl": "https://marblejs-example.herokuapp.com/api/v1/assets/img/movies/tt1228705.jpg", "__v": 0 }, { "genres": [ "action", "adventure", "crime" ], "_id": "5cc5c7e3d9f7ba0848020be3", "imdbId": "tt0988045", "title": "Sherlock Holmes", "director": "Guy Ritchie", "year": 2009, "metascore": 57, "actors": [ { "imdbId": "nm0000375", "name": "Robert Downey Jr." } ], "posterUrl": "https://marblejs-example.herokuapp.com/api/v1/assets/img/movies/tt0988045.jpg", "__v": 0 } ], "total": 11}]
@@ -95,6 +97,7 @@ __GET: [api/v1/movies/{imdbId}](https://marblejs.docs.apiary.io/reference/movies
 Media Type: application/json  
 Headers: Authorization: “Bearer jwt.token.value”
 Path params: imdb movie id
+
 Response:  
 ```json
 [{"genres":["action","comedy","crime"],"_id":"5cc5c7e3d9f7ba0848020be2","imdbId":"tt0356910","title":"Mr. & Mrs. Smith","director":"Doug Liman","year":2005,"metascore":55,"actors":[{"imdbId":"nm0000093","name":"Brad Pitt"},{"imdbId":"nm0001401","name":"Angelina Jolie"}],"posterUrl":"https://marblejs-example.herokuapp.com/api/v1/assets/img/movies/tt0356910.jpg","__v":0}]
@@ -104,6 +107,7 @@ __GET: [api/v1/actors//{imdbId}](https://marblejs.docs.apiary.io/reference/actor
 Media Type: application/json  
 Headers: Authorization: “Bearer jwt.token.value”
 Path params: imdb actor id
+
 Response:  
 ```json
 [{"_id":"5cc5c7e3d9f7ba0848020bd6","imdbId":"nm0001401","name":"Angelina Jolie","birthday":"Wed Jun 04 1975 00:00:00 GMT+0000 (Coordinated Universal Time)","country":"USA","gender":"female","photoUrl":"https://marblejs-example.herokuapp.com/api/v1/assets/img/actors/nm0001401.jpg","__v":0}]
