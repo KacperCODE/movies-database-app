@@ -25,11 +25,13 @@ Please let backend heroku instance to load. This may take up to several seconds.
 * NGRx (State Management)
 * Sassy CSS (styling)
 * Font Awesome (icons)
+* Prettify VSCode (Lint tool)
 * Json Web Token (stateless authentication)
 * Jasmine (test)
 * Karma (test)
 * Heroku (demo hosting)
 
+- - - -
 
 ## Development server
 
@@ -49,17 +51,27 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng test --code-coverage` to execute the unit tests with code coverage analysis panel.
 
-## Rest
-Types of API calls application uses to get movies data.
-Description of each call purpose is in the links below.
-
 ## Heroku deployment
 In order to deploy to heroku you must be granted access.
 Once that requirement is fulfilled follow this [Heroku](https://devcenter.heroku.com/articles/git) tutorial on deploy an app.
 
 If the heroku remote is already setup you can deploy it with `git push heroku master`
+
 - - - -
-__POST: [rest/api/v1/auth/login](https://marblejs.docs.apiary.io/#reference/authorization/login/authorize-user)__  
+
+## Authentication
+* All REST calls apart from _api/v1/auth/login_ uri require a valid JWT token in the header '__Authorization: Bearer my.valid.token__'.
+* In order to acquire a JWT token a user has to provide valid username/password to POST _api/v1/auth/login_ uri.
+* For more details on JWT token please see [JwtAuthentication](https://jwt.io/introduction/).
+
+
+## Rest
+
+Types of API calls application uses to get movies data.
+Description of each call purpose is in the links below.
+
+- - - -
+__POST: [api/v1/auth/login](https://marblejs.docs.apiary.io/#reference/authorization/login/authorize-user)__  
 Media Type: application/json
 Request:  
 ```json
@@ -70,7 +82,7 @@ Response:
 [{"token": "jwt.token.value"}]
 ```
 - - - -
-__GET: [rest/api/v1/movies](https://marblejs.docs.apiary.io/#reference/movies/movie-list/get-all-movies)__  
+__GET: [api/v1/movies](https://marblejs.docs.apiary.io/#reference/movies/movie-list/get-all-movies)__  
 Media Type: application/json  
 Headers: Authorization: “Bearer jwt.token.value”
 Path params: search criteria params - limit, page, sortBy, sortDir
@@ -79,7 +91,7 @@ Response:
 [{"collection": [ { "genres": [ "action", "comedy", "crime" ], "_id": "5cc5c7e3d9f7ba0848020be2", "imdbId": "tt0356910", "title": "Mr. & Mrs. Smith", "director": "Doug Liman", "year": 2005, "metascore": 55, "actors": [ { "imdbId": "nm0000093", "name": "Brad Pitt" }, { "imdbId": "nm0001401", "name": "Angelina Jolie" } ], "posterUrl": "https://marblejs-example.herokuapp.com/api/v1/assets/img/movies/tt0356910.jpg", "__v": 0 }, { "genres": [ "action", "adventure", "sci-fi" ], "_id": "5cc5c7e3d9f7ba0848020be5", "imdbId": "tt1228705", "title": "Iron Man 2", "director": "Jon Favreau", "year": 2010, "metascore": 57, "actors": [ { "imdbId": "nm0000375", "name": "Robert Downey Jr." }, { "imdbId": "nm0000569", "name": "Gwyneth Paltrow" } ], "posterUrl": "https://marblejs-example.herokuapp.com/api/v1/assets/img/movies/tt1228705.jpg", "__v": 0 }, { "genres": [ "action", "adventure", "crime" ], "_id": "5cc5c7e3d9f7ba0848020be3", "imdbId": "tt0988045", "title": "Sherlock Holmes", "director": "Guy Ritchie", "year": 2009, "metascore": 57, "actors": [ { "imdbId": "nm0000375", "name": "Robert Downey Jr." } ], "posterUrl": "https://marblejs-example.herokuapp.com/api/v1/assets/img/movies/tt0988045.jpg", "__v": 0 } ], "total": 11}]
 ```
 - - - -
-__GET: [rest/api/v1/movies/{imdbId}](https://marblejs.docs.apiary.io/reference/movies/movie/get-single-movie)__  
+__GET: [api/v1/movies/{imdbId}](https://marblejs.docs.apiary.io/reference/movies/movie/get-single-movie)__  
 Media Type: application/json  
 Headers: Authorization: “Bearer jwt.token.value”
 Path params: imdb movie id
@@ -88,7 +100,7 @@ Response:
 [{"genres":["action","comedy","crime"],"_id":"5cc5c7e3d9f7ba0848020be2","imdbId":"tt0356910","title":"Mr. & Mrs. Smith","director":"Doug Liman","year":2005,"metascore":55,"actors":[{"imdbId":"nm0000093","name":"Brad Pitt"},{"imdbId":"nm0001401","name":"Angelina Jolie"}],"posterUrl":"https://marblejs-example.herokuapp.com/api/v1/assets/img/movies/tt0356910.jpg","__v":0}]
 ```
 - - - -
-__GET: [rest/api/v1/actors//{imdbId}](https://marblejs.docs.apiary.io/reference/actors/actor/get-single-actor)__  
+__GET: [api/v1/actors//{imdbId}](https://marblejs.docs.apiary.io/reference/actors/actor/get-single-actor)__  
 Media Type: application/json  
 Headers: Authorization: “Bearer jwt.token.value”
 Path params: imdb actor id
